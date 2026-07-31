@@ -1,0 +1,29 @@
+{
+  "Nav": {
+    "atelier": "The Atelier",
+    "destinations": "Destinations",
+    "compositions": "Compositions",
+    "journal": "Journal",
+    "inquire": "Inquire",
+    "skipToContent": "Skip to content",
+    "language": "Language",
+    "menu": "Menu",
+    "close": "Close"
+  },
+  "Footer": {
+    "manifesto": "Turxplore composes journeys through Morocco with those who know it from within. Every composition begins with a conversation, and ends in the country it came from.",
+    "contactLabel": "Correspondence",
+    "addressLabel": "Marrakech",
+    "phoneLabel": "Telephone",
+    "emailLabel": "Email",
+    "legal": "Legal",
+    "privacy": "Privacy",
+    "terms": "Terms",
+    "imprint": "Imprint",
+    "colophon": "Set in GT Sectra Fine and Söhne."
+  },
+  "Common": {
+    "readMore": "Continue reading",
+    "beginConversation": "Begin a conversation"
+  }
+}

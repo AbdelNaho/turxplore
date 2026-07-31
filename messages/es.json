@@ -1,0 +1,29 @@
+{
+  "Nav": {
+    "atelier": "El Taller",
+    "destinations": "Destinos",
+    "compositions": "Composiciones",
+    "journal": "Diario",
+    "inquire": "Escribir",
+    "skipToContent": "Ir al contenido",
+    "language": "Idioma",
+    "menu": "Menú",
+    "close": "Cerrar"
+  },
+  "Footer": {
+    "manifesto": "Turxplore compone viajes por Marruecos junto a quienes lo conocen desde dentro. Cada composición comienza con una conversación y termina en el país del que nace.",
+    "contactLabel": "Correspondencia",
+    "addressLabel": "Marrakech",
+    "phoneLabel": "Teléfono",
+    "emailLabel": "Correo electrónico",
+    "legal": "Legal",
+    "privacy": "Privacidad",
+    "terms": "Términos",
+    "imprint": "Aviso legal",
+    "colophon": "Compuesto en GT Sectra Fine y Söhne."
+  },
+  "Common": {
+    "readMore": "Seguir leyendo",
+    "beginConversation": "Iniciar una conversación"
+  }
+}
