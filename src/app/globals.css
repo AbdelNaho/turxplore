@@ -1,0 +1,52 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+:root {
+  /* Color palette — RGB triplets for Tailwind's alpha-value pattern */
+  --color-bone: 244 237 228; /* Tadelakt Bone — primary canvas */
+  --color-ink: 27 31 46; /* Night Indigo — primary ink */
+  --color-ochre: 184 92 60; /* Marrakech Ochre — signature accent, never >5% */
+  --color-cedar: 62 74 58; /* Cedar — secondary, rare */
+  --color-andalus: 43 58 92; /* Andalus — single-application accent */
+  --color-sand-100: 234 225 211;
+  --color-sand-200: 214 201 180;
+  --color-slate-300: 167 155 135;
+  --color-slate-400: 124 115 100;
+  --color-slate-500: 78 72 63;
+  --color-slate-600: 48 44 38;
+
+  /* Typography — swap the first family in each stack for the licensed font */
+  --font-serif: "GT Sectra Fine", "Fraunces", Georgia, serif;
+  --font-sans: "Söhne", "Inter", -apple-system, BlinkMacSystemFont, sans-serif;
+  --font-arabic: "29LT Zawi", "Noto Naskh Arabic", serif;
+
+  /* 8-point spacing scale */
+  --space-1: 8px;
+  --space-2: 16px;
+  --space-3: 24px;
+  --space-4: 32px;
+  --space-5: 48px;
+  --space-6: 64px;
+  --space-7: 96px;
+  --space-8: 128px;
+  --space-9: 192px;
+  --space-10: 256px;
+}
+
+body {
+  background-color: rgb(var(--color-bone));
+  color: rgb(var(--color-ink));
+  font-family: var(--font-serif);
+}
+
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+    scroll-behavior: auto !important;
+  }
+}
