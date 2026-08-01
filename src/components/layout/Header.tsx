@@ -42,6 +42,17 @@ export function Header() {
           : "bg-transparent border-b-[0.5px] border-transparent")
       }
     >
+      <div
+        className={
+          "overflow-hidden text-center transition-all duration-interface ease-out " +
+          (scrolled ? "max-h-0 opacity-0" : "max-h-8 border-b-[0.5px] border-ivory/5 py-2 opacity-100")
+        }
+      >
+        <span className="font-sans text-caps-label uppercase tracking-[0.3em] text-champagne/70">
+          {t("kingdom")}
+        </span>
+      </div>
+
       <div className="mx-auto flex max-w-content items-center justify-between gap-6 px-3 py-3 tablet:px-5 desktop:px-7 desktop:py-4">
         <Wordmark className="text-ivory" />
 

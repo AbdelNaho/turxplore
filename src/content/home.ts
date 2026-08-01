@@ -17,7 +17,7 @@ export type Route = {
 };
 
 export type HomeContent = {
-  hero: { overline: string; title: string; titleEm: string; subtitle: string; cta: string };
+  hero: { title: string; titleEm: string; subtitle: string; cta: string };
   marquee: string[];
   promise: { eyebrow: string; paragraphs: string[] };
   proof: string;
@@ -214,7 +214,6 @@ const routesEn: Route[] = [
 export const homeContent: Record<"en" | "fr", HomeContent> = {
   fr: {
     hero: {
-      overline: "Royaume du Maroc",
       title: "Morocco,",
       titleEm: "Privately.",
       subtitle: "Des voyages composés pour le Maroc le plus rare, pour ceux qui le préfèrent ainsi.",
@@ -277,7 +276,6 @@ export const homeContent: Record<"en" | "fr", HomeContent> = {
   },
   en: {
     hero: {
-      overline: "Kingdom of Morocco",
       title: "Morocco,",
       titleEm: "Privately.",
       subtitle: "Journeys composed for the rarest Morocco, for those who prefer it that way.",

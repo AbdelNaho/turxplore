@@ -39,10 +39,7 @@ export default async function Home({
           <div className="pointer-events-none absolute inset-0 bg-gradient-to-t from-night via-night/25 to-night/50" />
           <Container className="relative flex flex-col gap-5 pb-9 desktop:max-w-2xl desktop:pb-10">
             <Reveal>
-              <div className="mb-5 flex items-center gap-3">
-                <GlowDot className="h-[5px] w-[5px]" />
-                <CapsLabel className="text-champagne/85">{content.hero.overline}</CapsLabel>
-              </div>
+              <GlowDot className="mb-5 h-[6px] w-[6px]" />
               <h1 className="font-serif text-display-hero italic leading-[0.95] tracking-[-0.03em] text-ivory">
                 {content.hero.title}
                 <br />
