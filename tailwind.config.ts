@@ -12,6 +12,9 @@ const config: Config = {
       tablet: "768px",
       md: "768px",
       desktop: "1024px",
+      // Wider than `desktop`: the header's wordmark + 5 nav links + language
+      // switcher crowd together with no guaranteed gap right at 1024px.
+      nav: "1340px",
       lg: "1024px",
       xl: "1280px",
       "2xl": "1440px",

@@ -42,10 +42,10 @@ export function Header() {
           : "bg-transparent border-b-[0.5px] border-transparent")
       }
     >
-      <div className="mx-auto flex max-w-content items-center justify-between px-3 py-3 tablet:px-5 desktop:px-7 desktop:py-4">
+      <div className="mx-auto flex max-w-content items-center justify-between gap-6 px-3 py-3 tablet:px-5 desktop:px-7 desktop:py-4">
         <Wordmark className="text-ink" />
 
-        <nav aria-label="Primary" className="hidden desktop:block">
+        <nav aria-label="Primary" className="hidden nav:block">
           <ul className="flex items-center gap-6">
             {navItems.map((item) => (
               <li key={item.href}>
@@ -60,13 +60,13 @@ export function Header() {
           </ul>
         </nav>
 
-        <div className="hidden desktop:block">
+        <div className="hidden nav:block">
           <LanguageSwitcher />
         </div>
 
         <button
           type="button"
-          className="font-sans text-caps-label uppercase text-ink desktop:hidden"
+          className="font-sans text-caps-label uppercase text-ink nav:hidden"
           aria-expanded={menuOpen}
           aria-controls="mobile-nav"
           onClick={() => setMenuOpen((open) => !open)}
@@ -78,7 +78,7 @@ export function Header() {
       {menuOpen ? (
         <div
           id="mobile-nav"
-          className="min-h-[100dvh] overflow-y-auto border-t-[0.5px] border-sand-200 bg-bone px-3 py-4 desktop:hidden"
+          className="min-h-[100dvh] overflow-y-auto border-t-[0.5px] border-sand-200 bg-bone px-3 py-4 nav:hidden"
         >
           <ul className="flex flex-col gap-4">
             {navItems.map((item) => (
