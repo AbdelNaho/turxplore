@@ -13,6 +13,7 @@ import { InviteForm } from "@/components/home/InviteForm";
 import { StickyMobileCta } from "@/components/home/StickyMobileCta";
 import { ChapterRail } from "@/components/home/ChapterRail";
 import { Reveal } from "@/components/home/Reveal";
+import { SectionDivider } from "@/components/home/SectionDivider";
 import { homeContent } from "@/content/home";
 
 export default async function Home({
@@ -59,8 +60,10 @@ export default async function Home({
         </div>
       </section>
 
+      <SectionDivider />
+
       {/* 02 — La promesse */}
-      <section className="border-t-[0.5px] border-sand-200 py-9 desktop:py-10">
+      <section className="py-9 desktop:py-10">
         <Container>
           <div className="grid gap-4 desktop:grid-cols-12">
             <div aria-hidden="true" className="hidden desktop:col-span-1 desktop:block">
@@ -148,8 +151,10 @@ export default async function Home({
         })}
       </div>
 
+      <SectionDivider />
+
       {/* 05 — L'invitation */}
-      <section id="invite" className="scroll-mt-20 border-t-[0.5px] border-sand-200 py-9 desktop:py-10">
+      <section id="invite" className="scroll-mt-20 py-9 desktop:py-10">
         <Container>
           <div className="grid gap-4 desktop:grid-cols-12">
             <div className="desktop:col-span-5">
