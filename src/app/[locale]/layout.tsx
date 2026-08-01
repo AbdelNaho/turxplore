@@ -22,7 +22,7 @@ export async function generateMetadata({
   return {
     metadataBase: new URL("https://turxplore.com"),
     title: {
-      default: "Turxplore — Morocco, composed.",
+      default: "Turxplore — Morocco, Privately.",
       template: "%s — Turxplore",
     },
     description: t("manifesto"),

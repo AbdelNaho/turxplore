@@ -28,7 +28,7 @@ export default async function Home({
     <PageShell>
       <Container as="section" className="flex min-h-[70vh] flex-col justify-center gap-6">
         <CapsLabel>Foundation preview — phase A</CapsLabel>
-        <DisplayHero>Morocco, composed.</DisplayHero>
+        <DisplayHero>Morocco, Privately.</DisplayHero>
         <EditorialSubhead className="max-w-reading">
           The homepage itself arrives in phase B. This screen exists to prove the
           type scale, spacing, and palette before any editorial content is laid over them.
