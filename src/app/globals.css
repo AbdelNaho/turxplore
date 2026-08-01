@@ -34,6 +34,10 @@
   --space-10: 256px;
 }
 
+html {
+  scroll-behavior: smooth;
+}
+
 body {
   background-color: rgb(var(--color-bone));
   color: rgb(var(--color-ink));
