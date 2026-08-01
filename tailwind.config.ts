@@ -1,8 +1,9 @@
 import type { Config } from "tailwindcss";
 
 /**
- * Turxplore design tokens. Every value here traces to the visual system
- * brief — no default Tailwind colors, spacing, or shadows survive.
+ * Turxplore design tokens — warm night palette (night / champagne / ivory),
+ * the direction the client explicitly chose over the earlier daylight
+ * system. No default Tailwind colors, spacing, or shadows survive.
  */
 const config: Config = {
   content: ["./src/**/*.{ts,tsx,mdx}"],
@@ -22,21 +23,18 @@ const config: Config = {
     colors: {
       transparent: "transparent",
       current: "currentColor",
-      bone: "rgb(var(--color-bone) / <alpha-value>)",
-      ink: "rgb(var(--color-ink) / <alpha-value>)",
-      ochre: "rgb(var(--color-ochre) / <alpha-value>)",
-      cedar: "rgb(var(--color-cedar) / <alpha-value>)",
-      andalus: "rgb(var(--color-andalus) / <alpha-value>)",
-      sand: {
-        100: "rgb(var(--color-sand-100) / <alpha-value>)",
-        200: "rgb(var(--color-sand-200) / <alpha-value>)",
-      },
-      slate: {
-        300: "rgb(var(--color-slate-300) / <alpha-value>)",
-        400: "rgb(var(--color-slate-400) / <alpha-value>)",
-        500: "rgb(var(--color-slate-500) / <alpha-value>)",
-        600: "rgb(var(--color-slate-600) / <alpha-value>)",
-      },
+      // Primary canvas — warm near-black.
+      night: "rgb(var(--color-night) / <alpha-value>)",
+      // Secondary canvas shade, slightly lifted (e.g. scrolled header).
+      night2: "rgb(var(--color-night-2) / <alpha-value>)",
+      // Tertiary canvas, for sections that sit a step apart (e.g. tailor-made).
+      ember: "rgb(var(--color-ember) / <alpha-value>)",
+      // Primary text on night.
+      ivory: "rgb(var(--color-ivory) / <alpha-value>)",
+      // Signature accent — the one warm point of light.
+      champagne: "rgb(var(--color-champagne) / <alpha-value>)",
+      // Secondary accent, rare.
+      terracotta: "rgb(var(--color-terracotta) / <alpha-value>)",
     },
     spacing: {
       px: "1px",
@@ -113,7 +111,8 @@ const config: Config = {
     },
     boxShadow: {
       none: "none",
-      card: "0 24px 48px rgba(27, 31, 46, 0.08)",
+      card: "0 24px 48px rgba(10, 6, 3, 0.35)",
+      glow: "0 0 14px 3px rgba(203, 168, 90, 0.5)",
     },
     borderRadius: {
       none: "0px",
@@ -127,6 +126,19 @@ const config: Config = {
       },
       transitionTimingFunction: {
         out: "cubic-bezier(0, 0, 0.2, 1)",
+      },
+      keyframes: {
+        marquee: {
+          to: { transform: "translateX(-50%)" },
+        },
+        rise: {
+          from: { opacity: "0", transform: "translateY(18px)" },
+          to: { opacity: "1", transform: "none" },
+        },
+      },
+      animation: {
+        marquee: "marquee 36s linear infinite",
+        rise: "rise 0.95s cubic-bezier(0.22, 0.61, 0.36, 1) forwards",
       },
     },
   },

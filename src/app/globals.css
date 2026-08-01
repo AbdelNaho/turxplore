@@ -4,21 +4,16 @@
 
 :root {
   /* Color palette — RGB triplets for Tailwind's alpha-value pattern */
-  --color-bone: 244 237 228; /* Tadelakt Bone — primary canvas */
-  --color-ink: 27 31 46; /* Night Indigo — primary ink */
-  --color-ochre: 184 92 60; /* Marrakech Ochre — signature accent, never >5% */
-  --color-cedar: 62 74 58; /* Cedar — secondary, rare */
-  --color-andalus: 43 58 92; /* Andalus — single-application accent */
-  --color-sand-100: 234 225 211;
-  --color-sand-200: 214 201 180;
-  --color-slate-300: 167 155 135;
-  --color-slate-400: 124 115 100;
-  --color-slate-500: 78 72 63;
-  --color-slate-600: 48 44 38;
+  --color-night: 23 16 9; /* primary canvas — warm near-black */
+  --color-night-2: 31 22 13; /* lifted canvas shade (e.g. scrolled header) */
+  --color-ember: 42 27 14; /* tertiary canvas, one step apart */
+  --color-ivory: 243 236 221; /* primary text on night */
+  --color-champagne: 203 168 90; /* signature accent — the point of light */
+  --color-terracotta: 192 106 68; /* secondary accent, rare */
 
   /* Typography — swap the first family in each stack for the licensed font */
   --font-serif: "GT Sectra Fine", "Fraunces", Georgia, serif;
-  --font-sans: "Söhne", "Inter", -apple-system, BlinkMacSystemFont, sans-serif;
+  --font-sans: "Söhne", "Outfit", -apple-system, BlinkMacSystemFont, sans-serif;
   --font-arabic: "29LT Zawi", "Noto Naskh Arabic", serif;
 
   /* 8-point spacing scale */
@@ -39,8 +34,8 @@ html {
 }
 
 body {
-  background-color: rgb(var(--color-bone));
-  color: rgb(var(--color-ink));
+  background-color: rgb(var(--color-night));
+  color: rgb(var(--color-ivory));
   font-family: var(--font-serif);
 }
 

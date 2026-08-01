@@ -1,4 +1,4 @@
-import { Fraunces, Inter, Noto_Naskh_Arabic } from "next/font/google";
+import { Fraunces, Outfit, Noto_Naskh_Arabic } from "next/font/google";
 
 /**
  * Development substitutes for the licensed type — GT Sectra Fine and Söhne.
@@ -15,12 +15,12 @@ export const fraunces = Fraunces({
   variable: "--font-fraunces",
 });
 
-export const inter = Inter({
+export const outfit = Outfit({
   subsets: ["latin", "latin-ext"],
-  weight: ["400", "500"],
+  weight: ["200", "300", "400", "500"],
   display: "swap",
   preload: true,
-  variable: "--font-inter",
+  variable: "--font-outfit",
 });
 
 /**

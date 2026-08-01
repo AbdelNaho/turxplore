@@ -1,11 +1,11 @@
 import { ComponentPropsWithoutRef, forwardRef, useId } from "react";
 
 const fieldBaseClassName =
-  "w-full bg-transparent border-0 border-b border-sand-200 py-2 font-sans " +
-  "text-interface-body text-ink placeholder:text-slate-300 " +
-  "focus:outline-none focus:border-ink transition-colors duration-interface ease-out";
+  "w-full bg-transparent border-0 border-b border-ivory/10 py-2 font-sans " +
+  "text-interface-body text-ivory placeholder:text-ivory/20 placeholder:italic " +
+  "focus:outline-none focus:border-champagne transition-colors duration-interface ease-out";
 
-const labelClassName = "font-sans text-caps-label uppercase text-slate-400";
+const labelClassName = "font-sans text-caps-label uppercase text-ivory/40";
 
 type FieldShellProps = {
   label: string;
@@ -24,7 +24,7 @@ function FieldShell({ label, htmlFor, optional, hint, children }: FieldShellProp
         {optional ? " (optional)" : ""}
       </label>
       {children}
-      {hint ? <p className="font-serif italic text-caption text-slate-400">{hint}</p> : null}
+      {hint ? <p className="font-serif italic text-caption text-ivory/40">{hint}</p> : null}
     </div>
   );
 }

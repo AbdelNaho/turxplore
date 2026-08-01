@@ -1,15 +1,14 @@
 import { ComponentPropsWithoutRef, forwardRef } from "react";
 
 /**
- * The one place the site uses a filled, colored action — the quick-inquiry
- * funnel the client approved as a deliberate departure from the otherwise
- * text-only interactive register. Ochre fill stays under 5% of any given
- * screen because the button itself is small.
+ * The filled champagne action — the signature accent, used deliberately and
+ * only for real transactional moments (the inquiry funnel), never decoration.
  */
 const accentClassName =
-  "inline-flex items-center justify-center bg-ochre text-bone font-sans text-interface-label " +
-  "px-4 py-2 transition-colors duration-interface ease-out hover:bg-ochre/90 " +
-  "focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-ink " +
+  "inline-flex items-center justify-center bg-champagne text-night font-sans " +
+  "text-caps-label uppercase tracking-[0.14em] px-5 py-3 transition-all duration-interface ease-out " +
+  "hover:brightness-110 hover:-translate-y-px " +
+  "focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-ivory " +
   "disabled:opacity-60 disabled:cursor-not-allowed";
 
 type ButtonProps = ComponentPropsWithoutRef<"button">;

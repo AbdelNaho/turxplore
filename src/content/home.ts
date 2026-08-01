@@ -9,16 +9,31 @@ export type Voyage = {
   imageAlt: string;
 };
 
+export type Route = {
+  name: string;
+  subtitle: string;
+  image: string;
+  imageAlt: string;
+};
+
 export type HomeContent = {
-  hero: { overline: string; title: string; cta: string };
+  hero: { overline: string; title: string; titleEm: string; subtitle: string; cta: string };
+  marquee: string[];
   promise: { eyebrow: string; paragraphs: string[] };
   proof: string;
   voyagesHeading: { line1: string; line2: string };
   voyages: Voyage[];
+  tailorMade: { headline: string; headlineEm: string; body: string; cta: string };
+  routesHeading: { title: string; body: string; hint: string };
+  routes: Route[];
   invite: {
     eyebrow: string;
     title: string;
     body: string;
+    seasonLabel: string;
+    seasonOptions: string[];
+    intentLabel: string;
+    intentOptions: string[];
     emailLabel: string;
     cta: string;
     confirmation: string;
@@ -130,13 +145,87 @@ const voyagesEn: Voyage[] = [
   },
 ];
 
+const routesFr: Route[] = [
+  {
+    name: "Le désert privé",
+    subtitle: "Chegaga, Erg Chigaga, campements exclusifs",
+    image: "/images/voyage-desert-camp.jpg",
+    imageAlt: "Campement privé au creux des dunes",
+  },
+  {
+    name: "Les villes impériales",
+    subtitle: "Marrakech, Fès, Meknès, Rabat",
+    image: "/images/voyage-riad-marrakech.jpg",
+    imageAlt: "Patio d'un riad de Marrakech",
+  },
+  {
+    name: "La côte atlantique",
+    subtitle: "Essaouira, Oualidia, Mogador",
+    image: "/images/voyage-atlantic-coast.jpg",
+    imageAlt: "Le port d'Essaouira au crépuscule",
+  },
+  {
+    name: "L'héritage andalou",
+    subtitle: "L'écho de Grenade, en español",
+    image: "/images/voyage-fes-medina.jpg",
+    imageAlt: "Ruelle de la médina de Fès",
+  },
+  {
+    name: "Le Maroc en famille",
+    subtitle: "Plusieurs générations, un seul récit",
+    image: "/images/route-family-rooftop.jpg",
+    imageAlt: "Terrasse sur les toits de Marrakech au coucher du soleil, guirlandes lumineuses",
+  },
+];
+
+const routesEn: Route[] = [
+  {
+    name: "The private desert",
+    subtitle: "Chegaga, Erg Chigaga, exclusive camps",
+    image: "/images/voyage-desert-camp.jpg",
+    imageAlt: "A private camp settled among the dunes",
+  },
+  {
+    name: "The imperial cities",
+    subtitle: "Marrakech, Fès, Meknès, Rabat",
+    image: "/images/voyage-riad-marrakech.jpg",
+    imageAlt: "A Marrakech riad courtyard",
+  },
+  {
+    name: "The Atlantic coast",
+    subtitle: "Essaouira, Oualidia, Mogador",
+    image: "/images/voyage-atlantic-coast.jpg",
+    imageAlt: "Essaouira's harbor at dusk",
+  },
+  {
+    name: "The Andalusian legacy",
+    subtitle: "Granada's echo, in Spanish",
+    image: "/images/voyage-fes-medina.jpg",
+    imageAlt: "An alley in the Fès medina",
+  },
+  {
+    name: "Morocco, as a family",
+    subtitle: "Several generations, one story",
+    image: "/images/route-family-rooftop.jpg",
+    imageAlt: "A Marrakech rooftop terrace at sunset, string lights overhead",
+  },
+];
+
 export const homeContent: Record<"en" | "fr", HomeContent> = {
   fr: {
     hero: {
-      overline: "DMC privé de luxe · Royaume du Maroc",
-      title: "Morocco, Privately.",
+      overline: "Royaume du Maroc",
+      title: "Morocco,",
+      titleEm: "Privately.",
+      subtitle: "Des voyages composés pour le Maroc le plus rare, pour ceux qui le préfèrent ainsi.",
       cta: "Composer mon voyage",
     },
+    marquee: [
+      "Accès privé",
+      "Aucun itinéraire répété",
+      "Réponse en moins de 24h",
+      "Français · English · Español · Português",
+    ],
     promise: {
       eyebrow: "Notre conviction",
       paragraphs: [
@@ -145,13 +234,29 @@ export const homeContent: Record<"en" | "fr", HomeContent> = {
         "Nous ouvrons des portes qui restent fermées aux autres. Nos guides sont historiens, artisans, botanistes. Des gens qui ont une histoire à raconter, pas un script à réciter. Et nous choisissons chaque horaire pour vous offrir des lieux sans foule. Car il n'existe pas de plus grand luxe qu'un patio millénaire dans le silence complet.",
       ],
     },
-    proof: "Quarante groupes par an. Aucun itinéraire répété. Réponse en quatre heures.",
+    proof: "Quarante groupes par an. Aucun itinéraire répété. Réponse en moins de 24h.",
     voyagesHeading: { line1: "Quatre voyages.", line2: "Des variations infinies." },
     voyages: voyagesFr,
+    tailorMade: {
+      headline: "Aucun de ces voyages n'existe encore.",
+      headlineEm: "Le vôtre sera composé pour vous.",
+      body: "Ce sont des points de départ, pas des forfaits. Chaque itinéraire s'écrit à la main, pour vous seul, autour de ce que vous cherchez. C'est la seule façon dont nous savons travailler.",
+      cta: "Commencer la conversation",
+    },
+    routesHeading: {
+      title: "Par où commencer",
+      body: "Cinq portes d'entrée. Choisissez celle qui vous appelle, nous composerons votre version.",
+      hint: "Faites glisser",
+    },
+    routes: routesFr,
     invite: {
-      eyebrow: "Pour commencer",
+      eyebrow: "Composer votre voyage",
       title: "Parlez-nous du voyage que vous imaginez.",
-      body: "Pas de menu déroulant de styles de voyage. Pas de dates, pas de budget demandé ici. Ces questions viennent après, dans notre réponse, quand la relation est ouverte.",
+      body: "Pas de menu déroulant, pas de formulaire interminable. Deux gestes, puis une phrase. Nous lisons chaque message nous-mêmes.",
+      seasonLabel: "Quelle saison vous attire ?",
+      seasonOptions: ["Printemps", "Été", "Automne", "Hiver", "Pas encore décidé"],
+      intentLabel: "Que cherchez-vous au Maroc ?",
+      intentOptions: ["Le silence", "La culture", "L'aventure", "Réunir les miens"],
       emailLabel: "Votre email",
       cta: "Commencer la conversation",
       confirmation:
@@ -162,20 +267,28 @@ export const homeContent: Record<"en" | "fr", HomeContent> = {
       travelersLabel: "Voyageurs",
       travelersEmail: "a.nahome@turxplore.com",
       travelersNote: "WhatsApp +212 697 047 692, en français, anglais, espagnol, portugais",
-      advisorsLabel: "Advisors",
+      advisorsLabel: "Conseillers en voyage",
       advisorsEmail: "a.nahome@turxplore.com",
       advisorsNote: "Signature · Ensemble · Indépendants",
-      responseLabel: "Réponse",
+      responseLabel: "Notre engagement",
       responseNote:
         "Chaque demande traitée en moins de 24h. Chaque client traité comme s'il était le seul.",
     },
   },
   en: {
     hero: {
-      overline: "Private Luxury DMC · Kingdom of Morocco",
-      title: "Morocco, Privately.",
+      overline: "Kingdom of Morocco",
+      title: "Morocco,",
+      titleEm: "Privately.",
+      subtitle: "Journeys composed for the rarest Morocco, for those who prefer it that way.",
       cta: "Compose My Journey",
     },
+    marquee: [
+      "Private access",
+      "No itinerary ever repeated",
+      "Response in under 24 hours",
+      "English · Français · Español · Português",
+    ],
     promise: {
       eyebrow: "Our conviction",
       paragraphs: [
@@ -184,13 +297,29 @@ export const homeContent: Record<"en" | "fr", HomeContent> = {
         "We open doors that stay closed to others. Our guides are historians, artisans, botanists — people with a story to tell, not a script to recite. And we time every arrival to give you places without crowds, because there is no greater luxury than a thousand-year-old courtyard in complete silence.",
       ],
     },
-    proof: "Forty groups a year. No itinerary ever repeated. A four-hour response.",
+    proof: "Forty groups a year. No itinerary ever repeated. Response in under 24 hours.",
     voyagesHeading: { line1: "Four journeys.", line2: "Infinite variations." },
     voyages: voyagesEn,
+    tailorMade: {
+      headline: "None of these journeys exist yet.",
+      headlineEm: "Yours will be composed for you.",
+      body: "These are starting points, not packages. Every itinerary is written by hand, for you alone, around what you are looking for. It is the only way we know how to work.",
+      cta: "Begin the conversation",
+    },
+    routesHeading: {
+      title: "Where to begin",
+      body: "Five doors in. Choose the one that calls to you, and we will compose your version of it.",
+      hint: "Drag to explore",
+    },
+    routes: routesEn,
     invite: {
-      eyebrow: "To begin",
+      eyebrow: "Compose your journey",
       title: "Tell us about the journey you are imagining.",
-      body: "No dropdown of travel styles here. No dates, no budget asked on this page. Those questions come after, in our reply, once the conversation has opened.",
+      body: "No dropdown, no endless form. Two taps, then a sentence. We read every message ourselves.",
+      seasonLabel: "Which season calls to you?",
+      seasonOptions: ["Spring", "Summer", "Autumn", "Winter", "Not decided yet"],
+      intentLabel: "What are you looking for in Morocco?",
+      intentOptions: ["Silence", "Culture", "Adventure", "Gathering my people"],
       emailLabel: "Your email",
       cta: "Begin the conversation",
       confirmation:
@@ -201,10 +330,10 @@ export const homeContent: Record<"en" | "fr", HomeContent> = {
       travelersLabel: "Travelers",
       travelersEmail: "a.nahome@turxplore.com",
       travelersNote: "WhatsApp +212 697 047 692, in English, French, Spanish, Portuguese",
-      advisorsLabel: "Advisors",
+      advisorsLabel: "Travel advisors",
       advisorsEmail: "a.nahome@turxplore.com",
       advisorsNote: "Signature · Ensemble · Independents",
-      responseLabel: "Response",
+      responseLabel: "Our commitment",
       responseNote: "Every enquiry answered in under 24 hours. Every client treated as if they were our only one.",
     },
   },

@@ -36,14 +36,14 @@ export function Header() {
   return (
     <header
       className={
-        "fixed inset-x-0 top-0 z-50 transition-colors duration-interface ease-out " +
+        "fixed inset-x-0 top-0 z-50 transition-all duration-interface ease-out " +
         (scrolled
-          ? "bg-bone border-b-[0.5px] border-sand-200"
+          ? "bg-night/90 backdrop-blur-xl border-b-[0.5px] border-ivory/10"
           : "bg-transparent border-b-[0.5px] border-transparent")
       }
     >
       <div className="mx-auto flex max-w-content items-center justify-between gap-6 px-3 py-3 tablet:px-5 desktop:px-7 desktop:py-4">
-        <Wordmark className="text-ink" />
+        <Wordmark className="text-ivory" />
 
         <nav aria-label="Primary" className="hidden nav:block">
           <ul className="flex items-center gap-6">
@@ -51,7 +51,7 @@ export function Header() {
               <li key={item.href}>
                 <Link
                   href={item.href}
-                  className="font-sans text-interface-label text-ink border-b border-transparent transition-colors duration-interface ease-out hover:border-ink"
+                  className="font-sans text-interface-label text-ivory/80 border-b border-transparent transition-colors duration-interface ease-out hover:text-champagne"
                 >
                   {t(item.key)}
                 </Link>
@@ -66,7 +66,7 @@ export function Header() {
 
         <button
           type="button"
-          className="font-sans text-caps-label uppercase text-ink nav:hidden"
+          className="font-sans text-caps-label uppercase text-ivory nav:hidden"
           aria-expanded={menuOpen}
           aria-controls="mobile-nav"
           onClick={() => setMenuOpen((open) => !open)}
@@ -78,7 +78,7 @@ export function Header() {
       {menuOpen ? (
         <div
           id="mobile-nav"
-          className="min-h-[100dvh] overflow-y-auto border-t-[0.5px] border-sand-200 bg-bone px-3 py-4 nav:hidden"
+          className="min-h-[100dvh] overflow-y-auto border-t-[0.5px] border-ivory/10 bg-night px-3 py-4 nav:hidden"
         >
           <ul className="flex flex-col gap-4">
             {navItems.map((item) => (
@@ -86,7 +86,7 @@ export function Header() {
                 <Link
                   href={item.href}
                   onClick={() => setMenuOpen(false)}
-                  className="font-serif text-editorial-headline text-ink"
+                  className="font-serif text-editorial-headline text-ivory"
                 >
                   {t(item.key)}
                 </Link>
