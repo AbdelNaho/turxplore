@@ -1,4 +1,4 @@
-import type { Metadata } from "next";
+import type { Metadata, Viewport } from "next";
 import { NextIntlClientProvider, hasLocale } from "next-intl";
 import { getTranslations, setRequestLocale } from "next-intl/server";
 import { notFound } from "next/navigation";
@@ -8,9 +8,15 @@ import { Header } from "@/components/layout/Header";
 import { Footer } from "@/components/layout/Footer";
 import "../globals.css";
 
+export const viewport: Viewport = {
+  themeColor: "#1A120D",
+};
+
 export function generateStaticParams() {
   return routing.locales.map((locale) => ({ locale }));
 }
+
+const localePaths: Record<string, string> = { en: "/", fr: "/fr", es: "/es", "pt-BR": "/pt-BR" };
 
 export async function generateMetadata({
   params,
@@ -26,6 +32,22 @@ export async function generateMetadata({
       template: "%s — Turxplore",
     },
     description: t("manifesto"),
+    alternates: {
+      canonical: localePaths[locale],
+      languages: localePaths,
+    },
+    openGraph: {
+      title: "Turxplore — Morocco, Privately.",
+      description: t("manifesto"),
+      siteName: "Turxplore",
+      locale,
+      type: "website",
+    },
+    twitter: {
+      card: "summary_large_image",
+      title: "Turxplore — Morocco, Privately.",
+      description: t("manifesto"),
+    },
   };
 }
 
