@@ -60,8 +60,8 @@ const voyagesFr: Voyage[] = [
     description:
       "Des patios cachés de Marrakech aux dunes vides de Chegaga. Accès privé à la Qaraouiyine. Une nuit là où aucun autre camp ne s'est dressé.",
     price: "À partir de 9 500 $ par personne",
-    image: "/images/voyage-desert-camp.jpg",
-    imageAlt: "Campement privé au creux des dunes, à la tombée du jour",
+    image: "/images/voyage-jemaa-elfna-night.jpg",
+    imageAlt: "La place Jemaa el-Fna à la nuit tombée, lumières et foule",
   },
   {
     number: "II",
@@ -107,8 +107,8 @@ const voyagesEn: Voyage[] = [
     description:
       "From Marrakech's hidden courtyards to the empty dunes of Chegaga. Private access to the Qarawiyyin. A night where no other camp has stood.",
     price: "From $9,500 per person",
-    image: "/images/voyage-desert-camp.jpg",
-    imageAlt: "A private camp settled among the dunes at last light",
+    image: "/images/voyage-jemaa-elfna-night.jpg",
+    imageAlt: "Jemaa el-Fna square at night, lights and crowds",
   },
   {
     number: "II",
@@ -267,7 +267,7 @@ export const homeContent: Record<"en" | "fr", HomeContent> = {
       travelersEmail: "a.nahome@turxplore.com",
       travelersNote: "WhatsApp +212 697 047 692, en français, anglais, espagnol, portugais",
       advisorsLabel: "Conseillers en voyage",
-      advisorsEmail: "a.nahome@turxplore.com",
+      advisorsEmail: "journeys@turxplore.com",
       advisorsNote: "Signature · Ensemble · Indépendants",
       responseLabel: "Notre engagement",
       responseNote:
@@ -329,7 +329,7 @@ export const homeContent: Record<"en" | "fr", HomeContent> = {
       travelersEmail: "a.nahome@turxplore.com",
       travelersNote: "WhatsApp +212 697 047 692, in English, French, Spanish, Portuguese",
       advisorsLabel: "Travel advisors",
-      advisorsEmail: "a.nahome@turxplore.com",
+      advisorsEmail: "journeys@turxplore.com",
       advisorsNote: "Signature · Ensemble · Independents",
       responseLabel: "Our commitment",
       responseNote: "Every enquiry answered in under 24 hours. Every client treated as if they were our only one.",
