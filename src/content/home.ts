@@ -82,8 +82,8 @@ const voyagesFr: Voyage[] = [
     description:
       "Une civilisation partagée, de l'écho de Grenade à Fès aux jardins andalous de Meknès. Entièrement privatisé, entièrement en espagnol.",
     price: "À partir de 11 000 $ par personne",
-    image: "/images/voyage-fes-medina.jpg",
-    imageAlt: "Ruelle couverte de la médina de Fès, marchand et passants",
+    image: "/images/voyage-hassan-ii-mosque.jpg",
+    imageAlt: "La mosquée Hassan II à Casablanca, vue sous l'arche",
   },
   {
     number: "IV",
@@ -129,8 +129,8 @@ const voyagesEn: Voyage[] = [
     description:
       "A shared civilization, from Granada's echo in Fès to the Andalusian gardens of Meknès. Fully privatized, fully in Spanish.",
     price: "From $11,000 per person",
-    image: "/images/voyage-fes-medina.jpg",
-    imageAlt: "A covered alley in the Fès medina, a vendor and passersby",
+    image: "/images/voyage-hassan-ii-mosque.jpg",
+    imageAlt: "The Hassan II Mosque in Casablanca, framed through an archway",
   },
   {
     number: "IV",
