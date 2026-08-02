@@ -30,7 +30,7 @@ export default async function Home({
         <section className="relative flex min-h-[100svh] flex-col justify-end overflow-hidden">
           <Image
             src="/images/hero-sahara.jpg"
-            alt="Le Sahara marocain à la dernière lumière"
+            alt="Une dune du Sahara marocain sous un ciel bleu pur"
             fill
             priority
             sizes="100vw"
