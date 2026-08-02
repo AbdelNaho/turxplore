@@ -71,8 +71,8 @@ const voyagesFr: Voyage[] = [
     description:
       "Les huîtres des parcs privés d'Oualidia. Les îles de Mogador au crépuscule. Les falaises à surf du Souss-Massa.",
     price: "À partir de 7 200 $ par personne",
-    image: "/images/voyage-atlantic-coast.jpg",
-    imageAlt: "Le port d'Essaouira dans la brume du soir, barques et goélands",
+    image: "/images/voyage-atlantique-sauvage.jpg",
+    imageAlt: "Barques bleues devant la Sqala d'Essaouira au crépuscule",
   },
   {
     number: "III",
@@ -118,8 +118,8 @@ const voyagesEn: Voyage[] = [
     description:
       "Oysters from private beds at Oualidia. The Mogador islands at dusk. The surf cliffs of Souss-Massa.",
     price: "From $7,200 per person",
-    image: "/images/voyage-atlantic-coast.jpg",
-    imageAlt: "Essaouira's harbor in the evening mist, boats and gulls",
+    image: "/images/voyage-atlantique-sauvage.jpg",
+    imageAlt: "Blue fishing boats before Essaouira's Sqala at dusk",
   },
   {
     number: "III",
@@ -149,8 +149,8 @@ const routesFr: Route[] = [
   {
     name: "Le désert privé",
     subtitle: "Chegaga, Erg Chigaga, campements exclusifs",
-    image: "/images/voyage-desert-camp.jpg",
-    imageAlt: "Campement privé au creux des dunes",
+    image: "/images/route-desert-prive.jpg",
+    imageAlt: "Robe rouge sur une dune au coucher du soleil, silence du désert",
   },
   {
     name: "Les villes impériales",
@@ -182,8 +182,8 @@ const routesEn: Route[] = [
   {
     name: "The private desert",
     subtitle: "Chegaga, Erg Chigaga, exclusive camps",
-    image: "/images/voyage-desert-camp.jpg",
-    imageAlt: "A private camp settled among the dunes",
+    image: "/images/route-desert-prive.jpg",
+    imageAlt: "A red dress on a dune at sunset, the desert's silence",
   },
   {
     name: "The imperial cities",
