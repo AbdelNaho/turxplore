@@ -24,7 +24,7 @@ export function Footer() {
             <ExternalTextLink href="tel:+212524000000">
               {t("phoneLabel")}
             </ExternalTextLink>
-            <ExternalTextLink href="mailto:hello@turxplore.com">
+            <ExternalTextLink href="mailto:journeys@turxplore.com">
               {t("emailLabel")}
             </ExternalTextLink>
           </div>

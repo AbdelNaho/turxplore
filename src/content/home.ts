@@ -267,7 +267,7 @@ export const homeContent: Record<"en" | "fr", HomeContent> = {
       emailLabel: "Votre email",
       cta: "Recevoir",
       confirmation: "Envoyé. Vérifiez votre boîte mail (et vos spams, au cas où).",
-      errorNote: "Ce message n'est pas arrivé. Réessayez, ou écrivez directement à hello@turxplore.com.",
+      errorNote: "Ce message n'est pas arrivé. Réessayez, ou écrivez directement à journeys@turxplore.com.",
       items: [
         {
           key: "carnet",
@@ -355,7 +355,7 @@ export const homeContent: Record<"en" | "fr", HomeContent> = {
       emailLabel: "Your email",
       cta: "Send it to me",
       confirmation: "Sent. Check your inbox (and your spam folder, just in case).",
-      errorNote: "That message did not arrive. Please try again, or write directly to hello@turxplore.com.",
+      errorNote: "That message did not arrive. Please try again, or write directly to journeys@turxplore.com.",
       items: [
         {
           key: "carnet",

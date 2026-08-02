@@ -108,7 +108,7 @@ export function InviteForm({
       </div>
       {state && !state.ok ? (
         <p className="mt-3 font-serif italic text-caption text-clay">
-          That message did not reach us. Please try again, or write directly to hello@turxplore.com.
+          That message did not reach us. Please try again, or write directly to journeys@turxplore.com.
         </p>
       ) : null}
     </form>

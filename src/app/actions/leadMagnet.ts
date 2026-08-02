@@ -57,7 +57,7 @@ export async function sendLeadMagnet(_prevState: SubmitResult | null, formData: 
         "Content-Type": "application/json",
       },
       body: JSON.stringify({
-        from: "Turxplore <hello@turxplore.com>",
+        from: "Turxplore <journeys@turxplore.com>",
         to: email,
         subject: `${magnet.label} — votre document Turxplore`,
         text: `Voici votre document : ${downloadUrl}\n\nTurxplore compose des voyages à travers le Maroc avec ceux qui le connaissent de l'intérieur.`,
@@ -77,7 +77,7 @@ export async function sendLeadMagnet(_prevState: SubmitResult | null, formData: 
           "Content-Type": "application/json",
         },
         body: JSON.stringify({
-          from: "Turxplore <hello@turxplore.com>",
+          from: "Turxplore <journeys@turxplore.com>",
           to: notifyTo,
           subject: "New lead — lead magnet download",
           text: `A visitor requested "${magnet.label}".\n\nEmail: ${email}`,
