@@ -21,7 +21,7 @@ export function Footer() {
             <span className="font-serif text-body-standard text-ivory">
               {t("addressLabel")}
             </span>
-            <ExternalTextLink href="tel:+212524000000">
+            <ExternalTextLink href="tel:+212697047692">
               {t("phoneLabel")}
             </ExternalTextLink>
             <ExternalTextLink href="mailto:journeys@turxplore.com">
