@@ -1,5 +1,4 @@
 import { useTranslations } from "next-intl";
-import { Link } from "@/i18n/navigation";
 import { ExternalTextLink } from "@/components/ui/interactive";
 import { LanguageSwitcher } from "./LanguageSwitcher";
 
@@ -14,7 +13,7 @@ export function Footer() {
             {t("manifesto")}
           </p>
 
-          <div className="flex flex-col gap-2 desktop:col-span-3 desktop:col-start-8">
+          <div className="flex flex-col gap-2 desktop:col-span-5 desktop:col-start-8">
             <span className="font-sans text-caps-label uppercase text-ivory/40">
               {t("contactLabel")}
             </span>
@@ -27,21 +26,6 @@ export function Footer() {
             <ExternalTextLink href="mailto:journeys@turxplore.com">
               {t("emailLabel")}
             </ExternalTextLink>
-          </div>
-
-          <div className="flex flex-col gap-2 desktop:col-span-2 desktop:col-start-11">
-            <span className="font-sans text-caps-label uppercase text-ivory/40">
-              {t("legal")}
-            </span>
-            <Link href="/legal/privacy" className="font-sans text-interface-body text-ivory">
-              {t("privacy")}
-            </Link>
-            <Link href="/legal/terms" className="font-sans text-interface-body text-ivory">
-              {t("terms")}
-            </Link>
-            <Link href="/legal/imprint" className="font-sans text-interface-body text-ivory">
-              {t("imprint")}
-            </Link>
           </div>
         </div>
 

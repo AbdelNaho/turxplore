@@ -49,6 +49,7 @@ type InviteFormProps = {
   emailLabel: string;
   cta: string;
   confirmation: string;
+  errorNote: string;
 };
 
 export function InviteForm({
@@ -59,6 +60,7 @@ export function InviteForm({
   emailLabel,
   cta,
   confirmation,
+  errorNote,
 }: InviteFormProps) {
   const [state, formAction, pending] = useActionState(submitQuickInquiry, null);
   const [season, setSeason] = useState("");
@@ -107,9 +109,7 @@ export function InviteForm({
         </AccentButton>
       </div>
       {state && !state.ok ? (
-        <p className="mt-3 font-serif italic text-caption text-clay">
-          That message did not reach us. Please try again, or write directly to journeys@turxplore.com.
-        </p>
+        <p className="mt-3 font-serif italic text-caption text-clay">{errorNote}</p>
       ) : null}
     </form>
   );

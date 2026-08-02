@@ -48,6 +48,7 @@ export type HomeContent = {
     emailLabel: string;
     cta: string;
     confirmation: string;
+    errorNote: string;
   };
   contact: {
     eyebrow: string;
@@ -297,6 +298,7 @@ export const homeContent: Record<"en" | "fr", HomeContent> = {
       cta: "Commencer la conversation",
       confirmation:
         "Merci. Nous lisons chaque message nous-mêmes, et nous revenons vers vous très vite. Votre voyage n'existe pas encore. Nous allons le composer avec vous.",
+      errorNote: "Ce message n'est pas arrivé. Réessayez, ou écrivez directement à journeys@turxplore.com.",
     },
     contact: {
       eyebrow: "Le contact",
@@ -385,6 +387,7 @@ export const homeContent: Record<"en" | "fr", HomeContent> = {
       cta: "Begin the conversation",
       confirmation:
         "Thank you. We read every message ourselves, and we will write back very soon. Your journey does not exist yet. We will compose it with you.",
+      errorNote: "That message did not reach us. Please try again, or write directly to journeys@turxplore.com.",
     },
     contact: {
       eyebrow: "Contact",

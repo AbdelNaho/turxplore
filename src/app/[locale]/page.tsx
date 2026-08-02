@@ -194,6 +194,7 @@ export default async function Home({
                   emailLabel={content.invite.emailLabel}
                   cta={content.invite.cta}
                   confirmation={content.invite.confirmation}
+                  errorNote={content.invite.errorNote}
                 />
               </Reveal>
             </div>
