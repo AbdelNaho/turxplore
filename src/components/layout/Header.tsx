@@ -2,15 +2,13 @@
 
 import { useEffect, useState } from "react";
 import { useTranslations } from "next-intl";
-import { Link } from "@/i18n/navigation";
 import { Wordmark } from "./Wordmark";
 import { LanguageSwitcher } from "./LanguageSwitcher";
 
 const navItems = [
-  { href: "/about", key: "atelier" },
-  { href: "/destinations", key: "destinations" },
-  { href: "/compositions", key: "compositions" },
-  { href: "/journal", key: "journal" },
+  { href: "#atelier", key: "atelier" },
+  { href: "#destinations", key: "destinations" },
+  { href: "#compositions", key: "compositions" },
 ] as const;
 
 export function Header() {
@@ -59,12 +57,12 @@ export function Header() {
           <ul className="flex items-center gap-6">
             {navItems.map((item) => (
               <li key={item.href}>
-                <Link
+                <a
                   href={item.href}
                   className="font-sans text-interface-label text-ivory/80 border-b border-transparent transition-colors duration-interface ease-out hover:text-clay"
                 >
                   {t(item.key)}
-                </Link>
+                </a>
               </li>
             ))}
           </ul>
@@ -93,13 +91,13 @@ export function Header() {
           <ul className="flex flex-col gap-4">
             {navItems.map((item) => (
               <li key={item.href}>
-                <Link
+                <a
                   href={item.href}
                   onClick={() => setMenuOpen(false)}
                   className="font-serif text-editorial-headline text-ivory"
                 >
                   {t(item.key)}
-                </Link>
+                </a>
               </li>
             ))}
           </ul>

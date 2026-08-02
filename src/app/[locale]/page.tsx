@@ -58,7 +58,7 @@ export default async function Home({
         <Marquee items={content.marquee} />
 
         {/* 02 — La conviction */}
-        <section className="py-9 desktop:py-10">
+        <section id="atelier" className="scroll-mt-20 py-9 desktop:py-10">
           <Container className="max-w-reading">
             <Reveal>
               <CapsLabel className="mb-6 block text-clay/60">{content.promise.eyebrow}</CapsLabel>
@@ -79,7 +79,7 @@ export default async function Home({
         </section>
 
         {/* 03 — Les quatre voyages */}
-        <section className="py-9 desktop:py-10">
+        <section id="compositions" className="scroll-mt-20 py-9 desktop:py-10">
           <Container>
             <Reveal>
               <div className="mb-7 flex flex-wrap items-end justify-between gap-4">
@@ -156,7 +156,7 @@ export default async function Home({
         </section>
 
         {/* 05 — Par où commencer */}
-        <section className="py-9 desktop:py-10">
+        <section id="destinations" className="scroll-mt-20 py-9 desktop:py-10">
           <Container>
             <Reveal>
               <DisplaySection className="italic text-ivory">{content.routesHeading.title}</DisplaySection>
