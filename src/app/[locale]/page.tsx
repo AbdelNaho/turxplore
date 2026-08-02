@@ -9,6 +9,7 @@ import { StickyMobileCta } from "@/components/home/StickyMobileCta";
 import { Reveal } from "@/components/home/Reveal";
 import { Marquee } from "@/components/home/Marquee";
 import { RoutesRail } from "@/components/home/RoutesRail";
+import { LeadMagnets } from "@/components/home/LeadMagnets";
 import { GlowDot } from "@/components/brand/GlowDot";
 import { homeContent } from "@/content/home";
 
@@ -165,6 +166,15 @@ export default async function Home({
               </BodyStandard>
             </Reveal>
             <RoutesRail routes={content.routes} hint={content.routesHeading.hint} />
+          </Container>
+        </section>
+
+        {/* 05b — Emporter le Maroc (lead magnets) */}
+        <section className="border-t-[0.5px] border-ivory/10 py-9 desktop:py-10">
+          <Container>
+            <Reveal>
+              <LeadMagnets {...content.leadMagnets} />
+            </Reveal>
           </Container>
         </section>
 

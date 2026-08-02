@@ -26,6 +26,17 @@ export type HomeContent = {
   tailorMade: { headline: string; headlineEm: string; body: string; cta: string };
   routesHeading: { title: string; body: string; hint: string };
   routes: Route[];
+  leadMagnets: {
+    eyebrow: string;
+    title: string;
+    titleEm: string;
+    body: string;
+    emailLabel: string;
+    cta: string;
+    confirmation: string;
+    errorNote: string;
+    items: { key: "carnet" | "cartes"; title: string; description: string; image: string; imageAlt: string }[];
+  };
   invite: {
     eyebrow: string;
     title: string;
@@ -248,6 +259,32 @@ export const homeContent: Record<"en" | "fr", HomeContent> = {
       hint: "Faites glisser",
     },
     routes: routesFr,
+    leadMagnets: {
+      eyebrow: "Emporter le Maroc",
+      title: "Deux carnets,",
+      titleEm: "pour patienter.",
+      body: "Le Maroc en images et en repères, avant même votre premier échange avec nous. Laissez votre email, nous vous les envoyons à l'instant.",
+      emailLabel: "Votre email",
+      cta: "Recevoir",
+      confirmation: "Envoyé. Vérifiez votre boîte mail (et vos spams, au cas où).",
+      errorNote: "Ce message n'est pas arrivé. Réessayez, ou écrivez directement à hello@turxplore.com.",
+      items: [
+        {
+          key: "carnet",
+          title: "Le Carnet du Maroc",
+          description: "Un carnet de route à feuilleter avant le voyage — quand partir, coutumes, et le Maroc en images.",
+          image: "/images/cover-carnet-maroc.jpg",
+          imageAlt: "Couverture du Carnet du Maroc",
+        },
+        {
+          key: "cartes",
+          title: "Cartes & Médinas",
+          description: "Le Royaume d'un coup d'œil, et les médinas de Fès et Marrakech par quartiers de métier.",
+          image: "/images/cover-cartes-medinas.jpg",
+          imageAlt: "Couverture des Cartes & Médinas",
+        },
+      ],
+    },
     invite: {
       eyebrow: "Composer votre voyage",
       title: "Parlez-nous du voyage que vous imaginez.",
@@ -310,6 +347,32 @@ export const homeContent: Record<"en" | "fr", HomeContent> = {
       hint: "Drag to explore",
     },
     routes: routesEn,
+    leadMagnets: {
+      eyebrow: "Take Morocco with you",
+      title: "Two guides,",
+      titleEm: "while you wait.",
+      body: "Morocco in images and orientation, before your first conversation with us. Leave your email, and we will send them right away.",
+      emailLabel: "Your email",
+      cta: "Send it to me",
+      confirmation: "Sent. Check your inbox (and your spam folder, just in case).",
+      errorNote: "That message did not arrive. Please try again, or write directly to hello@turxplore.com.",
+      items: [
+        {
+          key: "carnet",
+          title: "The Morocco Notebook",
+          description: "A keepsake to leaf through before you travel — when to go, customs, and Morocco in pictures.",
+          image: "/images/cover-carnet-maroc.jpg",
+          imageAlt: "Cover of The Morocco Notebook",
+        },
+        {
+          key: "cartes",
+          title: "Maps & Medinas",
+          description: "The Kingdom at a glance, and the Fès and Marrakech medinas laid out by craft quarter.",
+          image: "/images/cover-cartes-medinas.jpg",
+          imageAlt: "Cover of Maps & Medinas",
+        },
+      ],
+    },
     invite: {
       eyebrow: "Compose your journey",
       title: "Tell us about the journey you are imagining.",
