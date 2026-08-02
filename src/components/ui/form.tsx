@@ -3,7 +3,7 @@ import { ComponentPropsWithoutRef, forwardRef, useId } from "react";
 const fieldBaseClassName =
   "w-full bg-transparent border-0 border-b border-ivory/10 py-2 font-sans " +
   "text-interface-body text-ivory placeholder:text-ivory/20 placeholder:italic " +
-  "focus:outline-none focus:border-champagne transition-colors duration-interface ease-out";
+  "focus:outline-none focus:border-clay transition-colors duration-interface ease-out";
 
 const labelClassName = "font-sans text-caps-label uppercase text-ivory/40";
 

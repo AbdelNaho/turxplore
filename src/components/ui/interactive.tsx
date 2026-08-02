@@ -8,9 +8,9 @@ import { Link } from "@/i18n/navigation";
  */
 const interactiveClassName =
   "font-sans text-interface-label text-ivory/80 border-b border-transparent " +
-  "transition-colors duration-interface ease-out hover:text-champagne hover:border-champagne " +
+  "transition-colors duration-interface ease-out hover:text-clay hover:border-clay " +
   "focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 " +
-  "focus-visible:outline-champagne";
+  "focus-visible:outline-clay";
 
 type LinkProps = ComponentPropsWithoutRef<typeof Link>;
 

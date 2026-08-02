@@ -1,7 +1,7 @@
 import type { Config } from "tailwindcss";
 
 /**
- * Turxplore design tokens — warm night palette (night / champagne / ivory),
+ * Turxplore design tokens — warm night palette (night / clay / ivory),
  * the direction the client explicitly chose over the earlier daylight
  * system. No default Tailwind colors, spacing, or shadows survive.
  */
@@ -32,9 +32,9 @@ const config: Config = {
       // Primary text on night.
       ivory: "rgb(var(--color-ivory) / <alpha-value>)",
       // Signature accent — the one warm point of light.
-      champagne: "rgb(var(--color-champagne) / <alpha-value>)",
+      clay: "rgb(var(--color-clay) / <alpha-value>)",
       // Secondary accent, rare.
-      terracotta: "rgb(var(--color-terracotta) / <alpha-value>)",
+      brass: "rgb(var(--color-brass) / <alpha-value>)",
     },
     spacing: {
       px: "1px",
@@ -112,7 +112,7 @@ const config: Config = {
     boxShadow: {
       none: "none",
       card: "0 24px 48px rgba(10, 6, 3, 0.35)",
-      glow: "0 0 14px 3px rgba(203, 168, 90, 0.5)",
+      glow: "0 0 14px 3px rgba(193, 96, 58, 0.5)",
     },
     borderRadius: {
       none: "0px",

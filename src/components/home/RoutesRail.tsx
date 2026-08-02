@@ -53,7 +53,7 @@ export function RoutesRail({ routes, hint }: RoutesRailProps) {
           type="button"
           aria-label="Précédent"
           onClick={() => scrollBy(-1)}
-          className="grid h-11 w-11 place-items-center border-[0.5px] border-champagne/25 text-champagne transition-colors duration-interface ease-out hover:bg-champagne/10 hover:border-champagne"
+          className="grid h-11 w-11 place-items-center border-[0.5px] border-clay/25 text-clay transition-colors duration-interface ease-out hover:bg-clay/10 hover:border-clay"
         >
           ←
         </button>
@@ -61,7 +61,7 @@ export function RoutesRail({ routes, hint }: RoutesRailProps) {
           type="button"
           aria-label="Suivant"
           onClick={() => scrollBy(1)}
-          className="grid h-11 w-11 place-items-center border-[0.5px] border-champagne/25 text-champagne transition-colors duration-interface ease-out hover:bg-champagne/10 hover:border-champagne"
+          className="grid h-11 w-11 place-items-center border-[0.5px] border-clay/25 text-clay transition-colors duration-interface ease-out hover:bg-clay/10 hover:border-clay"
         >
           →
         </button>

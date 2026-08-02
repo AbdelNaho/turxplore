@@ -8,13 +8,13 @@ export function Marquee({ items }: MarqueeProps) {
   return (
     <div
       aria-hidden="true"
-      className="overflow-hidden border-y-[0.5px] border-ivory/10 bg-champagne/[0.06]"
+      className="overflow-hidden border-y-[0.5px] border-ivory/10 bg-clay/[0.06]"
     >
       <div className="flex w-max animate-marquee motion-reduce:animate-none">
         {track.map((item, i) => (
           <span
             key={i}
-            className="whitespace-nowrap px-7 py-3 font-sans text-caps-label uppercase tracking-[0.25em] text-champagne/60"
+            className="whitespace-nowrap px-7 py-3 font-sans text-caps-label uppercase tracking-[0.25em] text-clay/60"
           >
             {item}
           </span>

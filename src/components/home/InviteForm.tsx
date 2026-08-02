@@ -28,8 +28,8 @@ function ChipGroup({ label, name, options, value, onChange }: ChipGroupProps) {
             className={
               "border-[0.5px] px-4 py-2 font-sans text-interface-body transition-colors duration-interface ease-out " +
               (value === option
-                ? "border-champagne bg-champagne text-night"
-                : "border-ivory/10 text-ivory/80 hover:border-champagne/40 hover:text-ivory")
+                ? "border-clay bg-clay text-night"
+                : "border-ivory/10 text-ivory/80 hover:border-clay/40 hover:text-ivory")
             }
           >
             {option}
@@ -99,7 +99,7 @@ export function InviteForm({
             name="email"
             type="email"
             required
-            className="w-full border-0 border-b border-ivory/10 bg-transparent py-2 font-serif text-body-standard text-ivory focus:border-champagne focus:outline-none"
+            className="w-full border-0 border-b border-ivory/10 bg-transparent py-2 font-serif text-body-standard text-ivory focus:border-clay focus:outline-none"
           />
         </div>
         <AccentButton type="submit" disabled={pending}>
@@ -107,7 +107,7 @@ export function InviteForm({
         </AccentButton>
       </div>
       {state && !state.ok ? (
-        <p className="mt-3 font-serif italic text-caption text-terracotta">
+        <p className="mt-3 font-serif italic text-caption text-clay">
           That message did not reach us. Please try again, or write directly to hello@turxplore.com.
         </p>
       ) : null}

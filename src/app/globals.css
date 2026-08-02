@@ -4,12 +4,15 @@
 
 :root {
   /* Color palette — RGB triplets for Tailwind's alpha-value pattern */
-  --color-night: 23 16 9; /* primary canvas — warm near-black */
-  --color-night-2: 31 22 13; /* lifted canvas shade (e.g. scrolled header) */
-  --color-ember: 42 27 14; /* tertiary canvas, one step apart */
-  --color-ivory: 243 236 221; /* primary text on night */
-  --color-champagne: 203 168 90; /* signature accent — the point of light */
-  --color-terracotta: 192 106 68; /* secondary accent, rare */
+  /* Palette B — "Terre de Marrakech": terracotta clay as the primary
+     accent, muted brass held in reserve. Chosen for warmer resonance
+     with the Brazil / Latin America market over a gold-forward system. */
+  --color-night: 26 18 13; /* primary canvas — warm clay-black */
+  --color-night-2: 36 26 18; /* lifted canvas shade (e.g. scrolled header) */
+  --color-ember: 46 32 21; /* tertiary canvas, one step apart */
+  --color-ivory: 245 233 217; /* primary text on night — warm sand */
+  --color-clay: 193 96 58; /* signature accent — the point of light */
+  --color-brass: 182 150 100; /* secondary accent, rare */
 
   /* Typography — swap the first family in each stack for the licensed font */
   --font-serif: "GT Sectra Fine", "Fraunces", Georgia, serif;

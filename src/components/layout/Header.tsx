@@ -48,7 +48,7 @@ export function Header() {
           (scrolled ? "max-h-0 opacity-0" : "max-h-8 border-b-[0.5px] border-ivory/5 py-2 opacity-100")
         }
       >
-        <span className="font-sans text-caps-label uppercase tracking-[0.3em] text-champagne/70">
+        <span className="font-sans text-caps-label uppercase tracking-[0.3em] text-clay/70">
           {t("kingdom")}
         </span>
       </div>
@@ -62,7 +62,7 @@ export function Header() {
               <li key={item.href}>
                 <Link
                   href={item.href}
-                  className="font-sans text-interface-label text-ivory/80 border-b border-transparent transition-colors duration-interface ease-out hover:text-champagne"
+                  className="font-sans text-interface-label text-ivory/80 border-b border-transparent transition-colors duration-interface ease-out hover:text-clay"
                 >
                   {t(item.key)}
                 </Link>
