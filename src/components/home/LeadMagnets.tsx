@@ -1,6 +1,7 @@
 "use client";
 
 import { useActionState } from "react";
+import { useLocale } from "next-intl";
 import Image from "next/image";
 import { sendLeadMagnet } from "@/app/actions/leadMagnet";
 import { AccentButton } from "@/components/ui/AccentButton";
@@ -23,6 +24,7 @@ type SharedFormCopy = {
 
 function LeadMagnetCard({ item, form }: { item: LeadMagnetItem; form: SharedFormCopy }) {
   const [state, formAction, pending] = useActionState(sendLeadMagnet, null);
+  const locale = useLocale();
 
   return (
     <div className="flex flex-col gap-5 border-[0.5px] border-ivory/10 p-6 tablet:flex-row tablet:items-center">
@@ -40,6 +42,7 @@ function LeadMagnetCard({ item, form }: { item: LeadMagnetItem; form: SharedForm
         ) : (
           <form action={formAction} className="mt-4 flex flex-col gap-3 tablet:flex-row tablet:items-end">
             <input type="hidden" name="magnet" value={item.key} />
+            <input type="hidden" name="locale" value={locale} />
             <div className="flex-1">
               <label
                 htmlFor={`lead-email-${item.key}`}
