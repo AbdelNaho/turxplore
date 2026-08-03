@@ -13,10 +13,14 @@ function isMagnetKey(value: string): value is MagnetKey {
   return value === "carnet" || value === "cartes";
 }
 
-// The PDFs are only produced in French and English today. Spanish and
-// Portuguese site copy already falls back to English (see page.tsx), so
-// visitors on those locales get the English document too.
-const FILE_LOCALE: Record<string, "fr" | "en"> = { fr: "fr", en: "en", es: "en", "pt-BR": "en" };
+// Every site locale now has its own PDF; the file suffix matches the
+// locale exactly (fr, en, es, pt-BR).
+const FILE_LOCALE: Record<string, "fr" | "en" | "es" | "pt-BR"> = {
+  fr: "fr",
+  en: "en",
+  es: "es",
+  "pt-BR": "pt-BR",
+};
 
 const EMAIL_COPY = {
   fr: {
@@ -35,15 +39,30 @@ const EMAIL_COPY = {
     html: (label: string, url: string) =>
       `<p>Here is your document: <a href="${url}">${label}</a></p><p>Turxplore composes journeys through Morocco with those who know it from within.</p>`,
   },
+  es: {
+    label: { carnet: "El Cuaderno de Marruecos", cartes: "Mapas y Medinas" },
+    subject: (label: string) => `${label} — su documento Turxplore`,
+    body: (label: string, url: string) =>
+      `Aquí tiene su documento: ${url}\n\nTurxplore compone viajes por Marruecos junto a quienes lo conocen desde dentro.`,
+    html: (label: string, url: string) =>
+      `<p>Aquí tiene su documento: <a href="${url}">${label}</a></p><p>Turxplore compone viajes por Marruecos junto a quienes lo conocen desde dentro.</p>`,
+  },
+  "pt-BR": {
+    label: { carnet: "O Caderno do Marrocos", cartes: "Mapas e Medinas" },
+    subject: (label: string) => `${label} — seu documento Turxplore`,
+    body: (label: string, url: string) =>
+      `Aqui está o seu documento: ${url}\n\nA Turxplore compõe viagens por Marrocos com quem o conhece por dentro.`,
+    html: (label: string, url: string) =>
+      `<p>Aqui está o seu documento: <a href="${url}">${label}</a></p><p>A Turxplore compõe viagens por Marrocos com quem o conhece por dentro.</p>`,
+  },
 } as const;
 
 /**
  * Lead-magnet capture — visitor leaves an email, receives a download link
- * for the requested PDF in their site language (fr, or en as the fallback
- * for es/pt-BR), and the advisor is notified of the new lead.
- * Sends via Resend when RESEND_API_KEY is configured; otherwise logs
- * server-side and still reports success so the funnel is testable
- * before the email pipeline is wired up.
+ * for the requested PDF in their site language, and the advisor is
+ * notified of the new lead. Sends via Resend when RESEND_API_KEY is
+ * configured; otherwise logs server-side and still reports success so the
+ * funnel is testable before the email pipeline is wired up.
  */
 export async function sendLeadMagnet(_prevState: SubmitResult | null, formData: FormData): Promise<SubmitResult> {
   const email = String(formData.get("email") ?? "").trim();
