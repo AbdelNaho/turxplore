@@ -21,8 +21,7 @@ export default async function Home({
   const { locale } = await params;
   setRequestLocale(locale);
 
-  // es / pt-BR content pending native translation — falls back to English.
-  const content = homeContent[locale === "fr" ? "fr" : "en"];
+  const content = homeContent[locale as keyof typeof homeContent] ?? homeContent.en;
 
   return (
     <PageShell offsetHeader={false}>

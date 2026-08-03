@@ -190,6 +190,100 @@ const routesFr: Route[] = [
   },
 ];
 
+const voyagesEs: Voyage[] = [
+  {
+    number: "I",
+    duration: "12 días",
+    segment: "UHNW",
+    title: "Los Imperios de la Sombra",
+    description:
+      "De los patios ocultos de Marrakech a las dunas vacías de Chegaga. Acceso privado a la Qarawiyyin. Una noche donde ningún otro campamento se ha alzado.",
+    price: "Desde 9.500 $ por persona",
+    image: "/images/voyage-jemaa-elfna-night.jpg",
+    imageAlt: "La plaza Jemaa el-Fna al caer la noche, luces y multitud",
+  },
+  {
+    number: "II",
+    duration: "9 días",
+    segment: "HENRY y familias",
+    title: "El Atlántico Salvaje",
+    description:
+      "Las ostras de los criaderos privados de Oualidia. Las islas de Mogador al atardecer. Los acantilados de surf de Souss-Massa.",
+    price: "Desde 7.200 $ por persona",
+    image: "/images/voyage-atlantique-sauvage.jpg",
+    imageAlt: "Barcas azules frente a la Sqala de Essaouira al atardecer",
+  },
+  {
+    number: "III",
+    duration: "14 días",
+    segment: "América Latina",
+    title: "El Viaje del Alma",
+    description:
+      "Una civilización compartida, desde el eco de Granada en Fez hasta los jardines andaluces de Meknes. Totalmente privatizado, totalmente en español.",
+    price: "Desde 11.000 $ por persona",
+    image: "/images/voyage-hassan-ii-mosque.jpg",
+    imageAlt: "La mezquita Hassan II en Casablanca, enmarcada bajo el arco",
+  },
+  {
+    number: "IV",
+    duration: "7 días",
+    segment: "Brasil",
+    title: "Marrakech, Sem Pressa",
+    description:
+      "Un riad discreto en la medina, los talleres a los que solo nosotros podemos abrirle las puertas, y un guía que habla únicamente portugués.",
+    price: "Desde 2.500 $ por persona",
+    image: "/images/voyage-riad-marrakech.jpg",
+    imageAlt: "Patio de un riad de Marrakech visto desde arriba, azulejos y rincón con asientos",
+  },
+];
+
+const voyagesPt: Voyage[] = [
+  {
+    number: "I",
+    duration: "12 dias",
+    segment: "UHNW",
+    title: "Os Impérios da Sombra",
+    description:
+      "Dos pátios ocultos de Marrakech às dunas vazias de Chegaga. Acesso privado à Qarawiyyin. Uma noite onde nenhum outro acampamento já se ergueu.",
+    price: "A partir de US$ 9.500 por pessoa",
+    image: "/images/voyage-jemaa-elfna-night.jpg",
+    imageAlt: "A praça Jemaa el-Fna ao cair da noite, luzes e multidão",
+  },
+  {
+    number: "II",
+    duration: "9 dias",
+    segment: "HENRY e famílias",
+    title: "O Atlântico Selvagem",
+    description:
+      "As ostras dos criadouros privados de Oualidia. As ilhas de Mogador ao entardecer. As falésias de surfe do Souss-Massa.",
+    price: "A partir de US$ 7.200 por pessoa",
+    image: "/images/voyage-atlantique-sauvage.jpg",
+    imageAlt: "Barcos azuis diante da Sqala de Essaouira ao entardecer",
+  },
+  {
+    number: "III",
+    duration: "14 dias",
+    segment: "América Latina",
+    title: "El Viaje del Alma",
+    description:
+      "Uma civilização compartilhada, do eco de Granada em Fez aos jardins andaluzes de Meknes. Totalmente privativo, totalmente em espanhol.",
+    price: "A partir de US$ 11.000 por pessoa",
+    image: "/images/voyage-hassan-ii-mosque.jpg",
+    imageAlt: "A Mesquita Hassan II em Casablanca, emoldurada por um arco",
+  },
+  {
+    number: "IV",
+    duration: "7 dias",
+    segment: "Brasil",
+    title: "Marrakech, Sem Pressa",
+    description:
+      "Um riad discreto na medina, os ateliês aos quais só nós temos acesso, e um guia que fala somente português.",
+    price: "A partir de US$ 2.500 por pessoa",
+    image: "/images/voyage-riad-marrakech.jpg",
+    imageAlt: "Pátio de um riad de Marrakech visto de cima, azulejos e cantinho com assentos",
+  },
+];
+
 const routesEn: Route[] = [
   {
     name: "The private desert",
@@ -223,7 +317,73 @@ const routesEn: Route[] = [
   },
 ];
 
-export const homeContent: Record<"en" | "fr", HomeContent> = {
+const routesEs: Route[] = [
+  {
+    name: "El desierto privado",
+    subtitle: "Chegaga, Erg Chigaga, campamentos exclusivos",
+    image: "/images/route-desert-prive.jpg",
+    imageAlt: "Vestido rojo sobre una duna al atardecer, el silencio del desierto",
+  },
+  {
+    name: "Las ciudades imperiales",
+    subtitle: "Marrakech, Fez, Meknes, Rabat",
+    image: "/images/voyage-riad-marrakech.jpg",
+    imageAlt: "Patio de un riad de Marrakech",
+  },
+  {
+    name: "La costa atlántica",
+    subtitle: "Essaouira, Oualidia, Mogador",
+    image: "/images/voyage-atlantic-coast.jpg",
+    imageAlt: "El puerto de Essaouira al atardecer",
+  },
+  {
+    name: "El legado andalusí",
+    subtitle: "El eco de Granada, en español",
+    image: "/images/voyage-fes-medina.jpg",
+    imageAlt: "Callejón de la medina de Fez",
+  },
+  {
+    name: "Marruecos en familia",
+    subtitle: "Varias generaciones, una sola historia",
+    image: "/images/route-family-rooftop.jpg",
+    imageAlt: "Terraza en los tejados de Marrakech al atardecer, guirnaldas de luces",
+  },
+];
+
+const routesPt: Route[] = [
+  {
+    name: "O deserto privado",
+    subtitle: "Chegaga, Erg Chigaga, acampamentos exclusivos",
+    image: "/images/route-desert-prive.jpg",
+    imageAlt: "Vestido vermelho sobre uma duna ao pôr do sol, o silêncio do deserto",
+  },
+  {
+    name: "As cidades imperiais",
+    subtitle: "Marrakech, Fez, Meknes, Rabat",
+    image: "/images/voyage-riad-marrakech.jpg",
+    imageAlt: "Pátio de um riad de Marrakech",
+  },
+  {
+    name: "A costa atlântica",
+    subtitle: "Essaouira, Oualidia, Mogador",
+    image: "/images/voyage-atlantic-coast.jpg",
+    imageAlt: "O porto de Essaouira ao entardecer",
+  },
+  {
+    name: "O legado andaluz",
+    subtitle: "O eco de Granada, em espanhol",
+    image: "/images/voyage-fes-medina.jpg",
+    imageAlt: "Beco da medina de Fez",
+  },
+  {
+    name: "Marrocos em família",
+    subtitle: "Várias gerações, uma só história",
+    image: "/images/route-family-rooftop.jpg",
+    imageAlt: "Terraço nos telhados de Marrakech ao pôr do sol, luzes decorativas",
+  },
+];
+
+export const homeContent: Record<"en" | "fr" | "es" | "pt-BR", HomeContent> = {
   fr: {
     hero: {
       title: "Morocco,",
@@ -399,6 +559,182 @@ export const homeContent: Record<"en" | "fr", HomeContent> = {
       advisorsNote: "Signature · Ensemble · Independents",
       responseLabel: "Our commitment",
       responseNote: "Every enquiry answered in under 24 hours. Every client treated as if they were our only one.",
+    },
+  },
+  es: {
+    hero: {
+      title: "Morocco,",
+      titleEm: "Privately.",
+      subtitle: "Viajes compuestos para el Marruecos más singular, para quienes lo prefieren así.",
+      cta: "Componer mi viaje",
+    },
+    marquee: [
+      "Acceso privado",
+      "Ningún itinerario se repite",
+      "Respuesta en menos de 24 horas",
+      "Español · English · Français · Português",
+    ],
+    promise: {
+      eyebrow: "Nuestra convicción",
+      paragraphs: [
+        "Se viaja a Marruecos desde hace siglos. Sus monumentos han sido fotografiados desde todos los ángulos, sus medinas cartografiadas hasta el último callejón. Y sin embargo, el Marruecos que realmente importa, el que permanece en uno, sigue siendo invisible para quien llega con un itinerario impreso.",
+        "Turxplore se apoya en otra idea. Los viajes más hermosos no se encuentran. Se construyen. A partir de un conocimiento profundo del lugar, una curiosidad genuina por las personas, y el cuidado paciente de hacer que cada detalle sea exacto.",
+        "Abrimos puertas que permanecen cerradas para otros. Nuestros guías son historiadores, artesanos, botánicos. Personas con una historia que contar, no un guion que recitar. Y elegimos cada horario para ofrecerle lugares sin multitudes. Porque no existe mayor lujo que un patio milenario en completo silencio.",
+      ],
+    },
+    proof: "Cuarenta grupos al año. Ningún itinerario se repite. Respuesta en menos de 24 horas.",
+    voyagesHeading: { line1: "Cuatro viajes.", line2: "Variaciones infinitas." },
+    voyages: voyagesEs,
+    tailorMade: {
+      headline: "Ninguno de estos viajes existe todavía.",
+      headlineEm: "El suyo será compuesto para usted.",
+      body: "Estos son puntos de partida, no paquetes. Cada itinerario se escribe a mano, solo para usted, en torno a lo que busca. Es la única forma en que sabemos trabajar.",
+      cta: "Comenzar la conversación",
+    },
+    routesHeading: {
+      title: "Por dónde empezar",
+      body: "Cinco puertas de entrada. Elija la que le llame, nosotros compondremos su versión.",
+      hint: "Deslice para explorar",
+    },
+    routes: routesEs,
+    leadMagnets: {
+      eyebrow: "Llévese Marruecos",
+      title: "Dos guías,",
+      titleEm: "mientras espera.",
+      body: "Marruecos en imágenes y en referencias, antes incluso de nuestra primera conversación. Déjenos su email y se los enviamos al instante.",
+      emailLabel: "Su email",
+      cta: "Recibir",
+      confirmation: "Enviado. Revise su bandeja de entrada (y la de spam, por si acaso).",
+      errorNote: "Ese mensaje no llegó. Inténtelo de nuevo, o escriba directamente a journeys@turxplore.com.",
+      items: [
+        {
+          key: "carnet",
+          title: "El Cuaderno de Marruecos",
+          description: "Un cuaderno de viaje para hojear antes de partir — cuándo ir, costumbres, y Marruecos en imágenes.",
+          image: "/images/cover-carnet-maroc-en.jpg",
+          imageAlt: "Portada del Cuaderno de Marruecos",
+        },
+        {
+          key: "cartes",
+          title: "Mapas y Medinas",
+          description: "El Reino de un vistazo, y las medinas de Fez y Marrakech por barrios de oficio.",
+          image: "/images/cover-cartes-medinas-en.jpg",
+          imageAlt: "Portada de Mapas y Medinas",
+        },
+      ],
+    },
+    invite: {
+      eyebrow: "Componer su viaje",
+      title: "Cuéntenos el viaje que imagina.",
+      body: "Sin menú desplegable, sin formulario interminable. Dos gestos, y una frase. Leemos cada mensaje nosotros mismos.",
+      seasonLabel: "¿Qué estación le atrae?",
+      seasonOptions: ["Primavera", "Verano", "Otoño", "Invierno", "Aún no decidido"],
+      intentLabel: "¿Qué busca en Marruecos?",
+      intentOptions: ["El silencio", "La cultura", "La aventura", "Reunir a los míos"],
+      emailLabel: "Su email",
+      cta: "Comenzar la conversación",
+      confirmation:
+        "Gracias. Leemos cada mensaje nosotros mismos, y le responderemos muy pronto. Su viaje aún no existe. Lo compondremos con usted.",
+      errorNote: "Ese mensaje no llegó. Inténtelo de nuevo, o escriba directamente a journeys@turxplore.com.",
+    },
+    contact: {
+      eyebrow: "Contacto",
+      travelersLabel: "Viajeros",
+      travelersEmail: "a.nahome@turxplore.com",
+      travelersNote: "WhatsApp +212 697 047 692, en español, francés, inglés, portugués",
+      advisorsLabel: "Asesores de viaje",
+      advisorsEmail: "journeys@turxplore.com",
+      advisorsNote: "Signature · Ensemble · Independientes",
+      responseLabel: "Nuestro compromiso",
+      responseNote: "Cada solicitud atendida en menos de 24 horas. Cada cliente tratado como si fuera el único.",
+    },
+  },
+  "pt-BR": {
+    hero: {
+      title: "Morocco,",
+      titleEm: "Privately.",
+      subtitle: "Viagens compostas para o Marrocos mais raro, para quem prefere assim.",
+      cta: "Compor minha viagem",
+    },
+    marquee: [
+      "Acesso privado",
+      "Nenhum roteiro repetido",
+      "Resposta em menos de 24 horas",
+      "Português · English · Français · Español",
+    ],
+    promise: {
+      eyebrow: "Nossa convicção",
+      paragraphs: [
+        "Viaja-se a Marrocos há séculos. Seus monumentos fotografados de todos os ângulos, suas medinas mapeadas até o último beco. E, no entanto, o Marrocos que importa, aquele que permanece em você, continua invisível para quem chega com um roteiro impresso.",
+        "A Turxplore se apoia em outra ideia. As viagens mais belas não se encontram. Elas se constroem. A partir de um conhecimento profundo do lugar, uma curiosidade genuína pelas pessoas, e o cuidado paciente de acertar cada detalhe.",
+        "Abrimos portas que permanecem fechadas para outros. Nossos guias são historiadores, artesãos, botânicos. Pessoas com uma história para contar, não um roteiro para recitar. E escolhemos cada horário para lhe oferecer lugares sem multidões. Porque não existe luxo maior do que um pátio milenar em silêncio completo.",
+      ],
+    },
+    proof: "Quarenta grupos por ano. Nenhum roteiro repetido. Resposta em menos de 24 horas.",
+    voyagesHeading: { line1: "Quatro viagens.", line2: "Variações infinitas." },
+    voyages: voyagesPt,
+    tailorMade: {
+      headline: "Nenhuma dessas viagens existe ainda.",
+      headlineEm: "A sua será composta para você.",
+      body: "Estes são pontos de partida, não pacotes. Cada roteiro é escrito à mão, só para você, em torno do que você procura. É a única forma que sabemos trabalhar.",
+      cta: "Começar a conversa",
+    },
+    routesHeading: {
+      title: "Por onde começar",
+      body: "Cinco portas de entrada. Escolha a que fala com você, nós composeremos sua versão.",
+      hint: "Arraste para explorar",
+    },
+    routes: routesPt,
+    leadMagnets: {
+      eyebrow: "Leve o Marrocos com você",
+      title: "Dois guias,",
+      titleEm: "enquanto você espera.",
+      body: "O Marrocos em imagens e em referências, antes mesmo da nossa primeira conversa. Deixe seu email, nós os enviamos na hora.",
+      emailLabel: "Seu email",
+      cta: "Receber",
+      confirmation: "Enviado. Confira sua caixa de entrada (e o spam, por precaução).",
+      errorNote: "Essa mensagem não chegou. Tente novamente, ou escreva diretamente para journeys@turxplore.com.",
+      items: [
+        {
+          key: "carnet",
+          title: "O Caderno do Marrocos",
+          description: "Um caderno de viagem para folhear antes da partida — quando ir, costumes, e o Marrocos em imagens.",
+          image: "/images/cover-carnet-maroc-en.jpg",
+          imageAlt: "Capa do Caderno do Marrocos",
+        },
+        {
+          key: "cartes",
+          title: "Mapas e Medinas",
+          description: "O Reino em uma só vista, e as medinas de Fez e Marrakech organizadas por bairro de ofício.",
+          image: "/images/cover-cartes-medinas-en.jpg",
+          imageAlt: "Capa de Mapas e Medinas",
+        },
+      ],
+    },
+    invite: {
+      eyebrow: "Compor sua viagem",
+      title: "Conte-nos sobre a viagem que você imagina.",
+      body: "Sem menu suspenso, sem formulário interminável. Dois toques, e uma frase. Nós mesmos lemos cada mensagem.",
+      seasonLabel: "Qual estação combina com você?",
+      seasonOptions: ["Primavera", "Verão", "Outono", "Inverno", "Ainda não decidi"],
+      intentLabel: "O que você procura em Marrocos?",
+      intentOptions: ["O silêncio", "A cultura", "A aventura", "Reunir os meus"],
+      emailLabel: "Seu email",
+      cta: "Começar a conversa",
+      confirmation:
+        "Obrigado. Nós mesmos lemos cada mensagem, e responderemos muito em breve. Sua viagem ainda não existe. Vamos compô-la com você.",
+      errorNote: "Essa mensagem não chegou até nós. Tente novamente, ou escreva diretamente para journeys@turxplore.com.",
+    },
+    contact: {
+      eyebrow: "Contato",
+      travelersLabel: "Viajantes",
+      travelersEmail: "a.nahome@turxplore.com",
+      travelersNote: "WhatsApp +212 697 047 692, em português, inglês, francês, espanhol",
+      advisorsLabel: "Consultores de viagem",
+      advisorsEmail: "journeys@turxplore.com",
+      advisorsNote: "Signature · Ensemble · Independentes",
+      responseLabel: "Nosso compromisso",
+      responseNote: "Cada solicitação respondida em menos de 24 horas. Cada cliente tratado como se fosse o único.",
     },
   },
 };
