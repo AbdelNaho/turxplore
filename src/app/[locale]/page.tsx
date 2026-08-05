@@ -8,7 +8,7 @@ import { InviteForm } from "@/components/home/InviteForm";
 import { StickyMobileCta } from "@/components/home/StickyMobileCta";
 import { Reveal } from "@/components/home/Reveal";
 import { Marquee } from "@/components/home/Marquee";
-import { RoutesRail } from "@/components/home/RoutesRail";
+import { CircularGallery } from "@/components/ui/circular-gallery";
 import { LeadMagnets } from "@/components/home/LeadMagnets";
 import { GlowDot } from "@/components/brand/GlowDot";
 import { homeContent } from "@/content/home";
@@ -164,7 +164,7 @@ export default async function Home({
                 {content.routesHeading.body}
               </BodyStandard>
             </Reveal>
-            <RoutesRail routes={content.routes} hint={content.routesHeading.hint} />
+            <CircularGallery items={content.routes} hint={content.routesHeading.hint} />
           </Container>
         </section>
 

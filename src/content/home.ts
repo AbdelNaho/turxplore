@@ -417,7 +417,7 @@ export const homeContent: Record<"en" | "fr" | "es" | "pt-BR", HomeContent> = {
     routesHeading: {
       title: "Par où commencer",
       body: "Cinq portes d'entrée. Choisissez celle qui vous appelle, nous composerons votre version.",
-      hint: "Faites glisser",
+      hint: "Survolez pour explorer",
     },
     routes: routesFr,
     leadMagnets: {
@@ -506,7 +506,7 @@ export const homeContent: Record<"en" | "fr" | "es" | "pt-BR", HomeContent> = {
     routesHeading: {
       title: "Where to begin",
       body: "Five doors in. Choose the one that calls to you, and we will compose your version of it.",
-      hint: "Drag to explore",
+      hint: "Hover to explore",
     },
     routes: routesEn,
     leadMagnets: {
@@ -594,7 +594,7 @@ export const homeContent: Record<"en" | "fr" | "es" | "pt-BR", HomeContent> = {
     routesHeading: {
       title: "Por dónde empezar",
       body: "Cinco puertas de entrada. Elija la que le llame, nosotros compondremos su versión.",
-      hint: "Deslice para explorar",
+      hint: "Pase el cursor para explorar",
     },
     routes: routesEs,
     leadMagnets: {
@@ -682,7 +682,7 @@ export const homeContent: Record<"en" | "fr" | "es" | "pt-BR", HomeContent> = {
     routesHeading: {
       title: "Por onde começar",
       body: "Cinco portas de entrada. Escolha a que fala com você, nós composeremos sua versão.",
-      hint: "Arraste para explorar",
+      hint: "Passe o cursor para explorar",
     },
     routes: routesPt,
     leadMagnets: {
