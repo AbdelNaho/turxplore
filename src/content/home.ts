@@ -173,14 +173,14 @@ const routesFr: Route[] = [
   {
     name: "La côte atlantique",
     subtitle: "Essaouira, Oualidia, Mogador",
-    image: "/images/voyage-atlantic-coast.jpg",
-    imageAlt: "Le port d'Essaouira au crépuscule",
+    image: "/images/route-cote-atlantique.jpg",
+    imageAlt: "La Sqala d'Essaouira sous un ciel bleu, une mouette en vol",
   },
   {
     name: "L'héritage andalou",
     subtitle: "L'écho de Grenade, en español",
-    image: "/images/voyage-fes-medina.jpg",
-    imageAlt: "Ruelle de la médina de Fès",
+    image: "/images/route-heritage-andalou.jpg",
+    imageAlt: "Arcades zellige de la Kasbah de Tanger, vue sur la ville blanche",
   },
   {
     name: "Le Maroc en famille",
@@ -300,14 +300,14 @@ const routesEn: Route[] = [
   {
     name: "The Atlantic coast",
     subtitle: "Essaouira, Oualidia, Mogador",
-    image: "/images/voyage-atlantic-coast.jpg",
-    imageAlt: "Essaouira's harbor at dusk",
+    image: "/images/route-cote-atlantique.jpg",
+    imageAlt: "Essaouira's Sqala fortress under a blue sky, a seagull in flight",
   },
   {
     name: "The Andalusian legacy",
     subtitle: "Granada's echo, in Spanish",
-    image: "/images/voyage-fes-medina.jpg",
-    imageAlt: "An alley in the Fès medina",
+    image: "/images/route-heritage-andalou.jpg",
+    imageAlt: "Zellige-tiled arcades of the Tangier Kasbah, overlooking the white city",
   },
   {
     name: "Morocco, as a family",
@@ -333,14 +333,14 @@ const routesEs: Route[] = [
   {
     name: "La costa atlántica",
     subtitle: "Essaouira, Oualidia, Mogador",
-    image: "/images/voyage-atlantic-coast.jpg",
-    imageAlt: "El puerto de Essaouira al atardecer",
+    image: "/images/route-cote-atlantique.jpg",
+    imageAlt: "La Sqala de Essaouira bajo un cielo azul, una gaviota en vuelo",
   },
   {
     name: "El legado andalusí",
     subtitle: "El eco de Granada, en español",
-    image: "/images/voyage-fes-medina.jpg",
-    imageAlt: "Callejón de la medina de Fez",
+    image: "/images/route-heritage-andalou.jpg",
+    imageAlt: "Arcadas de azulejos de la Kasbah de Tánger, vista sobre la ciudad blanca",
   },
   {
     name: "Marruecos en familia",
@@ -366,14 +366,14 @@ const routesPt: Route[] = [
   {
     name: "A costa atlântica",
     subtitle: "Essaouira, Oualidia, Mogador",
-    image: "/images/voyage-atlantic-coast.jpg",
-    imageAlt: "O porto de Essaouira ao entardecer",
+    image: "/images/route-cote-atlantique.jpg",
+    imageAlt: "A Sqala de Essaouira sob um céu azul, uma gaivota em voo",
   },
   {
     name: "O legado andaluz",
     subtitle: "O eco de Granada, em espanhol",
-    image: "/images/voyage-fes-medina.jpg",
-    imageAlt: "Beco da medina de Fez",
+    image: "/images/route-heritage-andalou.jpg",
+    imageAlt: "Arcadas de azulejos da Kasbah de Tânger, vista sobre a cidade branca",
   },
   {
     name: "Marrocos em família",
