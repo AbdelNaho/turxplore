@@ -31,7 +31,10 @@ export function CircularGallery({ items, hint, autoRotateSpeed = 0.045 }: Circul
   useEffect(() => {
     const stage = stageRef.current;
     if (!stage) return;
-    const update = () => setRadius(Math.round(stage.offsetWidth / 2 / Math.tan(Math.PI / items.length)));
+    // 1.9x the edge-to-edge minimum: opens the ring into a wide fan (deep
+    // perspective, side cards turned well past three-quarter view) rather
+    // than a tight drum where neighbors sit almost flat against each other.
+    const update = () => setRadius(Math.round((stage.offsetWidth / 2 / Math.tan(Math.PI / items.length)) * 1.9));
     update();
     const observer = new ResizeObserver(update);
     observer.observe(stage);
@@ -61,8 +64,8 @@ export function CircularGallery({ items, hint, autoRotateSpeed = 0.045 }: Circul
         role="region"
         aria-roledescription="carousel"
         aria-label={items.map((route) => route.name).join(", ")}
-        className="relative flex h-[19rem] w-full items-center justify-center tablet:h-[24rem]"
-        style={{ perspective: "1800px" }}
+        className="relative flex h-[26rem] w-full items-center justify-center tablet:h-[30rem]"
+        style={{ perspective: "1100px" }}
         onMouseEnter={() => (pausedRef.current = true)}
         onMouseLeave={() => (pausedRef.current = false)}
         onFocus={() => (pausedRef.current = true)}
@@ -70,14 +73,14 @@ export function CircularGallery({ items, hint, autoRotateSpeed = 0.045 }: Circul
       >
         <div
           ref={stageRef}
-          className="relative h-[180px] w-[240px] tablet:h-[220px] tablet:w-[320px]"
+          className="relative h-[300px] w-[220px] tablet:h-[360px] tablet:w-[260px]"
           style={{ transform: `rotateY(${rotation}deg)`, transformStyle: "preserve-3d" }}
         >
           {items.map((route, i) => {
             const itemAngle = i * anglePerItem;
             const relative = (((itemAngle + rotation) % 360) + 360) % 360;
             const normalized = relative > 180 ? 360 - relative : relative;
-            const opacity = Math.max(0.2, 1 - normalized / 150);
+            const opacity = Math.max(0.15, 1 - normalized / 130);
             const isFront = normalized < anglePerItem / 2;
 
             return (
@@ -87,7 +90,7 @@ export function CircularGallery({ items, hint, autoRotateSpeed = 0.045 }: Circul
                 aria-label={route.name}
                 aria-hidden={!isFront}
                 tabIndex={isFront ? 0 : -1}
-                className="group absolute inset-0 flex flex-col justify-end overflow-hidden border-[0.5px] border-ivory/10 bg-night2/60 shadow-card"
+                className="group absolute inset-0 flex flex-col justify-end overflow-hidden rounded-[14px] border-[0.5px] border-ivory/10 bg-night2 shadow-[0_30px_60px_-12px_rgba(0,0,0,0.6)] [backface-visibility:hidden]"
                 style={{
                   transform: `rotateY(${itemAngle}deg) translateZ(${radius}px)`,
                   opacity,
@@ -98,13 +101,13 @@ export function CircularGallery({ items, hint, autoRotateSpeed = 0.045 }: Circul
                   src={route.image}
                   alt={route.imageAlt}
                   fill
-                  sizes="320px"
+                  sizes="260px"
                   className="object-cover brightness-90 saturate-[0.92] transition-transform duration-editorial ease-out group-hover:scale-105"
                 />
-                <div className="pointer-events-none absolute inset-0 bg-gradient-to-t from-night/90 via-night/25 to-transparent" />
-                <div className="relative p-4 tablet:p-5">
-                  <p className="font-serif text-body-large italic text-ivory">{route.name}</p>
-                  <p className="mt-1 font-sans text-interface-body text-ivory/40">{route.subtitle}</p>
+                <div className="pointer-events-none absolute inset-0 bg-gradient-to-t from-night/95 via-night/30 to-transparent" />
+                <div className="relative p-5">
+                  <p className="font-serif text-editorial-subhead italic text-ivory">{route.name}</p>
+                  <p className="mt-1.5 font-sans text-interface-body text-ivory/45">{route.subtitle}</p>
                 </div>
               </a>
             );
