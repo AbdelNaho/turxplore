@@ -1,26 +1,27 @@
-import { Fraunces, Outfit, Noto_Naskh_Arabic } from "next/font/google";
+import { Fraunces, Inter, Noto_Naskh_Arabic } from "next/font/google";
 
 /**
- * Development substitutes for the licensed type — GT Sectra Fine and Söhne.
+ * Development substitutes for the licensed type — Klim/Grilli upgrade path
+ * once revenue justifies it (see the design system reference, §22).
  * globals.css lists the licensed family first in each `--font-*` stack, so
  * swapping in the real fonts later is a one-line change there; nothing here
  * needs to move.
  */
 export const fraunces = Fraunces({
   subsets: ["latin", "latin-ext"],
-  weight: ["300", "400", "500"],
+  weight: ["300", "400", "500", "700"],
   style: ["normal", "italic"],
   display: "swap",
   preload: true,
   variable: "--font-fraunces",
 });
 
-export const outfit = Outfit({
+export const inter = Inter({
   subsets: ["latin", "latin-ext"],
   weight: ["200", "300", "400", "500"],
   display: "swap",
   preload: true,
-  variable: "--font-outfit",
+  variable: "--font-inter",
 });
 
 /**

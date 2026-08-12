@@ -18,7 +18,7 @@ export type Route = {
 
 export type HomeContent = {
   hero: { title: string; titleEm: string; subtitle: string; cta: string };
-  marquee: string[];
+  reassurances: string[];
   promise: { eyebrow: string; paragraphs: string[] };
   proof: string;
   voyagesHeading: { line1: string; line2: string };
@@ -387,11 +387,11 @@ export const homeContent: Record<"en" | "fr" | "es" | "pt-BR", HomeContent> = {
   fr: {
     hero: {
       title: "Morocco,",
-      titleEm: "Privately.",
+      titleEm: "Edited.",
       subtitle: "Des voyages composés pour le Maroc le plus rare, pour ceux qui le préfèrent ainsi.",
       cta: "Composer mon voyage",
     },
-    marquee: [
+    reassurances: [
       "Accès privé",
       "Aucun itinéraire répété",
       "Réponse en moins de 24h",
@@ -417,7 +417,7 @@ export const homeContent: Record<"en" | "fr" | "es" | "pt-BR", HomeContent> = {
     routesHeading: {
       title: "Par où commencer",
       body: "Cinq portes d'entrée. Choisissez celle qui vous appelle, nous composerons votre version.",
-      hint: "Survolez pour explorer",
+      hint: "Utilisez les flèches",
     },
     routes: routesFr,
     leadMagnets: {
@@ -476,11 +476,11 @@ export const homeContent: Record<"en" | "fr" | "es" | "pt-BR", HomeContent> = {
   en: {
     hero: {
       title: "Morocco,",
-      titleEm: "Privately.",
+      titleEm: "Edited.",
       subtitle: "Journeys composed for the rarest Morocco, for those who prefer it that way.",
       cta: "Compose My Journey",
     },
-    marquee: [
+    reassurances: [
       "Private access",
       "No itinerary ever repeated",
       "Response in under 24 hours",
@@ -506,7 +506,7 @@ export const homeContent: Record<"en" | "fr" | "es" | "pt-BR", HomeContent> = {
     routesHeading: {
       title: "Where to begin",
       body: "Five doors in. Choose the one that calls to you, and we will compose your version of it.",
-      hint: "Hover to explore",
+      hint: "Use the arrows",
     },
     routes: routesEn,
     leadMagnets: {
@@ -564,11 +564,11 @@ export const homeContent: Record<"en" | "fr" | "es" | "pt-BR", HomeContent> = {
   es: {
     hero: {
       title: "Morocco,",
-      titleEm: "Privately.",
+      titleEm: "Edited.",
       subtitle: "Viajes compuestos para el Marruecos más singular, para quienes lo prefieren así.",
       cta: "Componer mi viaje",
     },
-    marquee: [
+    reassurances: [
       "Acceso privado",
       "Ningún itinerario se repite",
       "Respuesta en menos de 24 horas",
@@ -594,7 +594,7 @@ export const homeContent: Record<"en" | "fr" | "es" | "pt-BR", HomeContent> = {
     routesHeading: {
       title: "Por dónde empezar",
       body: "Cinco puertas de entrada. Elija la que le llame, nosotros compondremos su versión.",
-      hint: "Pase el cursor para explorar",
+      hint: "Use las flechas",
     },
     routes: routesEs,
     leadMagnets: {
@@ -652,11 +652,11 @@ export const homeContent: Record<"en" | "fr" | "es" | "pt-BR", HomeContent> = {
   "pt-BR": {
     hero: {
       title: "Morocco,",
-      titleEm: "Privately.",
+      titleEm: "Edited.",
       subtitle: "Viagens compostas para o Marrocos mais raro, para quem prefere assim.",
       cta: "Compor minha viagem",
     },
-    marquee: [
+    reassurances: [
       "Acesso privado",
       "Nenhum roteiro repetido",
       "Resposta em menos de 24 horas",
@@ -682,7 +682,7 @@ export const homeContent: Record<"en" | "fr" | "es" | "pt-BR", HomeContent> = {
     routesHeading: {
       title: "Por onde começar",
       body: "Cinco portas de entrada. Escolha a que fala com você, nós composeremos sua versão.",
-      hint: "Passe o cursor para explorar",
+      hint: "Use as setas",
     },
     routes: routesPt,
     leadMagnets: {

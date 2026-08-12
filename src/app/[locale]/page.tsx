@@ -7,7 +7,6 @@ import { AccentLink } from "@/components/ui/AccentButton";
 import { InviteForm } from "@/components/home/InviteForm";
 import { StickyMobileCta } from "@/components/home/StickyMobileCta";
 import { Reveal } from "@/components/home/Reveal";
-import { Marquee } from "@/components/home/Marquee";
 import { CircularGallery } from "@/components/ui/circular-gallery";
 import { LeadMagnets } from "@/components/home/LeadMagnets";
 import { GlowDot } from "@/components/brand/GlowDot";
@@ -36,16 +35,16 @@ export default async function Home({
             sizes="100vw"
             className="object-cover brightness-[0.65] saturate-[0.9]"
           />
-          <div className="pointer-events-none absolute inset-0 bg-gradient-to-t from-night via-night/25 to-night/50" />
+          <div className="pointer-events-none absolute inset-0 bg-gradient-to-t from-encre via-encre/25 to-encre/50" />
           <Container className="relative flex flex-col gap-5 pb-9 desktop:max-w-2xl desktop:pb-10">
             <Reveal>
               <GlowDot className="mb-5 h-[6px] w-[6px]" />
-              <h1 className="font-serif text-display-hero italic leading-[0.95] tracking-[-0.03em] text-ivory">
+              <h1 className="font-serif text-display-hero italic leading-[0.95] tracking-[-0.03em] text-parchment">
                 {content.hero.title}
                 <br />
-                <span className="text-clay">{content.hero.titleEm}</span>
+                <span>{content.hero.titleEm}</span>
               </h1>
-              <p className="mt-5 max-w-md font-serif text-body-standard text-ivory/70">
+              <p className="mt-5 max-w-md font-serif text-body-standard text-parchment/70">
                 {content.hero.subtitle}
               </p>
               <div className="mt-7">
@@ -55,23 +54,37 @@ export default async function Home({
           </Container>
         </section>
 
-        <Marquee items={content.marquee} />
+        <div
+          aria-hidden="true"
+          className="overflow-hidden border-y-[0.5px] border-pierre/50 bg-parchment2"
+        >
+          <ul className="mx-auto flex max-w-content flex-wrap items-center justify-center gap-x-7 gap-y-2 px-3 py-3 tablet:px-5 desktop:px-7">
+            {content.reassurances.map((item, i) => (
+              <li
+                key={i}
+                className="whitespace-nowrap font-sans text-caps-label uppercase tracking-[0.2em] text-pierre2"
+              >
+                {item}
+              </li>
+            ))}
+          </ul>
+        </div>
 
         {/* 02 — La conviction */}
         <section id="atelier" className="scroll-mt-20 py-9 desktop:py-10">
           <Container className="max-w-reading">
             <Reveal>
-              <CapsLabel className="mb-6 block text-clay/60">{content.promise.eyebrow}</CapsLabel>
+              <CapsLabel className="mb-6 block text-pierre2">{content.promise.eyebrow}</CapsLabel>
             </Reveal>
             <div className="flex flex-col gap-6">
               {content.promise.paragraphs.map((paragraph, i) => (
                 <Reveal key={i} delay={i * 0.08}>
-                  <p className="font-serif text-body-large text-ivory/80">{paragraph}</p>
+                  <p className="font-serif text-body-large text-encre/80">{paragraph}</p>
                 </Reveal>
               ))}
             </div>
             <Reveal delay={0.24}>
-              <p className="mt-9 border-t-[0.5px] border-ivory/10 pt-7 font-serif text-body-large italic text-clay">
+              <p className="mt-9 border-t-[0.5px] border-pierre/50 pt-7 font-serif text-body-large italic text-encre">
                 {content.proof}
               </p>
             </Reveal>
@@ -83,14 +96,14 @@ export default async function Home({
           <Container>
             <Reveal>
               <div className="mb-7 flex flex-wrap items-end justify-between gap-4">
-                <DisplaySection className="italic text-ivory">
+                <DisplaySection className="italic text-encre">
                   {content.voyagesHeading.line1}
                   <br />
-                  <span className="text-clay">{content.voyagesHeading.line2}</span>
+                  <span>{content.voyagesHeading.line2}</span>
                 </DisplaySection>
                 <a
                   href="#invite"
-                  className="inline-flex items-center gap-3 font-sans text-interface-label uppercase tracking-[0.2em] text-clay transition-all duration-interface ease-out hover:gap-4"
+                  className="inline-flex items-center gap-3 font-sans text-interface-label uppercase tracking-[0.2em] text-pierre2 transition-all duration-interface ease-out hover:gap-4 hover:text-encre"
                 >
                   {content.invite.eyebrow}
                   <span aria-hidden="true">→</span>
@@ -109,21 +122,21 @@ export default async function Home({
                       sizes="(min-width: 1024px) 25vw, (min-width: 768px) 50vw, 100vw"
                       className="object-cover brightness-[0.92] saturate-[0.92] transition-transform duration-[1200ms] ease-out group-hover:scale-105"
                     />
-                    <div className="pointer-events-none absolute inset-0 bg-gradient-to-t from-night/95 via-night/25 to-night/10" />
-                    <span className="absolute left-5 top-5 font-sans text-caps-label uppercase text-clay/80">
+                    <div className="pointer-events-none absolute inset-0 bg-gradient-to-t from-encre/95 via-encre/25 to-encre/10" />
+                    <span className="absolute left-5 top-5 font-sans text-caps-label uppercase text-parchment/80">
                       Voyage {voyage.number} · {voyage.duration}
                     </span>
                     <div className="relative p-6">
-                      <p className="mb-2 font-sans text-caps-label uppercase text-clay/70">
+                      <p className="mb-2 font-sans text-caps-label uppercase text-parchment/70">
                         {voyage.segment}
                       </p>
-                      <h3 className="font-serif text-body-large italic leading-tight text-ivory">
+                      <h3 className="font-serif text-body-large italic leading-tight text-parchment">
                         {voyage.title}
                       </h3>
-                      <p className="mt-2 max-h-none overflow-hidden font-sans text-interface-body text-ivory/50 opacity-100 transition-all duration-editorial ease-out tablet:max-h-0 tablet:opacity-0 tablet:group-hover:max-h-32 tablet:group-hover:opacity-100">
+                      <p className="mt-2 max-h-none overflow-hidden font-sans text-interface-body text-parchment/60 opacity-100 transition-all duration-editorial ease-out tablet:max-h-0 tablet:opacity-0 tablet:group-hover:max-h-32 tablet:group-hover:opacity-100">
                         {voyage.description}
                       </p>
-                      <Caption className="mt-3 block text-clay/70">{voyage.price}</Caption>
+                      <Caption className="mt-3 block text-parchment/70">{voyage.price}</Caption>
                     </div>
                   </article>
                 </Reveal>
@@ -133,21 +146,21 @@ export default async function Home({
         </section>
 
         {/* 04 — Sur mesure */}
-        <section className="border-y-[0.5px] border-ivory/10 bg-ember py-9 text-center desktop:py-10">
+        <section className="border-y-[0.5px] border-pierre/50 bg-parchment2 py-9 text-center desktop:py-10">
           <Container className="max-w-reading">
             <Reveal>
               <GlowDot className="mx-auto mb-7 h-[9px] w-[9px]" />
-              <EditorialHeadline className="text-ivory">
+              <EditorialHeadline className="text-encre">
                 {content.tailorMade.headline}
                 <br />
-                <span className="font-serif italic text-clay">{content.tailorMade.headlineEm}</span>
+                <span className="font-serif italic">{content.tailorMade.headlineEm}</span>
               </EditorialHeadline>
-              <BodyStandard className="mx-auto mt-6 max-w-md text-ivory/60">
+              <BodyStandard className="mx-auto mt-6 max-w-md text-encre/60">
                 {content.tailorMade.body}
               </BodyStandard>
               <a
                 href="#invite"
-                className="mt-7 inline-block border-[0.5px] border-clay/25 px-8 py-4 font-sans text-interface-label uppercase tracking-[0.2em] text-clay transition-colors duration-interface ease-out hover:bg-clay/10 hover:border-clay"
+                className="mt-7 inline-block border-[0.5px] border-pierre px-8 py-4 font-sans text-interface-label uppercase tracking-[0.2em] text-encre transition-colors duration-interface ease-out hover:bg-pierre/15 hover:border-encre"
               >
                 {content.tailorMade.cta}
               </a>
@@ -159,8 +172,8 @@ export default async function Home({
         <section id="destinations" className="scroll-mt-20 py-9 desktop:py-10">
           <Container>
             <Reveal>
-              <DisplaySection className="italic text-ivory">{content.routesHeading.title}</DisplaySection>
-              <BodyStandard className="mb-7 mt-3 max-w-md text-ivory/50">
+              <DisplaySection className="italic text-encre">{content.routesHeading.title}</DisplaySection>
+              <BodyStandard className="mb-7 mt-3 max-w-md text-encre/50">
                 {content.routesHeading.body}
               </BodyStandard>
             </Reveal>
@@ -169,7 +182,7 @@ export default async function Home({
         </section>
 
         {/* 05b — Emporter le Maroc (lead magnets) */}
-        <section className="border-t-[0.5px] border-ivory/10 py-9 desktop:py-10">
+        <section className="border-t-[0.5px] border-pierre/50 py-9 desktop:py-10">
           <Container>
             <Reveal>
               <LeadMagnets {...content.leadMagnets} />
@@ -178,13 +191,13 @@ export default async function Home({
         </section>
 
         {/* 06 — L'invitation */}
-        <section id="invite" className="scroll-mt-20 border-t-[0.5px] border-ivory/10">
+        <section id="invite" className="scroll-mt-20 border-t-[0.5px] border-pierre/50">
           <Container className="grid gap-8 py-9 desktop:grid-cols-12 desktop:py-10">
             <div className="desktop:col-span-7">
               <Reveal>
-                <CapsLabel className="mb-4 block text-clay/60">{content.invite.eyebrow}</CapsLabel>
-                <DisplaySection className="mb-5 italic text-ivory">{content.invite.title}</DisplaySection>
-                <BodyStandard className="mb-7 max-w-reading text-ivory/50">{content.invite.body}</BodyStandard>
+                <CapsLabel className="mb-4 block text-pierre2">{content.invite.eyebrow}</CapsLabel>
+                <DisplaySection className="mb-5 italic text-encre">{content.invite.title}</DisplaySection>
+                <BodyStandard className="mb-7 max-w-reading text-encre/50">{content.invite.body}</BodyStandard>
                 <InviteForm
                   seasonLabel={content.invite.seasonLabel}
                   seasonOptions={content.invite.seasonOptions}
@@ -200,20 +213,20 @@ export default async function Home({
 
             <div className="flex flex-col gap-6 desktop:col-span-4 desktop:col-start-9 desktop:justify-center">
               <Reveal delay={0.1}>
-                <CapsLabel className="mb-2 block text-clay/70">
+                <CapsLabel className="mb-2 block text-pierre2">
                   {content.contact.travelersLabel}
                 </CapsLabel>
-                <BodyStandard className="text-ivory">{content.contact.travelersEmail}</BodyStandard>
-                <Caption className="text-ivory/40">{content.contact.travelersNote}</Caption>
+                <BodyStandard className="text-encre">{content.contact.travelersEmail}</BodyStandard>
+                <Caption className="text-pierre2">{content.contact.travelersNote}</Caption>
               </Reveal>
               <Reveal delay={0.16}>
-                <CapsLabel className="mb-2 block text-clay/70">{content.contact.advisorsLabel}</CapsLabel>
-                <BodyStandard className="text-ivory">{content.contact.advisorsEmail}</BodyStandard>
-                <Caption className="text-ivory/40">{content.contact.advisorsNote}</Caption>
+                <CapsLabel className="mb-2 block text-pierre2">{content.contact.advisorsLabel}</CapsLabel>
+                <BodyStandard className="text-encre">{content.contact.advisorsEmail}</BodyStandard>
+                <Caption className="text-pierre2">{content.contact.advisorsNote}</Caption>
               </Reveal>
               <Reveal delay={0.22}>
-                <CapsLabel className="mb-2 block text-clay/70">{content.contact.responseLabel}</CapsLabel>
-                <BodyStandard className="text-ivory/50">{content.contact.responseNote}</BodyStandard>
+                <CapsLabel className="mb-2 block text-pierre2">{content.contact.responseLabel}</CapsLabel>
+                <BodyStandard className="text-encre/50">{content.contact.responseNote}</BodyStandard>
               </Reveal>
             </div>
           </Container>

@@ -27,16 +27,16 @@ function LeadMagnetCard({ item, form }: { item: LeadMagnetItem; form: SharedForm
   const locale = useLocale();
 
   return (
-    <div className="flex flex-col gap-5 border-[0.5px] border-ivory/10 p-6 tablet:flex-row tablet:items-center">
+    <div className="flex flex-col gap-5 border-[0.5px] border-pierre/50 p-6 tablet:flex-row tablet:items-center">
       <div className="relative h-32 w-24 flex-shrink-0 overflow-hidden tablet:h-40 tablet:w-28">
         <Image src={item.image} alt={item.imageAlt} fill sizes="120px" className="object-cover" />
       </div>
       <div className="flex-1">
-        <h3 className="font-serif text-body-large italic text-ivory">{item.title}</h3>
-        <BodyStandard className="mt-2 text-ivory/55">{item.description}</BodyStandard>
+        <h3 className="font-serif text-body-large italic text-encre">{item.title}</h3>
+        <BodyStandard className="mt-2 text-encre/60">{item.description}</BodyStandard>
 
         {state?.ok ? (
-          <Caption className="mt-4 block text-clay" role="status">
+          <Caption className="mt-4 block text-encre" role="status">
             {form.confirmation}
           </Caption>
         ) : (
@@ -46,7 +46,7 @@ function LeadMagnetCard({ item, form }: { item: LeadMagnetItem; form: SharedForm
             <div className="flex-1">
               <label
                 htmlFor={`lead-email-${item.key}`}
-                className="font-sans text-caps-label uppercase text-ivory/40"
+                className="font-sans text-caps-label uppercase text-pierre2"
               >
                 {form.emailLabel}
               </label>
@@ -55,7 +55,7 @@ function LeadMagnetCard({ item, form }: { item: LeadMagnetItem; form: SharedForm
                 name="email"
                 type="email"
                 required
-                className="w-full border-0 border-b border-ivory/10 bg-transparent py-2 font-serif text-body-standard text-ivory focus:border-clay focus:outline-none"
+                className="w-full border-0 border-b border-pierre/50 bg-transparent py-2 font-serif text-body-standard text-encre focus:border-encre focus:outline-none"
               />
             </div>
             <AccentButton type="submit" disabled={pending}>
@@ -64,7 +64,7 @@ function LeadMagnetCard({ item, form }: { item: LeadMagnetItem; form: SharedForm
           </form>
         )}
         {state && !state.ok ? (
-          <p className="mt-3 font-serif italic text-caption text-clay">{form.errorNote}</p>
+          <p className="mt-3 font-serif italic text-caption text-encre">{form.errorNote}</p>
         ) : null}
       </div>
     </div>
@@ -82,11 +82,11 @@ type LeadMagnetsProps = {
 export function LeadMagnets({ eyebrow, title, titleEm, body, items, ...form }: LeadMagnetsProps) {
   return (
     <div>
-      <CapsLabel className="mb-4 block text-clay/60">{eyebrow}</CapsLabel>
-      <DisplaySection className="italic text-ivory">
-        {title} <span className="text-clay">{titleEm}</span>
+      <CapsLabel className="mb-4 block text-pierre2">{eyebrow}</CapsLabel>
+      <DisplaySection className="italic text-encre">
+        {title} <span>{titleEm}</span>
       </DisplaySection>
-      <BodyStandard className="mb-8 mt-3 max-w-reading text-ivory/50">{body}</BodyStandard>
+      <BodyStandard className="mb-8 mt-3 max-w-reading text-encre/50">{body}</BodyStandard>
       <div className="grid grid-cols-1 gap-4 tablet:grid-cols-2">
         {items.map((item) => (
           <LeadMagnetCard key={item.key} item={item} form={form} />

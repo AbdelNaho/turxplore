@@ -7,10 +7,10 @@ import { Link } from "@/i18n/navigation";
  * navigational links and form actions alike.
  */
 const interactiveClassName =
-  "font-sans text-interface-label text-ivory/80 border-b border-transparent " +
-  "transition-colors duration-interface ease-out hover:text-clay hover:border-clay " +
+  "font-sans text-interface-label text-encre/80 border-b border-transparent " +
+  "transition-colors duration-interface ease-out hover:text-encre hover:border-pierre " +
   "focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 " +
-  "focus-visible:outline-clay";
+  "focus-visible:outline-encre";
 
 type LinkProps = ComponentPropsWithoutRef<typeof Link>;
 

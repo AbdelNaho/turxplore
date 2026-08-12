@@ -2,14 +2,14 @@ import type { Metadata, Viewport } from "next";
 import { NextIntlClientProvider, hasLocale } from "next-intl";
 import { getTranslations, setRequestLocale } from "next-intl/server";
 import { notFound } from "next/navigation";
-import { fraunces, outfit } from "@/lib/fonts";
+import { fraunces, inter } from "@/lib/fonts";
 import { routing } from "@/i18n/routing";
 import { Header } from "@/components/layout/Header";
 import { Footer } from "@/components/layout/Footer";
 import "../globals.css";
 
 export const viewport: Viewport = {
-  themeColor: "#1A120D",
+  themeColor: "#F0EAD8",
 };
 
 export function generateStaticParams() {
@@ -28,8 +28,8 @@ export async function generateMetadata({
   return {
     metadataBase: new URL("https://turxplore.com"),
     title: {
-      default: "Turxplore — Morocco, Privately.",
-      template: "%s — Turxplore",
+      default: "Turxplore — Morocco, edited.",
+      template: "%s · Turxplore",
     },
     description: t("manifesto"),
     alternates: {
@@ -37,7 +37,7 @@ export async function generateMetadata({
       languages: localePaths,
     },
     openGraph: {
-      title: "Turxplore — Morocco, Privately.",
+      title: "Turxplore — Morocco, edited.",
       description: t("manifesto"),
       siteName: "Turxplore",
       locale,
@@ -45,7 +45,7 @@ export async function generateMetadata({
     },
     twitter: {
       card: "summary_large_image",
-      title: "Turxplore — Morocco, Privately.",
+      title: "Turxplore — Morocco, edited.",
       description: t("manifesto"),
     },
   };
@@ -65,12 +65,12 @@ export default async function LocaleLayout({
   setRequestLocale(locale);
 
   return (
-    <html lang={locale} className={`${fraunces.variable} ${outfit.variable} h-full`}>
-      <body className="flex min-h-full flex-col bg-night text-ivory antialiased">
+    <html lang={locale} className={`${fraunces.variable} ${inter.variable} h-full`}>
+      <body className="flex min-h-full flex-col bg-parchment text-encre antialiased">
         <NextIntlClientProvider>
           <a
             href="#main-content"
-            className="sr-only focus:not-sr-only focus:fixed focus:left-3 focus:top-3 focus:z-[100] focus:bg-night focus:px-3 focus:py-2 focus:font-sans focus:text-interface-label focus:text-ivory"
+            className="sr-only focus:not-sr-only focus:fixed focus:left-3 focus:top-3 focus:z-[100] focus:bg-parchment focus:px-3 focus:py-2 focus:font-sans focus:text-interface-label focus:text-encre"
           >
             Skip to content
           </a>

@@ -17,7 +17,7 @@ type ChipGroupProps = {
 function ChipGroup({ label, name, options, value, onChange }: ChipGroupProps) {
   return (
     <div className="mb-5">
-      <p className="mb-3 font-sans text-caps-label uppercase text-ivory/40">{label}</p>
+      <p className="mb-3 font-sans text-caps-label uppercase text-pierre2">{label}</p>
       <div role="group" aria-label={label} className="flex flex-wrap gap-2">
         {options.map((option) => (
           <button
@@ -28,8 +28,8 @@ function ChipGroup({ label, name, options, value, onChange }: ChipGroupProps) {
             className={
               "border-[0.5px] px-4 py-2 font-sans text-interface-body transition-colors duration-interface ease-out " +
               (value === option
-                ? "border-clay bg-clay text-night"
-                : "border-ivory/10 text-ivory/80 hover:border-clay/40 hover:text-ivory")
+                ? "border-encre bg-encre text-parchment"
+                : "border-pierre/50 text-encre/80 hover:border-encre/40 hover:text-encre")
             }
           >
             {option}
@@ -68,7 +68,7 @@ export function InviteForm({
 
   if (state?.ok) {
     return (
-      <BodyStandard className="max-w-reading text-ivory" role="status">
+      <BodyStandard className="max-w-reading text-encre" role="status">
         {confirmation}
       </BodyStandard>
     );
@@ -93,7 +93,7 @@ export function InviteForm({
 
       <div className="flex flex-col gap-4 tablet:flex-row tablet:items-end">
         <div className="flex-1">
-          <label htmlFor="quick-email" className="font-sans text-caps-label uppercase text-ivory/40">
+          <label htmlFor="quick-email" className="font-sans text-caps-label uppercase text-pierre2">
             {emailLabel}
           </label>
           <input
@@ -101,7 +101,7 @@ export function InviteForm({
             name="email"
             type="email"
             required
-            className="w-full border-0 border-b border-ivory/10 bg-transparent py-2 font-serif text-body-standard text-ivory focus:border-clay focus:outline-none"
+            className="w-full border-0 border-b border-pierre/50 bg-transparent py-2 font-serif text-body-standard text-encre focus:border-encre focus:outline-none"
           />
         </div>
         <AccentButton type="submit" disabled={pending}>
@@ -109,7 +109,7 @@ export function InviteForm({
         </AccentButton>
       </div>
       {state && !state.ok ? (
-        <p className="mt-3 font-serif italic text-caption text-clay">{errorNote}</p>
+        <p className="mt-3 font-serif italic text-caption text-encre">{errorNote}</p>
       ) : null}
     </form>
   );

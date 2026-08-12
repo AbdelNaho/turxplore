@@ -32,8 +32,8 @@ export function LanguageSwitcher({ className }: LanguageSwitcherProps) {
               className={
                 "font-sans text-caps-label uppercase transition-colors duration-interface ease-out " +
                 (locale === activeLocale
-                  ? "text-clay"
-                  : "text-ivory/40 hover:text-ivory")
+                  ? "text-encre"
+                  : "text-pierre2 hover:text-encre")
               }
             >
               {localeLabels[locale] ?? locale}

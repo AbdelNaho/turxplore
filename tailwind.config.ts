@@ -1,9 +1,11 @@
 import type { Config } from "tailwindcss";
 
 /**
- * Turxplore design tokens — warm night palette (night / clay / ivory),
- * the direction the client explicitly chose over the earlier daylight
- * system. No default Tailwind colors, spacing, or shadows survive.
+ * Turxplore design tokens — "L'Éditrice" system (MMXXVI): a light editorial
+ * parchment ground, replacing the earlier "Terre de Marrakech" warm-night
+ * direction. Locked 4-color palette. Aubergine is a single accent — used
+ * once per composition, never as a repeated/decorative color. No default
+ * Tailwind colors, spacing, or shadows survive.
  */
 const config: Config = {
   content: ["./src/**/*.{ts,tsx,mdx}"],
@@ -13,8 +15,8 @@ const config: Config = {
       tablet: "768px",
       md: "768px",
       desktop: "1024px",
-      // Wider than `desktop`: the header's wordmark + 5 nav links + language
-      // switcher crowd together with no guaranteed gap right at 1024px.
+      // Wider than `desktop`: the header's wordmark + nav links crowd
+      // together with no guaranteed gap right at 1024px.
       nav: "1340px",
       lg: "1024px",
       xl: "1280px",
@@ -23,18 +25,22 @@ const config: Config = {
     colors: {
       transparent: "transparent",
       current: "currentColor",
-      // Primary canvas — warm near-black.
-      night: "rgb(var(--color-night) / <alpha-value>)",
-      // Secondary canvas shade, slightly lifted (e.g. scrolled header).
-      night2: "rgb(var(--color-night-2) / <alpha-value>)",
-      // Tertiary canvas, for sections that sit a step apart (e.g. tailor-made).
-      ember: "rgb(var(--color-ember) / <alpha-value>)",
-      // Primary text on night.
-      ivory: "rgb(var(--color-ivory) / <alpha-value>)",
-      // Signature accent — the one warm point of light.
-      clay: "rgb(var(--color-clay) / <alpha-value>)",
-      // Secondary accent, rare.
-      brass: "rgb(var(--color-brass) / <alpha-value>)",
+      // Primary ground — parchment. 60% of any visible surface.
+      parchment: "rgb(var(--color-parchment) / <alpha-value>)",
+      // Subtle lifted ground (cards, scrolled header).
+      parchment2: "rgb(var(--color-parchment-2) / <alpha-value>)",
+      // Primary text, wordmark, khatam. Never pure black.
+      encre: "rgb(var(--color-encre) / <alpha-value>)",
+      // Softer text variant.
+      encre2: "rgb(var(--color-encre-2) / <alpha-value>)",
+      // Hairlines, meta labels, borders, grids.
+      pierre: "rgb(var(--color-pierre) / <alpha-value>)",
+      // Meta-label variant of pierre.
+      pierre2: "rgb(var(--color-pierre-2) / <alpha-value>)",
+      // Single accent — one word, one dot, one CTA per composition. Never a fill/background at scale.
+      aubergine: "rgb(var(--color-aubergine) / <alpha-value>)",
+      // Hover/active state for aubergine surfaces only.
+      aubergine2: "rgb(var(--color-aubergine-2) / <alpha-value>)",
     },
     spacing: {
       px: "1px",
@@ -109,10 +115,9 @@ const config: Config = {
       reading: "640px",
       full: "100%",
     },
+    // No shadows, no glows — the design system forbids both outright.
     boxShadow: {
       none: "none",
-      card: "0 24px 48px rgba(10, 6, 3, 0.35)",
-      glow: "0 0 14px 3px rgba(193, 96, 58, 0.5)",
     },
     borderRadius: {
       none: "0px",
@@ -120,25 +125,26 @@ const config: Config = {
     },
     extend: {
       transitionDuration: {
-        interface: "350ms",
-        editorial: "900ms",
-        ceremonial: "2000ms",
+        // Hovers.
+        interface: "200ms",
+        // Page elements entering.
+        editorial: "400ms",
+        // Deliberate long-scroll section reveals only.
+        ceremonial: "600ms",
       },
       transitionTimingFunction: {
-        out: "cubic-bezier(0, 0, 0.2, 1)",
+        // Material standard — smooth without character, per spec.
+        out: "cubic-bezier(0.4, 0, 0.2, 1)",
       },
       keyframes: {
-        marquee: {
-          to: { transform: "translateX(-50%)" },
-        },
+        // No marquee/ticker keyframe — forbidden motion, removed outright.
         rise: {
           from: { opacity: "0", transform: "translateY(18px)" },
           to: { opacity: "1", transform: "none" },
         },
       },
       animation: {
-        marquee: "marquee 36s linear infinite",
-        rise: "rise 0.95s cubic-bezier(0.22, 0.61, 0.36, 1) forwards",
+        rise: "rise 0.6s ease-out forwards",
       },
     },
   },

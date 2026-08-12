@@ -1,31 +1,24 @@
 "use client";
 
 import { useEffect, useRef, useState } from "react";
-import { useReducedMotion } from "framer-motion";
 import Image from "next/image";
 import type { Route } from "@/content/home";
 
 type CircularGalleryProps = {
   items: Route[];
   hint: string;
-  /** Degrees advanced per animation frame while idle. */
-  autoRotateSpeed?: number;
 };
 
 /**
- * A slow-turning 3D ring of destination cards — auto-rotates continuously
- * rather than hijacking page scroll, so it sits comfortably as one section
- * among others instead of demanding several viewport-heights of its own.
- * Pauses on hover/focus; the radius is measured from the rendered card size
- * so neighboring cards meet edge-to-edge at any viewport width.
+ * A 3D ring of destination cards, turned only by the prev/next controls —
+ * no auto-play, per the design system's ban on auto-advancing carousels.
+ * The radius is measured from the rendered card size so neighboring cards
+ * meet edge-to-edge at any viewport width.
  */
-export function CircularGallery({ items, hint, autoRotateSpeed = 0.045 }: CircularGalleryProps) {
+export function CircularGallery({ items, hint }: CircularGalleryProps) {
   const [rotation, setRotation] = useState(0);
   const [radius, setRadius] = useState(210);
   const stageRef = useRef<HTMLDivElement>(null);
-  const pausedRef = useRef(false);
-  const frameRef = useRef<number | null>(null);
-  const reduceMotion = useReducedMotion();
   const anglePerItem = 360 / items.length;
 
   useEffect(() => {
@@ -41,20 +34,7 @@ export function CircularGallery({ items, hint, autoRotateSpeed = 0.045 }: Circul
     return () => observer.disconnect();
   }, [items.length]);
 
-  useEffect(() => {
-    if (reduceMotion) return;
-    const tick = () => {
-      if (!pausedRef.current) setRotation((r) => r + autoRotateSpeed);
-      frameRef.current = requestAnimationFrame(tick);
-    };
-    frameRef.current = requestAnimationFrame(tick);
-    return () => {
-      if (frameRef.current) cancelAnimationFrame(frameRef.current);
-    };
-  }, [autoRotateSpeed, reduceMotion]);
-
   const step = (direction: 1 | -1) => {
-    pausedRef.current = true;
     setRotation((r) => r + direction * anglePerItem);
   };
 
@@ -66,10 +46,6 @@ export function CircularGallery({ items, hint, autoRotateSpeed = 0.045 }: Circul
         aria-label={items.map((route) => route.name).join(", ")}
         className="relative flex h-[26rem] w-full items-center justify-center tablet:h-[30rem]"
         style={{ perspective: "1100px" }}
-        onMouseEnter={() => (pausedRef.current = true)}
-        onMouseLeave={() => (pausedRef.current = false)}
-        onFocus={() => (pausedRef.current = true)}
-        onBlur={() => (pausedRef.current = false)}
       >
         <div
           ref={stageRef}
@@ -90,7 +66,7 @@ export function CircularGallery({ items, hint, autoRotateSpeed = 0.045 }: Circul
                 aria-label={route.name}
                 aria-hidden={!isFront}
                 tabIndex={isFront ? 0 : -1}
-                className="group absolute inset-0 flex flex-col justify-end overflow-hidden rounded-[14px] border-[0.5px] border-ivory/10 bg-night2 shadow-[0_30px_60px_-12px_rgba(0,0,0,0.6)] [backface-visibility:hidden]"
+                className="group absolute inset-0 flex flex-col justify-end overflow-hidden rounded-[14px] border-[0.5px] border-pierre/50 bg-parchment2 [backface-visibility:hidden]"
                 style={{
                   transform: `rotateY(${itemAngle}deg) translateZ(${radius}px)`,
                   opacity,
@@ -104,10 +80,10 @@ export function CircularGallery({ items, hint, autoRotateSpeed = 0.045 }: Circul
                   sizes="260px"
                   className="object-cover brightness-90 saturate-[0.92] transition-transform duration-editorial ease-out group-hover:scale-105"
                 />
-                <div className="pointer-events-none absolute inset-0 bg-gradient-to-t from-night/95 via-night/30 to-transparent" />
+                <div className="pointer-events-none absolute inset-0 bg-gradient-to-t from-encre/95 via-encre/30 to-transparent" />
                 <div className="relative p-5">
-                  <p className="font-serif text-editorial-subhead italic text-ivory">{route.name}</p>
-                  <p className="mt-1.5 font-sans text-interface-body text-ivory/45">{route.subtitle}</p>
+                  <p className="font-serif text-editorial-subhead italic text-parchment">{route.name}</p>
+                  <p className="mt-1.5 font-sans text-interface-body text-parchment/60">{route.subtitle}</p>
                 </div>
               </a>
             );
@@ -120,7 +96,7 @@ export function CircularGallery({ items, hint, autoRotateSpeed = 0.045 }: Circul
           type="button"
           aria-label="Précédent"
           onClick={() => step(-1)}
-          className="grid h-11 w-11 place-items-center border-[0.5px] border-clay/25 text-clay transition-colors duration-interface ease-out hover:bg-clay/10 hover:border-clay"
+          className="grid h-11 w-11 place-items-center border-[0.5px] border-pierre text-encre transition-colors duration-interface ease-out hover:bg-pierre/15 hover:border-encre"
         >
           ←
         </button>
@@ -128,11 +104,11 @@ export function CircularGallery({ items, hint, autoRotateSpeed = 0.045 }: Circul
           type="button"
           aria-label="Suivant"
           onClick={() => step(1)}
-          className="grid h-11 w-11 place-items-center border-[0.5px] border-clay/25 text-clay transition-colors duration-interface ease-out hover:bg-clay/10 hover:border-clay"
+          className="grid h-11 w-11 place-items-center border-[0.5px] border-pierre text-encre transition-colors duration-interface ease-out hover:bg-pierre/15 hover:border-encre"
         >
           →
         </button>
-        <span className="ml-auto font-sans text-caps-label uppercase text-ivory/20">{hint}</span>
+        <span className="ml-auto font-sans text-caps-label uppercase text-pierre2">{hint}</span>
       </div>
     </div>
   );

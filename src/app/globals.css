@@ -4,32 +4,37 @@
 
 :root {
   /* Color palette — RGB triplets for Tailwind's alpha-value pattern */
-  /* Palette B — "Terre de Marrakech": terracotta clay as the primary
-     accent, muted brass held in reserve. Chosen for warmer resonance
-     with the Brazil / Latin America market over a gold-forward system. */
-  --color-night: 26 18 13; /* primary canvas — warm clay-black */
-  --color-night-2: 36 26 18; /* lifted canvas shade (e.g. scrolled header) */
-  --color-ember: 46 32 21; /* tertiary canvas, one step apart */
-  --color-ivory: 245 233 217; /* primary text on night — warm sand */
-  --color-clay: 193 96 58; /* signature accent — the point of light */
-  --color-brass: 182 150 100; /* secondary accent, rare */
+  /* "L'Éditrice" system (MMXXVI) — a light, editorial parchment ground
+     replacing the earlier "Terre de Marrakech" warm-night direction.
+     Locked 4-color palette; aubergine is a single accent, never a fill. */
+  --color-parchment: 240 234 216; /* #F0EAD8 — primary ground, 60% of surface */
+  --color-parchment-2: 232 225 206; /* #E8E1CE — subtle card ground */
+  --color-encre: 31 27 21; /* #1F1B15 — text, wordmark, khatam (never pure black) */
+  --color-encre-2: 46 40 32; /* #2E2820 — softer text */
+  --color-pierre: 212 180 164; /* #D4B4A4 — hairlines, meta, borders */
+  --color-pierre-2: 168 131 111; /* #A8836F — meta labels */
+  --color-aubergine: 78 46 60; /* #4E2E3C — single accent, once per composition */
+  --color-aubergine-2: 52 29 38; /* #341D26 — hover/active on aubergine */
 
   /* Typography — swap the first family in each stack for the licensed font */
-  --font-serif: "GT Sectra Fine", "Fraunces", Georgia, serif;
-  --font-sans: "Söhne", "Outfit", -apple-system, BlinkMacSystemFont, sans-serif;
+  --font-serif: "Fraunces", Georgia, serif;
+  --font-sans: "Inter", -apple-system, BlinkMacSystemFont, sans-serif;
   --font-arabic: "29LT Zawi", "Noto Naskh Arabic", serif;
 
-  /* 8-point spacing scale */
-  --space-1: 8px;
-  --space-2: 16px;
-  --space-3: 24px;
-  --space-4: 32px;
-  --space-5: 48px;
-  --space-6: 64px;
-  --space-7: 96px;
-  --space-8: 128px;
-  --space-9: 192px;
-  --space-10: 256px;
+  /* 4-point spacing scale */
+  --space-1: 4px;
+  --space-2: 8px;
+  --space-3: 12px;
+  --space-4: 16px;
+  --space-5: 20px;
+  --space-6: 24px;
+  --space-7: 32px;
+  --space-8: 40px;
+  --space-9: 48px;
+  --space-10: 64px;
+  --space-11: 80px;
+  --space-12: 96px;
+  --space-13: 128px;
 }
 
 html {
@@ -37,8 +42,8 @@ html {
 }
 
 body {
-  background-color: rgb(var(--color-night));
-  color: rgb(var(--color-ivory));
+  background-color: rgb(var(--color-parchment));
+  color: rgb(var(--color-encre));
   font-family: var(--font-serif);
 }
 

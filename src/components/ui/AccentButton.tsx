@@ -1,14 +1,14 @@
 import { ComponentPropsWithoutRef, forwardRef } from "react";
 
 /**
- * The filled clay action — the signature accent, used deliberately and
- * only for real transactional moments (the inquiry funnel), never decoration.
+ * The filled aubergine action — the house's single accent, used deliberately
+ * and only for real transactional moments (the inquiry funnel), never decoration.
  */
 const accentClassName =
-  "inline-flex items-center justify-center bg-clay text-night font-sans " +
+  "inline-flex items-center justify-center bg-aubergine text-parchment font-sans " +
   "text-caps-label uppercase tracking-[0.14em] px-5 py-3 transition-all duration-interface ease-out " +
-  "hover:brightness-110 hover:-translate-y-px " +
-  "focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-ivory " +
+  "hover:bg-aubergine2 " +
+  "focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-encre " +
   "disabled:opacity-60 disabled:cursor-not-allowed";
 
 type ButtonProps = ComponentPropsWithoutRef<"button">;
