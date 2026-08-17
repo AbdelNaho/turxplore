@@ -1,20 +1,14 @@
-import { ComponentPropsWithoutRef, ElementType, ReactNode } from "react";
+import { ComponentPropsWithoutRef, ReactNode } from "react";
+
+type HtmlTag = "span" | "p" | "h1" | "h2" | "h3" | "h4" | "div" | "section" | "article";
 
 type PolymorphicProps = {
-  as?: ElementType;
+  as?: HtmlTag;
   className?: string;
   children: ReactNode;
 } & Omit<ComponentPropsWithoutRef<"div">, "as" | "className" | "children">;
 
-/**
- * Color is deliberately excluded from every base className below. Tailwind
- * utilities have equal specificity, so a color passed via `className` to
- * override a color baked in here would win or lose depending on the
- * generated stylesheet's internal order, not on where it appears in the
- * `class` attribute — an easy, silent bug. Every call site sets its own
- * text color explicitly instead.
- */
-function createTypeComponent(name: string, baseClassName: string, defaultElement: ElementType) {
+function createTypeComponent(name: string, baseClassName: string, defaultElement: HtmlTag) {
   function TypeComponent({ as, className, children, ...rest }: PolymorphicProps) {
     const Tag = as || defaultElement;
     return (

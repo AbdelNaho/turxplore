@@ -37,7 +37,7 @@ export function ParallaxImage({
   const y = useTransform(
     scrollYProgress,
     [0, 1],
-    reduceMotion ? [0, 0] : [`-${speed * 100}%`, `${speed * 100}%`],
+    reduceMotion ? ["0%", "0%"] : [`-${speed * 100}%`, `${speed * 100}%`],
   );
 
   const imgScale = useTransform(

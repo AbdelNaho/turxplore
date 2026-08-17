@@ -1,11 +1,10 @@
 "use client";
 
 import { motion, useReducedMotion } from "framer-motion";
-import { type ElementType } from "react";
 
 type TextRevealProps = {
   text: string;
-  as?: ElementType;
+  as?: "span" | "h1" | "h2" | "h3" | "p" | "div";
   className?: string;
   delay?: number;
   staggerChar?: number;

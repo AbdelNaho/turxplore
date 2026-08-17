@@ -1,22 +1,26 @@
 "use client";
 
 import { useRef } from "react";
-import { useScroll, useTransform, type MotionValue } from "framer-motion";
+import {
+  useScroll,
+  useTransform,
+  type MotionValue,
+} from "framer-motion";
 
 type ScrollProgressOptions = {
-  offset?: [string, string];
+  offset?: Parameters<typeof useScroll>[0] extends { offset?: infer O } ? O : never;
 };
 
 export function useScrollProgress(
   options: ScrollProgressOptions = {},
 ): {
-  ref: React.RefObject<HTMLElement | null>;
+  ref: React.RefObject<HTMLDivElement | null>;
   progress: MotionValue<number>;
 } {
-  const ref = useRef<HTMLElement>(null);
+  const ref = useRef<HTMLDivElement>(null);
   const { scrollYProgress } = useScroll({
     target: ref,
-    offset: (options.offset as [string, string]) ?? ["start end", "end start"],
+    offset: options.offset ?? ["start end", "end start"],
   });
 
   return { ref, progress: scrollYProgress };

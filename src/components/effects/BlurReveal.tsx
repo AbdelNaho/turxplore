@@ -1,11 +1,11 @@
 "use client";
 
 import { motion, useReducedMotion, useInView } from "framer-motion";
-import { useRef, type ElementType, type CSSProperties } from "react";
+import React, { useRef, type CSSProperties } from "react";
 
 type BlurRevealProps = {
   text: string;
-  as?: ElementType;
+  as?: "span" | "h1" | "h2" | "h3" | "p" | "div";
   className?: string;
   style?: CSSProperties;
   delay?: number;
@@ -25,7 +25,7 @@ export function BlurReveal({
   triggerOnView = true,
 }: BlurRevealProps) {
   const reduceMotion = useReducedMotion();
-  const ref = useRef<HTMLElement>(null);
+  const ref = useRef<HTMLDivElement>(null);
   const inView = useInView(ref, { once: true, margin: "-10%" });
   const shouldAnimate = triggerOnView ? inView : true;
 
@@ -36,7 +36,7 @@ export function BlurReveal({
   const units = mode === "char" ? text.split("") : text.split(" ");
 
   return (
-    <Tag className={className} style={style} aria-label={text} ref={ref}>
+    <Tag className={className} style={style} aria-label={text} ref={ref as React.Ref<never>}>
       {units.map((unit, i) => (
         <motion.span
           key={i}
