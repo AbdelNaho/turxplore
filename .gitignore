@@ -34,6 +34,9 @@ yarn-error.log*
 .env*
 !.env.example
 
+# local MCP server config (contains API keys/headers)
+.mcp.json
+
 # vercel
 .vercel
 

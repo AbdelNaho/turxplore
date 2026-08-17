@@ -1,103 +1,91 @@
 "use client";
 
-import { useEffect, useState } from "react";
-import { useTranslations } from "next-intl";
+import { useEffect, useState, useCallback } from "react";
+import { motion } from "framer-motion";
 import { Wordmark } from "./Wordmark";
 
-const navItems = [
-  { href: "#atelier", key: "atelier" },
-  { href: "#destinations", key: "destinations" },
-  { href: "#compositions", key: "compositions" },
+const pieces = [
+  { num: "01", place: "Marrakech" },
+  { num: "02", place: "Le désert privé" },
+  { num: "03", place: "L'Atlantique sauvage" },
+  { num: "04", place: "Les villes impériales" },
+  { num: "05", place: "L'héritage andalou" },
 ] as const;
 
 export function Header() {
-  const t = useTranslations("Nav");
-  const [scrolled, setScrolled] = useState(false);
-  const [menuOpen, setMenuOpen] = useState(false);
+  const [current, setCurrent] = useState<(typeof pieces)[number] | null>(null);
+  const [onDark, setOnDark] = useState(false);
 
-  useEffect(() => {
-    const onScroll = () => setScrolled(window.scrollY > 24);
-    onScroll();
-    window.addEventListener("scroll", onScroll, { passive: true });
-    return () => window.removeEventListener("scroll", onScroll);
+  const checkDarkSection = useCallback(() => {
+    const headerY = 40;
+    const els = document.elementsFromPoint(window.innerWidth / 2, headerY);
+    const dark = els.some((el) => {
+      const bg = getComputedStyle(el).backgroundColor;
+      if (!bg || bg === "rgba(0, 0, 0, 0)" || bg === "transparent") return false;
+      const match = bg.match(/\d+/g);
+      if (!match) return false;
+      const [r, g, b] = match.map(Number);
+      return (r + g + b) / 3 < 80;
+    });
+    setOnDark(dark);
   }, []);
 
   useEffect(() => {
-    document.body.style.overflow = menuOpen ? "hidden" : "";
+    const targets = Array.from(
+      document.querySelectorAll<HTMLElement>("[data-piece]"),
+    );
+    if (targets.length === 0) return;
+
+    const observer = new IntersectionObserver(
+      (entries) => {
+        const visible = entries
+          .filter((e) => e.isIntersecting)
+          .sort((a, b) => b.intersectionRatio - a.intersectionRatio)[0];
+        if (visible) {
+          const num = visible.target.getAttribute("data-piece");
+          const match = pieces.find((p) => p.num === num);
+          if (match) setCurrent(match);
+        }
+      },
+      { threshold: [0.25, 0.5, 0.75], rootMargin: "-15% 0px -15% 0px" },
+    );
+    targets.forEach((t) => observer.observe(t));
+
+    window.addEventListener("scroll", checkDarkSection, { passive: true });
+    checkDarkSection();
+
     return () => {
-      document.body.style.overflow = "";
+      observer.disconnect();
+      window.removeEventListener("scroll", checkDarkSection);
     };
-  }, [menuOpen]);
+  }, [checkDarkSection]);
+
+  const textColor = onDark ? "text-parchment" : "text-encre";
+  const metaColor = onDark ? "text-parchment/50" : "text-pierre2";
+  const dotColor = onDark ? "text-parchment/20" : "text-encre/30";
 
   return (
-    <header
-      className={
-        "fixed inset-x-0 top-0 z-50 transition-all duration-interface ease-out " +
-        (scrolled
-          ? "bg-parchment/90 backdrop-blur-xl border-b-[0.5px] border-pierre/50"
-          : "bg-transparent border-b-[0.5px] border-transparent")
-      }
-    >
-      <div
-        className={
-          "overflow-hidden text-center transition-all duration-interface ease-out " +
-          (scrolled ? "max-h-0 opacity-0" : "max-h-8 border-b-[0.5px] border-pierre/30 py-2 opacity-100")
-        }
+    <>
+      <motion.div
+        className="fixed left-3 top-3 z-50 tablet:left-5 tablet:top-5 desktop:left-7 desktop:top-7"
+        animate={{ color: onDark ? "rgb(240 234 216)" : "rgb(31 27 21)" }}
+        transition={{ duration: 0.4 }}
       >
-        <span className="font-sans text-caps-label uppercase tracking-[0.3em] text-pierre2">
-          {t("kingdom")}
-        </span>
-      </div>
+        <Wordmark className={textColor} />
+      </motion.div>
 
-      <div className="mx-auto flex max-w-content items-center justify-between gap-6 px-3 py-3 tablet:px-5 desktop:px-7 desktop:py-4">
-        <Wordmark className="text-encre" />
-
-        <nav aria-label="Primary" className="hidden nav:block">
-          <ul className="flex items-center gap-6">
-            {navItems.map((item) => (
-              <li key={item.href}>
-                <a
-                  href={item.href}
-                  className="font-sans text-interface-label text-encre/80 border-b border-transparent transition-colors duration-interface ease-out hover:text-encre hover:border-pierre"
-                >
-                  {t(item.key)}
-                </a>
-              </li>
-            ))}
-          </ul>
-        </nav>
-
-        <button
-          type="button"
-          className="font-sans text-caps-label uppercase text-encre nav:hidden"
-          aria-expanded={menuOpen}
-          aria-controls="mobile-nav"
-          onClick={() => setMenuOpen((open) => !open)}
+      {current ? (
+        <motion.div
+          className="fixed bottom-3 left-3 z-50 flex items-baseline gap-2 font-sans text-caption tablet:bottom-5 tablet:left-5 desktop:bottom-7 desktop:left-7"
+          animate={{ opacity: 1 }}
+          initial={{ opacity: 0 }}
+          transition={{ duration: 0.3 }}
         >
-          {menuOpen ? t("close") : t("menu")}
-        </button>
-      </div>
-
-      {menuOpen ? (
-        <div
-          id="mobile-nav"
-          className="min-h-[100dvh] overflow-y-auto border-t-[0.5px] border-pierre/50 bg-parchment px-3 py-4 nav:hidden"
-        >
-          <ul className="flex flex-col gap-4">
-            {navItems.map((item) => (
-              <li key={item.href}>
-                <a
-                  href={item.href}
-                  onClick={() => setMenuOpen(false)}
-                  className="font-serif text-editorial-headline text-encre"
-                >
-                  {t(item.key)}
-                </a>
-              </li>
-            ))}
-          </ul>
-        </div>
+          <span className={metaColor}>{current.num}</span>
+          <span className={dotColor}>·</span>
+          <span className={metaColor}>{current.place}</span>
+        </motion.div>
       ) : null}
-    </header>
+    </>
   );
 }

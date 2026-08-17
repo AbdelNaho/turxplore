@@ -20,11 +20,11 @@ export function Footer() {
             <span className="font-serif text-body-standard text-encre">
               {t("addressLabel")}
             </span>
-            <ExternalTextLink href="tel:+212697047692">
-              {t("phoneLabel")}
+            <ExternalTextLink href="https://wa.me/212697047692">
+              +212 697 047 692
             </ExternalTextLink>
             <ExternalTextLink href="mailto:journeys@turxplore.com">
-              {t("emailLabel")}
+              journeys@turxplore.com
             </ExternalTextLink>
           </div>
         </div>

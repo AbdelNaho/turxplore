@@ -137,14 +137,18 @@ const config: Config = {
         out: "cubic-bezier(0.4, 0, 0.2, 1)",
       },
       keyframes: {
-        // No marquee/ticker keyframe — forbidden motion, removed outright.
         rise: {
           from: { opacity: "0", transform: "translateY(18px)" },
           to: { opacity: "1", transform: "none" },
         },
+        "ken-burns": {
+          "0%": { transform: "scale(1)" },
+          "100%": { transform: "scale(1.08)" },
+        },
       },
       animation: {
         rise: "rise 0.6s ease-out forwards",
+        "ken-burns": "ken-burns 8s ease-out forwards",
       },
     },
   },
