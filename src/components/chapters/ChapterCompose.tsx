@@ -222,13 +222,22 @@ export function ChapterCompose() {
 
         <div className="relative mx-auto max-w-content px-5 desktop:px-7">
           {/* --- Esprit / Pillars --- */}
-          <div className="pb-6 pt-10 desktop:pb-7 desktop:pt-10">
+          <div className="relative pb-6 pt-10 desktop:pb-7 desktop:pt-10">
+            {/* Zellige background image */}
+            <div className="pointer-events-none absolute inset-0 overflow-hidden">
+              <img
+                src="/images/lesprit turxplore.jpg"
+                alt=""
+                className="h-full w-full object-cover opacity-[0.12]"
+              />
+              <div className="absolute inset-0 bg-gradient-to-b from-encre/60 via-transparent to-encre/80" />
+            </div>
             <motion.div
               initial={{ opacity: 0, y: 20 }}
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true }}
               transition={{ duration: 0.8, ease: [0.22, 1, 0.36, 1] }}
-              className="text-center"
+              className="relative text-center"
             >
               <h2 className="font-serif text-display-hero text-parchment">
                 L&apos;esprit <em className="italic">turxplore</em>
@@ -240,7 +249,7 @@ export function ChapterCompose() {
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true }}
               transition={{ duration: 0.6, delay: 0.3, ease: [0.22, 1, 0.36, 1] }}
-              className="mx-auto mt-6 flex flex-col items-center gap-4 tablet:flex-row tablet:justify-center tablet:gap-6 desktop:mt-7 desktop:gap-7"
+              className="relative mx-auto mt-6 flex flex-col items-center gap-4 tablet:flex-row tablet:justify-center tablet:gap-6 desktop:mt-7 desktop:gap-7"
             >
               {PILLARS.map((title, i) => {
                 const Icon = ICONS[i];
