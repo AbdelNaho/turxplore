@@ -200,32 +200,8 @@ export function ChapterCompose() {
             </motion.div>
           </div>
 
-          {/* --- Composer --- */}
-          <div className="flex min-h-[60vh] flex-col items-center justify-center pb-10 pt-6 text-center">
-            <motion.h2
-              initial={{ opacity: 0, y: 20 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              viewport={{ once: true }}
-              transition={{
-                duration: 0.8,
-                delay: 0.2,
-                ease: [0.22, 1, 0.36, 1],
-              }}
-              className="font-serif text-display-hero text-parchment"
-            >
-              Composer
-            </motion.h2>
-
-            <motion.p
-              initial={{ opacity: 0 }}
-              whileInView={{ opacity: 1 }}
-              viewport={{ once: true }}
-              transition={{ delay: 0.6, duration: 0.6 }}
-              className="mt-4 font-serif text-body-large italic text-parchment/60"
-            >
-              Chaque voyage commence par une conversation.
-            </motion.p>
-
+          {/* --- Composer form --- */}
+          <div className="flex min-h-[50vh] flex-col items-center justify-center pb-10 text-center">
             <motion.div
               initial={{ opacity: 0, y: 20 }}
               whileInView={{ opacity: 1, y: 0 }}
