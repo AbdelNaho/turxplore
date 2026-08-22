@@ -1,196 +1,160 @@
 "use client";
 
-import { useRef, useState } from "react";
-import {
-  motion,
-  AnimatePresence,
-  useReducedMotion,
-  useInView,
-} from "framer-motion";
+import { useRef } from "react";
+import { motion, useInView, useReducedMotion } from "framer-motion";
 import Image from "next/image";
+import { Mark } from "@/components/brand/Mark";
 
 const EXPERIENCES = [
   {
     number: "01",
-    title: "Dunes & Silence",
-    description: "Bivouacs privés sous les étoiles du Sahara",
-    image: "/images/hero-sahara.jpg",
+    title: "Médinas Vivantes",
+    subtitle: "Ruelles, artisans et murmures derrière les portes peintes.",
+    image: "/images/Photo F.jpg",
   },
   {
     number: "02",
-    title: "Médinas Vivantes",
-    description: "Artisans, souks et lumières nocturnes",
-    image: "/images/voyage-jemaa-elfna-night.jpg",
+    title: "Pierres & Lumières",
+    subtitle: "Où la géométrie devient prière.",
+    image: "/images/route-villes-imperiales.jpg",
   },
   {
     number: "03",
-    title: "Pierre & Lumière",
-    description: "Architecture sacrée et géométries infinies",
-    image: "/images/voyage-hassan-ii-mosque.jpg",
-  },
-  {
-    number: "04",
-    title: "Terrasses Privées",
-    description: "Couchers de soleil et tables dressées sur les toits",
-    image: "/images/route-family-rooftop.jpg",
-  },
-  {
-    number: "05",
     title: "L'Atlantique Sauvage",
-    description: "Côtes brutes, vent et forteresses portugaises",
+    subtitle: "Forteresses, embruns et horizons sans fin.",
     image: "/images/voyage-atlantique-sauvage.jpg",
   },
   {
+    number: "04",
+    title: "Terres de Montagne",
+    subtitle: "Kasbahs de pisé et silences de l'Atlas.",
+    image: "/images/Photo B.jpg",
+  },
+  {
+    number: "05",
+    title: "Routes du Sud",
+    subtitle: "Dunes, caravanes et nuits sous les étoiles.",
+    image: "/images/route-desert-prive.jpg",
+  },
+  {
     number: "06",
-    title: "Riads & Jardins",
-    description: "Patios secrets et jardins parfumés",
-    image: "/images/voyage-riad-marrakech.jpg",
+    title: "L'Art de Vivre",
+    subtitle: "Tables dressées, terrasses et couchers de soleil.",
+    image: "/images/route-family-rooftop.jpg",
+  },
+  {
+    number: "07",
+    title: "Jardins Secrets",
+    subtitle: "Patios parfumés et fontaines oubliées.",
+    image: "/images/voyage-jemaa-elfna-night.jpg",
   },
 ];
 
 export function ChapterExperiences() {
-  const [activeIdx, setActiveIdx] = useState<number | null>(null);
-  const reduceMotion = useReducedMotion();
   const sectionRef = useRef<HTMLElement>(null);
   const inView = useInView(sectionRef, { once: true, margin: "-10%" });
-
-  const activeImage =
-    activeIdx !== null
-      ? EXPERIENCES[activeIdx].image
-      : "/images/voyage-atlantique-sauvage.jpg";
+  const reduceMotion = useReducedMotion();
 
   return (
     <section
       ref={sectionRef}
-      className="relative bg-parchment py-9 desktop:py-10"
+      className="relative bg-encre py-9 desktop:py-10"
+      data-theme="dark"
+      data-chapter="experiences"
     >
-      <div className="mx-auto max-w-content px-5 desktop:px-7">
-        <span className="mb-6 block font-sans text-caps-label uppercase tracking-[0.14em] text-pierre2">
+      <div className="absolute left-0 right-0 top-0 flex justify-center">
+        <div className="h-px w-8 bg-pierre/20" />
+      </div>
+
+      {/* Mobile title */}
+      <div className="mb-6 px-5 desktop:hidden">
+        <span className="font-sans text-caps-label uppercase tracking-[0.14em] text-pierre2/60">
           Les expériences
         </span>
+        <h2 className="mt-2 font-serif text-display-section text-parchment">
+          Compositions
+        </h2>
+      </div>
 
-        <div className="grid gap-6 desktop:grid-cols-12 desktop:gap-5">
-          {/* Left — Interactive list */}
-          <div className="desktop:col-span-6">
-            {EXPERIENCES.map((exp, i) => (
-              <motion.div
-                key={exp.number}
-                initial={{ opacity: 0, y: 20 }}
-                animate={inView ? { opacity: 1, y: 0 } : undefined}
-                transition={{
-                  duration: 0.5,
-                  delay: i * 0.08,
-                  ease: [0.22, 1, 0.36, 1],
-                }}
-                onMouseEnter={() => setActiveIdx(i)}
-                onMouseLeave={() => setActiveIdx(null)}
-                className="group cursor-pointer border-b border-pierre/30 py-4 desktop:py-5"
-                data-cursor-label={exp.title}
-              >
-                <div className="flex items-baseline gap-4">
-                  <motion.span
-                    animate={{
-                      color:
-                        activeIdx === i
-                          ? "rgb(var(--color-aubergine))"
-                          : "rgb(var(--color-pierre))",
-                    }}
-                    transition={{ duration: 0.3 }}
-                    className="font-sans text-caps-label tabular-nums"
-                  >
-                    {exp.number}
-                  </motion.span>
-                  <motion.h3
-                    animate={{
-                      x: activeIdx === i && !reduceMotion ? 12 : 0,
-                    }}
-                    transition={{
-                      type: "spring",
-                      stiffness: 300,
-                      damping: 24,
-                    }}
-                    className="font-serif text-editorial-headline text-encre"
-                  >
-                    {exp.title}
-                  </motion.h3>
-                </div>
-                <motion.p
-                  initial={{ height: 0, opacity: 0 }}
-                  animate={
-                    activeIdx === i
-                      ? { height: "auto", opacity: 1 }
-                      : { height: 0, opacity: 0 }
-                  }
-                  transition={{ duration: 0.3 }}
-                  className="overflow-hidden pl-[calc(2ch+32px)] font-sans text-interface-body text-encre2"
-                >
-                  {exp.description}
-                </motion.p>
-              </motion.div>
-            ))}
+      <div className="flex items-stretch">
+        {/* Title column — desktop only */}
+        <div className="hidden desktop:flex desktop:w-[340px] desktop:flex-shrink-0 desktop:flex-col desktop:justify-center desktop:pl-7 xl:w-[400px]">
+          <div className="relative">
+            <motion.div
+              animate={reduceMotion ? {} : { rotate: 360 }}
+              transition={{ duration: 90, repeat: Infinity, ease: "linear" }}
+              className="absolute -left-3 -top-6 opacity-[0.03]"
+            >
+              <Mark className="h-[180px] w-[180px] text-parchment" />
+            </motion.div>
+
+            <span className="relative font-sans text-caps-label uppercase tracking-[0.14em] text-pierre2/60">
+              Les expériences
+            </span>
+            <h2 className="relative mt-3 font-serif text-display-feature text-parchment">
+              Compositions
+            </h2>
+            <p className="relative mt-3 max-w-[26ch] font-serif text-body-standard italic text-parchment/40">
+              Chaque voyage est une composition sur mesure.
+            </p>
           </div>
+        </div>
 
-          {/* Right — Image preview */}
-          <div className="hidden desktop:col-span-5 desktop:col-start-8 desktop:block">
-            <div className="sticky top-[15vh]">
-              <div className="relative h-[70vh] overflow-hidden rounded-[1rem]">
-                <AnimatePresence mode="popLayout">
-                  <motion.div
-                    key={activeImage}
-                    initial={{ opacity: 0, filter: "blur(8px)", scale: 1.04 }}
-                    animate={{ opacity: 1, filter: "blur(0px)", scale: 1 }}
-                    exit={{ opacity: 0, filter: "blur(8px)", scale: 0.98 }}
-                    transition={{ duration: 0.5, ease: [0.22, 1, 0.36, 1] }}
-                    className="absolute inset-0"
-                  >
-                    <Image
-                      src={activeImage}
-                      alt={
-                        activeIdx !== null
-                          ? EXPERIENCES[activeIdx].title
-                          : "Morocco"
-                      }
-                      fill
-                      sizes="45vw"
-                      className="object-cover"
-                    />
-                  </motion.div>
-                </AnimatePresence>
-
-                {/* Aubergine accent line */}
-                <motion.div
-                  animate={{
-                    scaleX: activeIdx !== null ? 1 : 0,
-                  }}
-                  transition={{ duration: 0.4, ease: [0.22, 1, 0.36, 1] }}
-                  className="absolute bottom-0 left-0 h-[2px] w-full origin-left bg-aubergine"
+        {/* Horizontal scrollable cards */}
+        <div
+          className="scrollbar-hide flex gap-4 overflow-x-auto px-5 desktop:gap-5 desktop:pl-5 desktop:pr-7"
+          style={{ scrollSnapType: "x mandatory" }}
+        >
+          {EXPERIENCES.map((exp, i) => (
+            <motion.article
+              key={exp.number}
+              initial={reduceMotion ? { opacity: 1 } : { opacity: 0, y: 40 }}
+              animate={inView ? { opacity: 1, y: 0 } : undefined}
+              transition={{
+                duration: 0.7,
+                delay: i * 0.08,
+                ease: [0.22, 1, 0.36, 1],
+              }}
+              className="group relative flex-shrink-0 cursor-pointer"
+              style={{
+                width: "clamp(240px, 25vw, 340px)",
+                scrollSnapAlign: "start",
+              }}
+            >
+              <div className="relative aspect-[2/3] w-full overflow-hidden rounded-[0.25rem]">
+                <Image
+                  src={exp.image}
+                  alt={exp.title}
+                  fill
+                  sizes="(min-width: 1024px) 25vw, 65vw"
+                  className="object-cover transition-transform duration-[6000ms] ease-out group-hover:scale-[1.06]"
                 />
-              </div>
-            </div>
-          </div>
 
-          {/* Mobile — show active image inline */}
-          <div className="desktop:hidden">
-            <AnimatePresence mode="popLayout">
-              {activeIdx !== null && (
-                <motion.div
-                  initial={{ opacity: 0, height: 0 }}
-                  animate={{ opacity: 1, height: "50vh" }}
-                  exit={{ opacity: 0, height: 0 }}
-                  transition={{ duration: 0.4 }}
-                  className="relative overflow-hidden rounded-[1rem]"
-                >
-                  <Image
-                    src={EXPERIENCES[activeIdx].image}
-                    alt={EXPERIENCES[activeIdx].title}
-                    fill
-                    sizes="100vw"
-                    className="object-cover"
-                  />
-                </motion.div>
-              )}
-            </AnimatePresence>
-          </div>
+                <div className="absolute inset-0 bg-gradient-to-t from-encre/80 via-encre/20 to-transparent" />
+
+                <span className="absolute right-5 top-5 font-sans text-caps-label text-parchment/30">
+                  {exp.number}
+                </span>
+
+                <div className="absolute bottom-0 left-0 right-0 p-5 desktop:p-6">
+                  <h3 className="font-serif text-editorial-headline text-parchment">
+                    {exp.title}
+                  </h3>
+                  <p className="mt-1 font-sans text-interface-body leading-snug text-parchment/50">
+                    {exp.subtitle}
+                  </p>
+
+                  <div className="mt-4 translate-y-2 opacity-0 transition-all duration-300 group-hover:translate-y-0 group-hover:opacity-100">
+                    <span className="inline-block border border-parchment/30 px-4 py-2 font-sans text-caps-label uppercase tracking-[0.14em] text-parchment transition-colors duration-300 group-hover:border-parchment/60">
+                      Parlons-en
+                    </span>
+                  </div>
+                </div>
+              </div>
+            </motion.article>
+          ))}
+
+          <div className="w-px flex-shrink-0" aria-hidden="true" />
         </div>
       </div>
     </section>

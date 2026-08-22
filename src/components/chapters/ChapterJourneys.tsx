@@ -69,7 +69,7 @@ export function ChapterJourneys() {
   });
 
   return (
-    <section ref={containerRef} className="relative h-[500vh]">
+    <section ref={containerRef} className="relative h-[500vh]" data-chapter="journeys">
       <div className="sticky top-0 h-screen overflow-hidden bg-parchment">
         {/* Section header */}
         <div className="absolute left-5 top-8 z-10 desktop:left-7">
@@ -146,6 +146,8 @@ function JourneyFrame({
         animate={{
           rotateX: tilt.x,
           rotateY: tilt.y,
+          scale: isActive ? 1 : 0.92,
+          opacity: isActive ? 1 : 0.7,
         }}
         transition={{ type: "spring", stiffness: 200, damping: 20 }}
         className="relative h-[70vh] w-full max-w-[1200px] overflow-hidden rounded-[2rem]"

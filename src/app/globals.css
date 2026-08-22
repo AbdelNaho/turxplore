@@ -47,6 +47,34 @@ body {
   font-family: var(--font-serif);
 }
 
+.scrollbar-hide::-webkit-scrollbar {
+  display: none;
+}
+.scrollbar-hide {
+  -ms-overflow-style: none;
+  scrollbar-width: none;
+}
+
+/* Tadelakt texture animations for Composer section */
+@keyframes tadelakt-a {
+  0%, 100% { opacity: .9; transform: scale(1) translate(0, 0); }
+  33% { opacity: 1; transform: scale(1.05) translate(3%, 2%); }
+  66% { opacity: .85; transform: scale(.97) translate(-2%, -1%); }
+}
+@keyframes tadelakt-b {
+  0%, 100% { opacity: .6; transform: translate(0, 0); }
+  50% { opacity: .85; transform: translate(-5%, 3%); }
+}
+@keyframes tadelakt-breathe {
+  0%, 100% { opacity: 1; }
+  50% { opacity: .82; }
+}
+@keyframes tadelakt-glow {
+  0%, 100% { transform: translate(0, 0); }
+  33% { transform: translate(10%, 4%); }
+  66% { transform: translate(-5%, -2%); }
+}
+
 @media (prefers-reduced-motion: reduce) {
   *,
   *::before,

@@ -6,9 +6,7 @@ import { fraunces, inter } from "@/lib/fonts";
 import { routing } from "@/i18n/routing";
 import { Header } from "@/components/layout/Header";
 import { Footer } from "@/components/layout/Footer";
-import { SmoothScroll } from "@/components/layout/SmoothScroll";
 import { GrainOverlay } from "@/components/effects/GrainOverlay";
-import { Cursor } from "@/components/effects/Cursor";
 import "../globals.css";
 
 export const viewport: Viewport = {
@@ -77,9 +75,7 @@ export default async function LocaleLayout({
           >
             Skip to content
           </a>
-          <SmoothScroll />
           <GrainOverlay />
-          <Cursor />
           <Header />
           {children}
           <Footer />

@@ -1,11 +1,11 @@
 import { setRequestLocale } from "next-intl/server";
 import { PageShell } from "@/components/layout/PageShell";
 import { ChapterEntry } from "@/components/chapters/ChapterEntry";
-import { ChapterJourneys } from "@/components/chapters/ChapterJourneys";
-import { ChapterMorocco } from "@/components/chapters/ChapterMorocco";
 import { ChapterExperiences } from "@/components/chapters/ChapterExperiences";
 import { ChapterHouse } from "@/components/chapters/ChapterHouse";
 import { ChapterCompose } from "@/components/chapters/ChapterCompose";
+import { SectionRessources } from "@/components/sections/SectionRessources";
+import { PoinconNav } from "@/components/layout/PoinconNav";
 
 export default async function Home({
   params,
@@ -17,12 +17,12 @@ export default async function Home({
 
   return (
     <PageShell offsetHeader={false}>
+      <PoinconNav />
       <ChapterEntry />
-      <ChapterJourneys />
-      <ChapterMorocco />
       <ChapterExperiences />
       <ChapterHouse />
       <ChapterCompose />
+      <SectionRessources />
     </PageShell>
   );
 }

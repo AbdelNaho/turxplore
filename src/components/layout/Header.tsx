@@ -1,22 +1,22 @@
 "use client";
 
 import { useEffect, useState, useCallback } from "react";
-import { motion } from "framer-motion";
+import { motion, AnimatePresence } from "framer-motion";
 import { Wordmark } from "./Wordmark";
+import { Mark } from "@/components/brand/Mark";
 
-const pieces = [
-  { num: "01", place: "Marrakech" },
-  { num: "02", place: "Le désert privé" },
-  { num: "03", place: "L'Atlantique sauvage" },
-  { num: "04", place: "Les villes impériales" },
-  { num: "05", place: "L'héritage andalou" },
-] as const;
+const NAV_ITEMS = [
+  { id: "experiences", label: "Les Expériences" },
+  { id: "house", label: "La Casa" },
+  { id: "compose", label: "Composer" },
+];
 
 export function Header() {
-  const [current, setCurrent] = useState<(typeof pieces)[number] | null>(null);
   const [onDark, setOnDark] = useState(false);
+  const [scrolled, setScrolled] = useState(false);
+  const [menuOpen, setMenuOpen] = useState(false);
 
-  const checkDarkSection = useCallback(() => {
+  const checkSection = useCallback(() => {
     const headerY = 40;
     const els = document.elementsFromPoint(window.innerWidth / 2, headerY);
     const dark = els.some((el) => {
@@ -28,64 +28,128 @@ export function Header() {
       return (r + g + b) / 3 < 80;
     });
     setOnDark(dark);
+    setScrolled(window.scrollY > window.innerHeight * 0.8);
   }, []);
 
   useEffect(() => {
-    const targets = Array.from(
-      document.querySelectorAll<HTMLElement>("[data-piece]"),
-    );
-    if (targets.length === 0) return;
+    window.addEventListener("scroll", checkSection, { passive: true });
+    checkSection();
+    return () => window.removeEventListener("scroll", checkSection);
+  }, [checkSection]);
 
-    const observer = new IntersectionObserver(
-      (entries) => {
-        const visible = entries
-          .filter((e) => e.isIntersecting)
-          .sort((a, b) => b.intersectionRatio - a.intersectionRatio)[0];
-        if (visible) {
-          const num = visible.target.getAttribute("data-piece");
-          const match = pieces.find((p) => p.num === num);
-          if (match) setCurrent(match);
-        }
-      },
-      { threshold: [0.25, 0.5, 0.75], rootMargin: "-15% 0px -15% 0px" },
-    );
-    targets.forEach((t) => observer.observe(t));
+  useEffect(() => {
+    if (menuOpen) {
+      document.body.style.overflow = "hidden";
+    } else {
+      document.body.style.overflow = "";
+    }
+    return () => { document.body.style.overflow = ""; };
+  }, [menuOpen]);
 
-    window.addEventListener("scroll", checkDarkSection, { passive: true });
-    checkDarkSection();
+  const navigateToChapter = (id: string) => {
+    const el = document.querySelector(`[data-chapter="${id}"]`);
+    if (!el) return;
+    el.scrollIntoView({ behavior: "smooth" });
+    setMenuOpen(false);
+  };
 
-    return () => {
-      observer.disconnect();
-      window.removeEventListener("scroll", checkDarkSection);
-    };
-  }, [checkDarkSection]);
-
-  const textColor = onDark ? "text-parchment" : "text-encre";
-  const metaColor = onDark ? "text-parchment/50" : "text-pierre2";
-  const dotColor = onDark ? "text-parchment/20" : "text-encre/30";
+  const light = onDark || menuOpen;
+  const bgClass =
+    !menuOpen && scrolled && !onDark
+      ? "bg-parchment/80 backdrop-blur-md border-b border-pierre/20"
+      : "";
 
   return (
     <>
-      <motion.div
-        className="fixed left-3 top-3 z-50 tablet:left-5 tablet:top-5 desktop:left-7 desktop:top-7"
-        animate={{ color: onDark ? "rgb(240 234 216)" : "rgb(31 27 21)" }}
-        transition={{ duration: 0.4 }}
+      <header
+        className={`fixed left-0 right-0 top-0 z-50 transition-all duration-300 ${bgClass}`}
       >
-        <Wordmark className={textColor} />
-      </motion.div>
+        <div className="flex items-center justify-between px-3 py-3 tablet:px-5 desktop:px-7">
+          <motion.div
+            animate={{
+              color: light ? "rgb(240 234 216)" : "rgb(31 27 21)",
+            }}
+            transition={{ duration: 0.4 }}
+          >
+            <Wordmark />
+          </motion.div>
 
-      {current ? (
-        <motion.div
-          className="fixed bottom-3 left-3 z-50 flex items-baseline gap-2 font-sans text-caption tablet:bottom-5 tablet:left-5 desktop:bottom-7 desktop:left-7"
-          animate={{ opacity: 1 }}
-          initial={{ opacity: 0 }}
-          transition={{ duration: 0.3 }}
-        >
-          <span className={metaColor}>{current.num}</span>
-          <span className={dotColor}>·</span>
-          <span className={metaColor}>{current.place}</span>
-        </motion.div>
-      ) : null}
+          {/* Desktop nav — 3 items */}
+          <nav className="hidden items-center gap-6 nav:flex">
+            {NAV_ITEMS.map((item) => (
+              <button
+                key={item.id}
+                onClick={() => navigateToChapter(item.id)}
+                className={`font-sans text-interface-label transition-colors duration-300 ${
+                  light
+                    ? "text-parchment/70 hover:text-parchment"
+                    : "text-encre/70 hover:text-encre"
+                }`}
+              >
+                {item.label}
+              </button>
+            ))}
+          </nav>
+
+          {/* Mobile menu toggle */}
+          <button
+            onClick={() => setMenuOpen(!menuOpen)}
+            className={`font-sans text-interface-label uppercase tracking-[0.14em] transition-colors duration-300 nav:hidden ${
+              light ? "text-parchment" : "text-encre"
+            }`}
+            aria-label={menuOpen ? "Fermer le menu" : "Ouvrir le menu"}
+          >
+            {menuOpen ? "Fermer" : "Menu"}
+          </button>
+        </div>
+      </header>
+
+      <AnimatePresence>
+        {menuOpen && (
+          <motion.div
+            initial={{ clipPath: "inset(0 0 100% 0)" }}
+            animate={{ clipPath: "inset(0 0 0% 0)" }}
+            exit={{ clipPath: "inset(0 0 100% 0)" }}
+            transition={{ duration: 0.6, ease: [0.22, 1, 0.36, 1] }}
+            className="fixed inset-0 z-40 flex items-center bg-encre"
+          >
+            <div className="mx-auto w-full max-w-content px-5 py-9 desktop:px-7">
+              <nav className="flex flex-col gap-5">
+                {NAV_ITEMS.map((item, i) => (
+                  <motion.button
+                    key={item.id}
+                    initial={{ opacity: 0, x: -30 }}
+                    animate={{ opacity: 1, x: 0 }}
+                    transition={{
+                      delay: 0.2 + i * 0.08,
+                      duration: 0.5,
+                      ease: [0.22, 1, 0.36, 1],
+                    }}
+                    onClick={() => navigateToChapter(item.id)}
+                    className="group text-left"
+                  >
+                    <span className="font-serif text-display-feature text-parchment transition-colors duration-200 group-hover:text-parchment/70">
+                      {item.label}
+                    </span>
+                  </motion.button>
+                ))}
+              </nav>
+
+              <motion.div
+                initial={{ opacity: 0 }}
+                animate={{ opacity: 1 }}
+                transition={{ delay: 0.5, duration: 0.4 }}
+                className="mt-8 flex items-center gap-3 border-t border-parchment/10 pt-5"
+              >
+                <Mark className="h-4 w-4 text-pierre" />
+                <span className="font-sans text-interface-body text-parchment/40">
+                  Morocco, edited.
+                </span>
+              </motion.div>
+            </div>
+          </motion.div>
+        )}
+      </AnimatePresence>
     </>
   );
 }

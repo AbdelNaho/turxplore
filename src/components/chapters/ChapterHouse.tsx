@@ -6,38 +6,129 @@ import {
   useScroll,
   useTransform,
   useReducedMotion,
-  useInView,
 } from "framer-motion";
 import Image from "next/image";
-import { Mark } from "@/components/brand/Mark";
 
-function ManifestoReveal({ text }: { text: string }) {
-  const ref = useRef<HTMLParagraphElement>(null);
-  const inView = useInView(ref, { once: true, margin: "-15%" });
-  const words = text.split(" ");
+const BLOCKS = [
+  {
+    label: "Notre vision",
+    title: "Un regard sur\nle Maroc",
+    body: "Turxplore n’est pas une agence de voyage. C’est un regard. Une manière de lire le Maroc à travers ses silences autant que ses éclats.",
+    image: "/images/Photo H.jpg",
+    imageAlt: "Architecture traditionnelle marocaine",
+    dark: true,
+    imageRight: true,
+  },
+  {
+    label: "L’art de composer",
+    title: "Chaque voyage est\nune composition",
+    body: "Nous composons des itinéraires comme on compose un livre : chaque chapitre a son rythme, sa lumière, ses personnages. Le désert ne ressemble pas à la médina. L’Atlantique ne parle pas comme l’Atlas.",
+    image: "/images/Photo E.jpg",
+    imageAlt: "Paysage marocain",
+    dark: true,
+    imageRight: false,
+    cta: { label: "Nos expériences", chapter: "experiences" },
+  },
+  {
+    label: "Sur-mesure",
+    title: "Une édition\nlimitée",
+    body: "Chaque voyage est une édition limitée. Pas de catalogue, pas de circuit. Un dialogue entre vos envies et notre connaissance intime du territoire.",
+    image: "/images/Photo A.jpg",
+    imageAlt: "Détail artisanal marocain",
+    dark: false,
+    imageRight: true,
+    cta: { label: "Composer votre voyage", chapter: "compose" },
+  },
+];
+
+function EditorialBlock({ block }: { block: (typeof BLOCKS)[number] }) {
+  const textColor = block.dark ? "text-parchment" : "text-encre";
+  const bodyColor = block.dark ? "text-parchment/70" : "text-encre/80";
+  const labelColor = block.dark ? "text-pierre" : "text-pierre2";
 
   return (
-    <p
-      ref={ref}
-      className="font-serif text-body-large leading-relaxed text-encre"
+    <div
+      className={`relative overflow-hidden ${
+        block.dark ? "bg-encre" : "bg-parchment"
+      }`}
     >
-      {words.map((word, i) => (
-        <motion.span
-          key={i}
-          initial={{ opacity: 0, y: 8 }}
-          animate={inView ? { opacity: 1, y: 0 } : undefined}
+      <motion.div
+        initial={{ opacity: 0 }}
+        whileInView={{ opacity: 1 }}
+        viewport={{ once: true, margin: "-10%" }}
+        transition={{ duration: 0.8 }}
+        className={`relative aspect-[4/5] desktop:absolute desktop:top-0 desktop:bottom-0 desktop:w-1/2 ${
+          block.imageRight ? "desktop:right-0" : "desktop:left-0"
+        }`}
+      >
+        <Image
+          src={block.image}
+          alt={block.imageAlt}
+          fill
+          sizes="(min-width: 1024px) 50vw, 100vw"
+          className="object-cover"
+        />
+      </motion.div>
+
+      <div className="relative mx-auto max-w-[1400px] px-5 desktop:px-7">
+        <motion.div
+          initial={{ opacity: 0, y: 30 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true, margin: "-10%" }}
           transition={{
-            duration: 0.4,
-            delay: i * 0.03,
+            duration: 0.7,
+            delay: 0.1,
             ease: [0.22, 1, 0.36, 1],
           }}
-          className="inline-block will-change-[opacity,transform]"
+          className={`flex flex-col justify-center py-9 desktop:min-h-[600px] desktop:w-[45%] desktop:py-10 ${
+            !block.imageRight ? "desktop:ml-auto" : ""
+          }`}
         >
-          {word}
-          {i < words.length - 1 ? " " : ""}
-        </motion.span>
-      ))}
-    </p>
+          <span
+            className={`mb-3 block font-sans text-caps-label uppercase tracking-[0.14em] ${labelColor}`}
+          >
+            {block.label}
+          </span>
+
+          <h3
+            className={`font-serif text-display-section uppercase tracking-[0.02em] ${textColor}`}
+          >
+            {block.title.split("\n").map((line, j) => (
+              <span key={j}>
+                {j > 0 && <br />}
+                {line}
+              </span>
+            ))}
+          </h3>
+
+          <p
+            className={`mt-5 max-w-reading font-serif text-body-large leading-relaxed ${bodyColor}`}
+          >
+            {block.body}
+          </p>
+
+          {block.cta && (
+            <div className="mt-6">
+              <button
+                onClick={() => {
+                  const el = document.querySelector(
+                    `[data-chapter="${block.cta!.chapter}"]`,
+                  );
+                  if (el) el.scrollIntoView({ behavior: "smooth" });
+                }}
+                className={`border px-5 py-2 font-sans text-interface-label uppercase tracking-[0.14em] transition-colors duration-200 ${
+                  block.dark
+                    ? "border-parchment bg-parchment text-encre hover:bg-transparent hover:text-parchment"
+                    : "border-encre bg-encre text-parchment hover:bg-transparent hover:text-encre"
+                }`}
+              >
+                {block.cta.label}
+              </button>
+            </div>
+          )}
+        </motion.div>
+      </div>
+    </div>
   );
 }
 
@@ -45,80 +136,49 @@ export function ChapterHouse() {
   const heroRef = useRef<HTMLDivElement>(null);
   const reduceMotion = useReducedMotion();
 
-  const { scrollYProgress } = useScroll({
+  const { scrollYProgress: heroProgress } = useScroll({
     target: heroRef,
     offset: ["start end", "end start"],
   });
 
   const heroScale = useTransform(
-    scrollYProgress,
+    heroProgress,
     [0, 0.5],
     reduceMotion ? [1, 1] : [1.3, 1],
   );
 
   return (
-    <section className="bg-parchment">
-      {/* Hero image with zoom-out */}
-      <div ref={heroRef} className="relative h-screen overflow-hidden">
+    <section data-chapter="house">
+      <div ref={heroRef} className="relative min-h-[100dvh] overflow-hidden">
         <motion.div
           style={{ scale: heroScale }}
           className="absolute inset-0 will-change-transform"
         >
           <Image
-            src="/images/voyage-riad-marrakech.jpg"
-            alt="Riad marocain vu du ciel, architecture traditionnelle"
+            src="/images/Photo D.jpg"
+            alt="Architecture traditionnelle marocaine"
             fill
             sizes="100vw"
             className="object-cover"
           />
         </motion.div>
-
-        {/* Dark overlay */}
         <div className="absolute inset-0 bg-encre/30" />
-
-        {/* Title */}
         <div className="absolute inset-0 flex items-center justify-center">
           <motion.h2
             initial={{ opacity: 0, y: 30 }}
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
-            transition={{
-              duration: 0.8,
-              ease: [0.22, 1, 0.36, 1],
-            }}
+            transition={{ duration: 0.8, ease: [0.22, 1, 0.36, 1] }}
             className="font-serif text-display-hero text-parchment"
           >
-            La Maison
+            La Casa
           </motion.h2>
         </div>
       </div>
 
-      {/* Manifesto text */}
-      <div className="mx-auto max-w-reading px-5 py-9 desktop:py-10">
-        {/* Zellige mark */}
-        <div className="mb-6 flex justify-center">
-          <motion.div
-            animate={reduceMotion ? {} : { rotate: 360 }}
-            transition={{
-              duration: 60,
-              repeat: Infinity,
-              ease: "linear",
-            }}
-          >
-            <Mark className="h-8 w-8 text-pierre" />
-          </motion.div>
-        </div>
-
-        <ManifestoReveal text="Turxplore n'est pas une agence de voyage. C'est un regard. Une manière de lire le Maroc à travers ses silences autant que ses éclats." />
-
-        <div className="my-6 h-px w-full bg-pierre/30" />
-
-        <ManifestoReveal text="Nous composons des itinéraires comme on compose un livre : chaque chapitre a son rythme, sa lumière, ses personnages. Le désert ne ressemble pas à la médina. L'Atlantique ne parle pas comme l'Atlas." />
-
-        <div className="my-6 h-px w-full bg-pierre/30" />
-
-        <ManifestoReveal text="Chaque voyage est une édition limitée. Pas de catalogue, pas de circuit. Un dialogue entre vos envies et notre connaissance intime du territoire." />
-      </div>
+      {BLOCKS.map((block, i) => (
+        <EditorialBlock key={i} block={block} />
+      ))}
     </section>
   );
 }

@@ -11,126 +11,228 @@ import {
 import Image from "next/image";
 import { Mark } from "@/components/brand/Mark";
 
-const WORDS = [
-  { text: "Lumière", size: "display-hero" as const },
-  { text: "Silence", size: "display-hero" as const },
-  { text: "Artisanat", size: "display-hero" as const },
+const SPREADS = [
+  {
+    epoch: "I",
+    title: "Les Berbères & la terre",
+    text: "Avant les dynasties, avant les routes, il y avait la terre. Les Berbères l'ont habitée comme on habite un silence — avec patience, avec les mains.",
+    mainImage: { src: "/images/Photo A.jpg", alt: "Femmes berbères préparant l'huile d'argan" },
+    detailImage: { src: "/images/Photo B.jpg", alt: "Kasbah de pisé dans la vallée de l'Atlas" },
+  },
+  {
+    epoch: "II",
+    title: "Les dynasties & la géométrie",
+    text: "Les Almohades ont tracé dans la pierre ce que les Berbères portaient en eux : l'ordre caché du monde. Chaque carreau de zellige est une preuve mathématique de la beauté.",
+    mainImage: { src: "/images/Photo C.jpg", alt: "Zellige marocain, motif géométrique en gros plan" },
+    detailImage: { src: "/images/Photo D.jpg", alt: "Cour intérieure de medersa, stuc et zellige" },
+  },
+  {
+    epoch: "III",
+    title: "Les routes & les échanges",
+    text: "Le Maroc n'a jamais été un pays fermé. Les épices arrivent du Sud, les idées de l'Est, les techniques du Nord. Chaque ruelle de médina est un carrefour.",
+    mainImage: { src: "/images/Photo E.jpg", alt: "Épices en pyramides au souk, curcuma et paprika" },
+    detailImage: { src: "/images/Photo F.jpg", alt: "Femmes sous une arche de médina, Marrakech" },
+  },
+  {
+    epoch: "IV",
+    title: "Le Maroc d'aujourd'hui",
+    text: "Ce qui reste quand les touristes partent : les toits, les gestes, le thé versé de haut. Un pays qui ne se montre qu'à ceux qui prennent le temps.",
+    mainImage: { src: "/images/Photo G.jpg", alt: "Toits de la médina de Fès, vue dense et ocre" },
+    detailImage: { src: "/images/Photo H.jpg", alt: "Verre de thé à la menthe, motifs dorés" },
+  },
 ];
 
-const IMAGES = [
-  {
-    src: "/images/voyage-jemaa-elfna-night.jpg",
-    alt: "Les souks de Jemaa el-Fna de nuit",
-  },
-  {
-    src: "/images/voyage-hassan-ii-mosque.jpg",
-    alt: "Mosquée Hassan II, architecture monumentale",
-  },
-  {
-    src: "/images/voyage-riad-marrakech.jpg",
-    alt: "Riad traditionnel vu du ciel",
-  },
-];
-
-function WordReveal({ word, delay }: { word: string; delay: number }) {
-  const ref = useRef<HTMLSpanElement>(null);
-  const inView = useInView(ref, { once: true, margin: "-20%" });
+function TextReveal({ text, delay = 0 }: { text: string; delay?: number }) {
+  const ref = useRef<HTMLParagraphElement>(null);
+  const inView = useInView(ref, { once: true, margin: "-15%" });
+  const words = text.split(" ");
 
   return (
-    <span ref={ref} className="block overflow-hidden">
-      <motion.span
-        initial={{ y: "100%", opacity: 0 }}
-        animate={inView ? { y: "0%", opacity: 1 } : undefined}
-        transition={{
-          duration: 0.8,
-          delay,
-          ease: [0.22, 1, 0.36, 1],
-        }}
-        className="block will-change-transform"
-      >
-        {word}
-      </motion.span>
-    </span>
+    <p ref={ref} className="font-serif text-body-large leading-relaxed text-parchment/70">
+      {words.map((word, i) => (
+        <motion.span
+          key={i}
+          initial={{ opacity: 0, y: 8 }}
+          animate={inView ? { opacity: 1, y: 0 } : undefined}
+          transition={{
+            duration: 0.4,
+            delay: delay + i * 0.025,
+            ease: [0.22, 1, 0.36, 1],
+          }}
+          className="inline-block will-change-[opacity,transform]"
+        >
+          {word}
+          {i < words.length - 1 ? " " : ""}
+        </motion.span>
+      ))}
+    </p>
   );
 }
 
-function UnfurlImage({
+function ParallaxImage({
   src,
   alt,
-  index,
+  className,
+  sizes = "100vw",
+  priority = false,
 }: {
   src: string;
   alt: string;
-  index: number;
+  className?: string;
+  sizes?: string;
+  priority?: boolean;
 }) {
   const ref = useRef<HTMLDivElement>(null);
   const reduceMotion = useReducedMotion();
-  const inView = useInView(ref, { once: true, margin: "-15%" });
+  const inView = useInView(ref, { once: true, margin: "-10%" });
+
+  const { scrollYProgress } = useScroll({
+    target: ref,
+    offset: ["start end", "end start"],
+  });
+
+  const y = useTransform(
+    scrollYProgress,
+    [0, 1],
+    reduceMotion ? [0, 0] : [-30, 30],
+  );
+
+  const scale = useTransform(
+    scrollYProgress,
+    [0, 0.5, 1],
+    reduceMotion ? [1, 1, 1] : [1.08, 1, 1.02],
+  );
 
   return (
     <motion.div
       ref={ref}
-      initial={
-        reduceMotion
-          ? { opacity: 1 }
-          : { opacity: 0, rotateX: 15, y: 60, scale: 0.95 }
-      }
-      animate={
-        inView
-          ? { opacity: 1, rotateX: 0, y: 0, scale: 1 }
-          : undefined
-      }
-      transition={{
-        duration: 1,
-        delay: index * 0.1,
-        ease: [0.22, 1, 0.36, 1],
-      }}
-      className="relative aspect-[4/5] w-full overflow-hidden rounded-[1rem]"
-      style={{ perspective: 800 }}
+      initial={reduceMotion ? { opacity: 1 } : { opacity: 0, y: 40 }}
+      animate={inView ? { opacity: 1, y: 0 } : undefined}
+      transition={{ duration: 0.9, ease: [0.22, 1, 0.36, 1] }}
+      className={`overflow-hidden ${className ?? ""}`}
     >
-      <Image
-        src={src}
-        alt={alt}
-        fill
-        sizes="(min-width: 1024px) 55vw, 100vw"
-        className="object-cover"
-      />
+      <motion.div style={{ y, scale }} className="h-full w-full will-change-transform">
+        <Image
+          src={src}
+          alt={alt}
+          fill
+          sizes={sizes}
+          className="object-cover"
+          priority={priority}
+        />
+      </motion.div>
     </motion.div>
+  );
+}
+
+function Spread({
+  spread,
+  index,
+}: {
+  spread: (typeof SPREADS)[number];
+  index: number;
+}) {
+  const ref = useRef<HTMLDivElement>(null);
+  const inView = useInView(ref, { once: true, margin: "-10%" });
+  const isEven = index % 2 === 0;
+
+  return (
+    <div ref={ref} className="py-7 desktop:py-9">
+      {/* Epoch number + title */}
+      <div className="mb-6 desktop:mb-7">
+        <motion.span
+          initial={{ opacity: 0, x: -20 }}
+          animate={inView ? { opacity: 1, x: 0 } : undefined}
+          transition={{ duration: 0.6, ease: [0.22, 1, 0.36, 1] }}
+          className="mb-2 block font-serif text-display-hero italic text-aubergine/40"
+          style={{ fontSize: "clamp(4rem, 10vw, 8rem)", lineHeight: 0.85 }}
+        >
+          {spread.epoch}
+        </motion.span>
+        <motion.h3
+          initial={{ opacity: 0, y: 16 }}
+          animate={inView ? { opacity: 1, y: 0 } : undefined}
+          transition={{ duration: 0.6, delay: 0.1, ease: [0.22, 1, 0.36, 1] }}
+          className="font-serif text-display-feature italic text-parchment"
+        >
+          {spread.title}
+        </motion.h3>
+      </div>
+
+      {/* Main image + text — alternating layout */}
+      <div className="grid gap-5 desktop:grid-cols-12 desktop:gap-5">
+        <div className={`${isEven ? "desktop:col-span-7" : "desktop:col-span-7 desktop:col-start-6"}`}>
+          <ParallaxImage
+            src={spread.mainImage.src}
+            alt={spread.mainImage.alt}
+            className="relative aspect-[3/2] w-full rounded-[0.25rem]"
+            sizes="(min-width: 1024px) 60vw, 100vw"
+          />
+        </div>
+        <div className={`flex items-end ${isEven ? "desktop:col-span-4 desktop:col-start-9" : "desktop:col-span-4 desktop:col-start-1 desktop:row-start-1"}`}>
+          <div className="max-w-[36ch]">
+            <TextReveal text={spread.text} delay={0.2} />
+          </div>
+        </div>
+      </div>
+
+      {/* Detail image — offset, smaller */}
+      <div className={`mt-5 ${isEven ? "ml-auto w-[65%] desktop:w-[45%]" : "mr-auto w-[65%] desktop:w-[45%]"}`}>
+        <ParallaxImage
+          src={spread.detailImage.src}
+          alt={spread.detailImage.alt}
+          className="relative aspect-[4/5] w-full rounded-[0.25rem]"
+          sizes="(min-width: 1024px) 40vw, 65vw"
+        />
+      </div>
+    </div>
   );
 }
 
 export function ChapterMorocco() {
   const containerRef = useRef<HTMLDivElement>(null);
+  const coverRef = useRef<HTMLDivElement>(null);
   const reduceMotion = useReducedMotion();
 
-  const { scrollYProgress } = useScroll({
+  const { scrollYProgress: inkProgress } = useScroll({
     target: containerRef,
     offset: ["start end", "start start"],
   });
 
   const inkWipe = useTransform(
-    scrollYProgress,
+    inkProgress,
     [0, 0.3],
     reduceMotion ? ["0%", "0%"] : ["100%", "0%"],
   );
 
+  const { scrollYProgress: coverScroll } = useScroll({
+    target: coverRef,
+    offset: ["start start", "end start"],
+  });
+
+  const coverScale = useTransform(
+    coverScroll,
+    [0, 1],
+    reduceMotion ? [1, 1] : [1, 1.15],
+  );
+
+  const coverOverlay = useTransform(coverScroll, [0, 0.8], [0.3, 0.7]);
+
   return (
     <>
-      {/* Ink flood transition */}
-      <motion.div
-        style={{ y: inkWipe }}
-        className="relative z-10 h-0"
-      >
-        <div className="h-screen w-full bg-encre" />
+      {/* Ink flood transition — tighter */}
+      <motion.div style={{ y: inkWipe }} className="relative z-10 h-0">
+        <div className="h-[50vh] w-full bg-encre" />
       </motion.div>
 
       <section
         ref={containerRef}
-        className="relative bg-encre py-9 desktop:py-10"
+        className="relative bg-encre"
         data-theme="dark"
+        data-chapter="morocco"
       >
-        {/* Zellige pattern background */}
-        <div className="pointer-events-none absolute inset-0 flex items-center justify-center overflow-hidden opacity-[0.03]">
+        {/* Subtle zellige watermark */}
+        <div className="pointer-events-none absolute inset-0 flex items-center justify-center overflow-hidden opacity-[0.02]">
           <motion.div
             animate={reduceMotion ? {} : { rotate: 360 }}
             transition={{ duration: 120, repeat: Infinity, ease: "linear" }}
@@ -139,45 +241,85 @@ export function ChapterMorocco() {
           </motion.div>
         </div>
 
-        {/* Two-column layout */}
+        {/* COVER — Full-bleed bab silhouette */}
+        <div ref={coverRef} className="relative h-screen overflow-hidden">
+          <motion.div
+            style={{ scale: coverScale }}
+            className="absolute inset-0 will-change-transform"
+          >
+            <Image
+              src="/images/Photo W.jpg"
+              alt="Silhouette sous un bab marocain, contre-jour doré"
+              fill
+              sizes="100vw"
+              className="object-cover"
+              priority
+            />
+          </motion.div>
+          <motion.div
+            style={{ opacity: coverOverlay }}
+            className="absolute inset-0 bg-encre"
+          />
+          <div className="absolute inset-0 flex flex-col items-center justify-center">
+            <motion.span
+              initial={{ opacity: 0 }}
+              whileInView={{ opacity: 1 }}
+              viewport={{ once: true }}
+              transition={{ duration: 1, delay: 0.2 }}
+              className="mb-3 font-sans text-caps-label uppercase tracking-[0.14em] text-pierre"
+            >
+              Chapitre III
+            </motion.span>
+            <motion.h2
+              initial={{ opacity: 0, y: 20 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true }}
+              transition={{ duration: 0.8, delay: 0.4, ease: [0.22, 1, 0.36, 1] }}
+              className="font-serif text-display-hero text-parchment"
+            >
+              Le Pays
+            </motion.h2>
+            <motion.div
+              initial={{ scaleX: 0 }}
+              whileInView={{ scaleX: 1 }}
+              viewport={{ once: true }}
+              transition={{ duration: 0.8, delay: 0.8 }}
+              className="mt-4 h-px w-16 origin-center bg-pierre/50"
+            />
+          </div>
+        </div>
+
+        {/* SPREADS — The four epochs */}
         <div className="mx-auto max-w-content px-5 desktop:px-7">
-          <div className="grid gap-7 desktop:grid-cols-12 desktop:gap-5">
-            {/* Left — Sticky text */}
-            <div className="desktop:col-span-5">
-              <div className="desktop:sticky desktop:top-[20vh]">
-                <span className="mb-4 block font-sans text-caps-label uppercase tracking-[0.14em] text-pierre">
-                  Le pays
-                </span>
+          {/* Editorial intro */}
+          <div className="flex justify-center py-8 desktop:py-9">
+            <motion.p
+              initial={{ opacity: 0 }}
+              whileInView={{ opacity: 1 }}
+              viewport={{ once: true }}
+              transition={{ duration: 1 }}
+              className="max-w-[48ch] text-center font-serif text-body-large italic leading-relaxed text-parchment/50"
+            >
+              Un pays ne se visite pas. Il se lit. Voici quatre chapitres
+              d'un livre que personne n'a jamais fini d'écrire.
+            </motion.p>
+          </div>
 
-                {WORDS.map((w, i) => (
-                  <div key={w.text} className="mb-6 desktop:mb-8">
-                    <span className="font-serif text-display-hero text-parchment">
-                      <WordReveal word={w.text} delay={i * 0.15} />
-                    </span>
-                    <p className="mt-2 max-w-[32ch] font-sans text-interface-body text-parchment/60">
-                      {w.text === "Lumière"
-                        ? "Une lumière qui sculpte chaque surface, transforme chaque ruelle en tableau vivant."
-                        : w.text === "Silence"
-                          ? "Dans le désert, le silence devient matière. Il enveloppe, il révèle."
-                          : "Des mains qui perpétuent des gestes millénaires, du zellige au cuir tannée."}
-                    </p>
-                  </div>
-                ))}
+          {/* Hairline separator */}
+          <div className="mx-auto h-px w-8 bg-pierre/20" />
 
-              </div>
-            </div>
+          {SPREADS.map((spread, i) => (
+            <Spread key={spread.epoch} spread={spread} index={i} />
+          ))}
 
-            {/* Right — Scrolling images */}
-            <div className="space-y-6 desktop:col-span-6 desktop:col-start-7 desktop:space-y-7">
-              {IMAGES.map((img, i) => (
-                <UnfurlImage
-                  key={img.src}
-                  src={img.src}
-                  alt={img.alt}
-                  index={i}
-                />
-              ))}
-            </div>
+          {/* Closing mark */}
+          <div className="flex flex-col items-center py-8 desktop:py-9">
+            <motion.div
+              animate={reduceMotion ? {} : { rotate: 360 }}
+              transition={{ duration: 60, repeat: Infinity, ease: "linear" }}
+            >
+              <Mark className="h-6 w-6 text-pierre/30" />
+            </motion.div>
           </div>
         </div>
       </section>
