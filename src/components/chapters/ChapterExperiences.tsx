@@ -16,7 +16,7 @@ const EXPERIENCES = [
     number: "02",
     title: "Pierres & Lumières",
     subtitle: "Où la géométrie devient prière.",
-    image: "/images/route-villes-imperiales.jpg",
+    image: "/images/route-villes-imperiales 2.jpg",
   },
   {
     number: "03",
@@ -40,13 +40,13 @@ const EXPERIENCES = [
     number: "06",
     title: "L'Art de Vivre",
     subtitle: "Tables dressées, terrasses et couchers de soleil.",
-    image: "/images/route-family-rooftop.jpg",
+    image: "/images/route-family-rooftop 2.jpg",
   },
   {
     number: "07",
     title: "Jardins Secrets",
     subtitle: "Patios parfumés et fontaines oubliées.",
-    image: "/images/voyage-jemaa-elfna-night.jpg",
+    image: "/images/Jardins secret 2.jpg",
   },
 ];
 

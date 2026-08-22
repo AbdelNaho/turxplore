@@ -14,7 +14,7 @@ const BLOCKS = [
     label: "Notre vision",
     title: "Un regard sur\nle Maroc",
     body: "Turxplore n’est pas une agence de voyage. C’est un regard. Une manière de lire le Maroc à travers ses silences autant que ses éclats.",
-    image: "/images/Photo H.jpg",
+    image: "/images/Photo H 2.jpg",
     imageAlt: "Architecture traditionnelle marocaine",
     dark: true,
     imageRight: true,

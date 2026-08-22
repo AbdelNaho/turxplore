@@ -11,12 +11,6 @@ import {
 
 type Channel = null | "whatsapp" | "email";
 
-const PILLARS = [
-  "Où vous voulez",
-  "Comme vous voulez",
-  "Quand vous voulez",
-];
-
 function TadelaktBackground() {
   const canvasRef = useRef<HTMLCanvasElement>(null);
   const reduceMotion = useReducedMotion();
@@ -140,51 +134,6 @@ function TadelaktBackground() {
   );
 }
 
-function IconWhere() {
-  return (
-    <svg viewBox="0 0 80 80" fill="none" xmlns="http://www.w3.org/2000/svg">
-      <path
-        d="M40 4C25.6 4 14 15.2 14 29.2C14 48 40 76 40 76C40 76 66 48 66 29.2C66 15.2 54.4 4 40 4Z"
-        fill="currentColor"
-      />
-      <path
-        d="M32 44V28C32 22.5 35.6 18 40 18C44.4 18 48 22.5 48 28V44H44V28C44 24.7 42.2 22 40 22C37.8 22 36 24.7 36 28V44Z"
-        fill="#F0EAD8"
-      />
-      <circle cx="40" cy="30" r="2.5" fill="#F0EAD8" />
-    </svg>
-  );
-}
-
-function IconHow() {
-  return (
-    <svg viewBox="0 0 80 80" fill="none" xmlns="http://www.w3.org/2000/svg">
-      <rect x="14" y="8" width="52" height="64" rx="8" fill="currentColor" />
-      <rect x="20" y="14" width="40" height="52" rx="4" fill="#F0EAD8" />
-      <path d="M40 28L44 32L40 36L36 32Z" fill="currentColor" />
-      <path d="M40 24L44 28L40 32L36 28Z" fill="currentColor" opacity=".5" />
-      <path d="M40 32L44 36L40 40L36 36Z" fill="currentColor" opacity=".5" />
-    </svg>
-  );
-}
-
-function IconWhen() {
-  return (
-    <svg viewBox="0 0 80 80" fill="none" xmlns="http://www.w3.org/2000/svg">
-      <path
-        d="M40 4C24 4 12 14 12 28V48C12 62 24 76 40 76C56 76 68 62 68 48V28C68 14 56 4 40 4Z"
-        fill="currentColor"
-      />
-      <circle cx="40" cy="36" r="16" fill="#F0EAD8" />
-      <line x1="40" y1="36" x2="40" y2="27" stroke="#1F1B15" strokeWidth="2" strokeLinecap="round" />
-      <line x1="40" y1="36" x2="48" y2="36" stroke="#1F1B15" strokeWidth="1.5" strokeLinecap="round" />
-      <circle cx="40" cy="36" r="2" fill="#1F1B15" />
-    </svg>
-  );
-}
-
-const ICONS = [IconWhere, IconHow, IconWhen];
-
 export function ChapterCompose() {
   const sectionRef = useRef<HTMLDivElement>(null);
   const [message, setMessage] = useState("");
@@ -220,66 +169,39 @@ export function ChapterCompose() {
       >
         <TadelaktBackground />
 
+        {/* Zellige background — spans entire section */}
+        <div className="pointer-events-none absolute inset-0 overflow-hidden">
+          <img
+            src="/images/lesprit turxplore.jpg"
+            alt=""
+            className="h-full w-full object-cover opacity-[0.08]"
+          />
+          <div className="absolute inset-0 bg-gradient-to-b from-encre/50 via-encre/30 to-encre/70" />
+        </div>
+
         <div className="relative mx-auto max-w-content px-5 desktop:px-7">
-          {/* --- Esprit / Pillars --- */}
-          <div className="relative pb-6 pt-10 desktop:pb-7 desktop:pt-10">
-            {/* Zellige background image */}
-            <div className="pointer-events-none absolute inset-0 overflow-hidden">
-              <img
-                src="/images/lesprit turxplore.jpg"
-                alt=""
-                className="h-full w-full object-cover opacity-[0.12]"
-              />
-              <div className="absolute inset-0 bg-gradient-to-b from-encre/60 via-transparent to-encre/80" />
-            </div>
+          {/* --- Esprit — emotional intro --- */}
+          <div className="pt-10 desktop:pt-10">
             <motion.div
               initial={{ opacity: 0, y: 20 }}
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true }}
               transition={{ duration: 0.8, ease: [0.22, 1, 0.36, 1] }}
-              className="relative text-center"
+              className="mx-auto max-w-reading text-center"
             >
               <h2 className="font-serif text-display-hero text-parchment">
                 L&apos;esprit <em className="italic">turxplore</em>
               </h2>
+              <p className="mt-4 font-serif text-body-large leading-relaxed text-parchment/50">
+                Un voyage ne se réserve pas. Il se ressent, se murmure,
+                se compose — comme une partition dont vous êtes le seul
+                interprète.
+              </p>
             </motion.div>
-
-            <motion.div
-              initial={{ opacity: 0, y: 12 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              viewport={{ once: true }}
-              transition={{ duration: 0.6, delay: 0.3, ease: [0.22, 1, 0.36, 1] }}
-              className="relative mx-auto mt-6 flex flex-col items-center gap-4 tablet:flex-row tablet:justify-center tablet:gap-6 desktop:mt-7 desktop:gap-7"
-            >
-              {PILLARS.map((title, i) => {
-                const Icon = ICONS[i];
-                return (
-                  <div
-                    key={title}
-                    className="flex items-center gap-2"
-                  >
-                    <div className="h-[28px] w-[28px] shrink-0 text-aubergine">
-                      <Icon />
-                    </div>
-                    <span className="font-sans text-interface-label uppercase tracking-[0.1em] text-parchment/50">
-                      {title}
-                    </span>
-                  </div>
-                );
-              })}
-            </motion.div>
-
-            <motion.div
-              initial={{ scaleX: 0 }}
-              whileInView={{ scaleX: 1 }}
-              viewport={{ once: true }}
-              transition={{ duration: 0.8, delay: 0.5, ease: [0.22, 1, 0.36, 1] }}
-              className="mx-auto mt-6 h-px w-6 bg-pierre/20 desktop:mt-7"
-            />
           </div>
 
           {/* --- Composer --- */}
-          <div className="flex min-h-[60vh] flex-col items-center justify-center pb-10 text-center">
+          <div className="flex min-h-[60vh] flex-col items-center justify-center pb-10 pt-6 text-center">
             <motion.h2
               initial={{ opacity: 0, y: 20 }}
               whileInView={{ opacity: 1, y: 0 }}
