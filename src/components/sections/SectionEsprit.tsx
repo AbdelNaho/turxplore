@@ -6,15 +6,15 @@ import { motion, useInView } from "framer-motion";
 const PILLARS = [
   {
     title: "Où vous voulez",
-    body: "Chaque riad, chaque route, chaque artisan — nous connaissons le Maroc dans ses moindres recoins, bien au-delà des guides.",
+    body: "Chaque riad, chaque route, chaque artisan. Nous connaissons le Maroc dans ses moindres recoins, bien au-delà des guides.",
   },
   {
     title: "Comme vous voulez",
-    body: "Chaque voyage est composé sur mesure — itinéraire, rythme, accès privés — une partition unique écrite pour vous.",
+    body: "Chaque voyage est composé sur mesure. Itinéraire, rythme, accès privés. Une partition unique écrite pour vous.",
   },
   {
     title: "Quand vous voulez",
-    body: "Présents sur le terrain, disponibles en temps réel — La Casa vous accompagne 24/7, le voyage libre et bien encadré.",
+    body: "Présents sur le terrain, disponibles en temps réel. La Casa vous accompagne 24/7, le voyage libre et bien encadré.",
   },
 ];
 

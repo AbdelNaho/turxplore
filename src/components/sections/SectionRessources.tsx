@@ -3,17 +3,16 @@
 import { useRef, useState } from "react";
 import { motion, useInView, AnimatePresence } from "framer-motion";
 import Image from "next/image";
+import { useTranslations } from "next-intl";
 
-const RESOURCES = [
+const RES_STATIC = [
   {
-    title: "Carte du Maroc",
-    description: "Carte éditoriale illustrée à l'aquarelle.",
+    key: "res1",
     image: "/images/carte du maroc.jpg",
     file: "/downloads/carte-maroc.pdf",
   },
   {
-    title: "Les Notes de Marge",
-    description: "Darija, coutumes, contacts.",
+    key: "res2",
     image: "/images/le carnet secret.jpg",
     file: "/downloads/carnet-secrets.pdf",
   },
@@ -22,6 +21,13 @@ const RESOURCES = [
 export function SectionRessources() {
   const ref = useRef<HTMLElement>(null);
   const inView = useInView(ref, { once: true, margin: "-10%" });
+  const t = useTranslations("Resources");
+
+  const resources = RES_STATIC.map((r) => ({
+    ...r,
+    title: t(`${r.key}_title` as any) as string,
+    description: t(`${r.key}_description` as any) as string,
+  }));
 
   return (
     <section
@@ -31,12 +37,12 @@ export function SectionRessources() {
     >
       <div className="mx-auto max-w-content px-5 desktop:px-7">
         <span className="mb-4 block font-sans text-caps-label uppercase tracking-[0.14em] text-pierre2">
-          Hors-Texte
+          {t("label")}
         </span>
 
         <div className="grid grid-cols-2 gap-4 desktop:gap-5">
-          {RESOURCES.map((res, i) => (
-            <ResourceCard key={res.title} resource={res} index={i} inView={inView} />
+          {resources.map((res, i) => (
+            <ResourceCard key={res.key} resource={res} index={i} inView={inView} t={t} />
           ))}
         </div>
       </div>
@@ -48,10 +54,12 @@ function ResourceCard({
   resource,
   index,
   inView,
+  t,
 }: {
-  resource: (typeof RESOURCES)[number];
+  resource: { key: string; image: string; file: string; title: string; description: string };
   index: number;
   inView: boolean;
+  t: ReturnType<typeof useTranslations<"Resources">>;
 }) {
   const [showForm, setShowForm] = useState(false);
   const [email, setEmail] = useState("");
@@ -61,9 +69,11 @@ function ResourceCard({
     e.preventDefault();
     if (!email) return;
 
-    const subject = encodeURIComponent(`Turxplore — ${resource.title}`);
+    const subject = encodeURIComponent(
+      (t("emailSubject", { title: resource.title }) as string),
+    );
     const body = encodeURIComponent(
-      `Bonjour,\n\nVoici votre ressource "${resource.title}" demandée sur turxplore.com.\n\nBonne découverte du Maroc.\n\n— L'équipe Turxplore`,
+      (t("emailBody", { title: resource.title }) as string),
     );
     window.open(`mailto:${email}?subject=${subject}&body=${body}`, "_self");
     setSent(true);
@@ -112,7 +122,7 @@ function ResourceCard({
                   animate={{ opacity: 1, scale: 1 }}
                   className="font-sans text-interface-label text-parchment"
                 >
-                  Envoyé !
+                  {t("sent")}
                 </motion.p>
               ) : (
                 <form
@@ -121,7 +131,7 @@ function ResourceCard({
                   onClick={(e) => e.stopPropagation()}
                 >
                   <p className="mb-1 text-center font-sans text-interface-body text-parchment/70">
-                    Recevoir par email
+                    {t("receiveByEmail")}
                   </p>
                   <input
                     type="email"
@@ -137,13 +147,13 @@ function ResourceCard({
                       onClick={() => setShowForm(false)}
                       className="font-sans text-interface-body text-parchment/40 transition-colors hover:text-parchment/70"
                     >
-                      Annuler
+                      {t("cancel")}
                     </button>
                     <button
                       type="submit"
                       className="rounded-full bg-aubergine px-4 py-1.5 font-sans text-interface-body text-parchment transition-colors hover:bg-aubergine2"
                     >
-                      Envoyer
+                      {t("send")}
                     </button>
                   </div>
                 </form>
@@ -176,7 +186,7 @@ function ResourceCard({
         >
           <path strokeLinecap="round" strokeLinejoin="round" d="M8 2v9m0 0L4.5 7.5M8 11l3.5-3.5M3 14h10" />
         </svg>
-        Télécharger
+        {t("download")}
       </button>
     </motion.article>
   );

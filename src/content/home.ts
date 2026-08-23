@@ -433,7 +433,7 @@ export const homeContent: Record<"en" | "fr" | "es" | "pt-BR", HomeContent> = {
         {
           key: "carnet",
           title: "Le Carnet du Maroc",
-          description: "Un carnet de route à feuilleter avant le voyage — quand partir, coutumes, et le Maroc en images.",
+          description: "Un carnet de route à feuilleter avant le voyage. Quand partir, coutumes, et le Maroc en images.",
           image: "/images/cover-carnet-maroc-fr.jpg",
           imageAlt: "Couverture du Carnet du Maroc",
         },
@@ -490,8 +490,8 @@ export const homeContent: Record<"en" | "fr" | "es" | "pt-BR", HomeContent> = {
       eyebrow: "Our conviction",
       paragraphs: [
         "Morocco has been traveled for centuries. Its monuments photographed from every angle, its medinas mapped to the last alley. And yet the Morocco that matters, the one that stays with you, remains invisible to anyone who arrives holding a printed itinerary.",
-        "Turxplore rests on a different idea. The finest journeys are not found. They are built — from a deep knowledge of place, a genuine curiosity about people, and the patient care of getting every detail exactly right.",
-        "We open doors that stay closed to others. Our guides are historians, artisans, botanists — people with a story to tell, not a script to recite. And we time every arrival to give you places without crowds, because there is no greater luxury than a thousand-year-old courtyard in complete silence.",
+        "Turxplore rests on a different idea. The finest journeys are not found. They are built from a deep knowledge of place, a genuine curiosity about people, and the patient care of getting every detail exactly right.",
+        "We open doors that stay closed to others. Our guides are historians, artisans, botanists, people with a story to tell, not a script to recite. And we time every arrival to give you places without crowds, because there is no greater luxury than a thousand-year-old courtyard in complete silence.",
       ],
     },
     proof: "Forty groups a year. No itinerary ever repeated. Response in under 24 hours.",
@@ -522,7 +522,7 @@ export const homeContent: Record<"en" | "fr" | "es" | "pt-BR", HomeContent> = {
         {
           key: "carnet",
           title: "The Morocco Notebook",
-          description: "A keepsake to leaf through before you travel — when to go, customs, and Morocco in pictures.",
+          description: "A keepsake to leaf through before you travel. When to go, customs, and Morocco in pictures.",
           image: "/images/cover-carnet-maroc-en.jpg",
           imageAlt: "Cover of The Morocco Notebook",
         },
@@ -610,7 +610,7 @@ export const homeContent: Record<"en" | "fr" | "es" | "pt-BR", HomeContent> = {
         {
           key: "carnet",
           title: "El Cuaderno de Marruecos",
-          description: "Un cuaderno de viaje para hojear antes de partir — cuándo ir, costumbres, y Marruecos en imágenes.",
+          description: "Un cuaderno de viaje para hojear antes de partir. Cuándo ir, costumbres, y Marruecos en imágenes.",
           image: "/images/cover-carnet-maroc-es.jpg",
           imageAlt: "Portada del Cuaderno de Marruecos",
         },
@@ -698,7 +698,7 @@ export const homeContent: Record<"en" | "fr" | "es" | "pt-BR", HomeContent> = {
         {
           key: "carnet",
           title: "O Caderno do Marrocos",
-          description: "Um caderno de viagem para folhear antes da partida — quando ir, costumes, e o Marrocos em imagens.",
+          description: "Um caderno de viagem para folhear antes da partida. Quando ir, costumes, e o Marrocos em imagens.",
           image: "/images/cover-carnet-maroc-pt-BR.jpg",
           imageAlt: "Capa do Caderno do Marrocos",
         },

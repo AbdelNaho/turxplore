@@ -2,43 +2,51 @@
 
 import { motion } from "framer-motion";
 import Image from "next/image";
+import { useTranslations } from "next-intl";
 
-const BLOCKS = [
+const BLOCK_STATIC = [
   {
-    label: "Notre vision",
-    title: "Un regard sur\nle Maroc",
-    body: "Turxplore n’est pas une agence de voyage. C’est un regard. Une manière de lire le Maroc à travers ses silences autant que ses éclats.",
+    key: "block1",
     image: "/images/Photo H 2.jpg",
     imageAlt: "Architecture traditionnelle marocaine",
     dark: false,
     imageRight: true,
   },
   {
-    label: "L’art de composer",
-    title: "Chaque voyage est\nune composition",
-    body: "Nous composons des itinéraires comme on compose un livre : chaque chapitre a son rythme, sa lumière, ses personnages. Le désert ne ressemble pas à la médina. L’Atlantique ne parle pas comme l’Atlas.",
+    key: "block2",
     image: "/images/Photo E.jpg",
     imageAlt: "Paysage marocain",
     dark: true,
     imageRight: false,
-    cta: { label: "Nos expériences", chapter: "experiences" },
+    ctaChapter: "experiences",
   },
   {
-    label: "Sur-mesure",
-    title: "Une édition\nlimitée",
-    body: "Chaque voyage est une édition limitée. Pas de catalogue, pas de circuit. Un dialogue entre vos envies et notre connaissance intime du territoire.",
+    key: "block3",
     image: "/images/Photo A.jpg",
     imageAlt: "Détail artisanal marocain",
     dark: false,
     imageRight: true,
-    cta: { label: "Composer votre voyage", chapter: "compose" },
+    ctaChapter: "compose",
   },
 ];
 
-function EditorialBlock({ block }: { block: (typeof BLOCKS)[number] }) {
+function EditorialBlock({
+  block,
+  t,
+}: {
+  block: (typeof BLOCK_STATIC)[number];
+  t: ReturnType<typeof useTranslations<"House">>;
+}) {
   const textColor = block.dark ? "text-parchment" : "text-encre";
   const bodyColor = block.dark ? "text-parchment/70" : "text-encre/80";
   const labelColor = block.dark ? "text-pierre" : "text-pierre2";
+
+  const label = t(`${block.key}_label` as any);
+  const title = t(`${block.key}_title` as any) as string;
+  const body = t(`${block.key}_body` as any);
+  const ctaLabel = block.ctaChapter
+    ? (t(`${block.key}_cta` as any) as string)
+    : null;
 
   return (
     <div
@@ -81,13 +89,13 @@ function EditorialBlock({ block }: { block: (typeof BLOCKS)[number] }) {
           <span
             className={`mb-3 block font-sans text-caps-label uppercase tracking-[0.14em] ${labelColor}`}
           >
-            {block.label}
+            {label}
           </span>
 
           <h3
             className={`font-serif text-display-section uppercase tracking-[0.02em] ${textColor}`}
           >
-            {block.title.split("\n").map((line, j) => (
+            {title.split("\n").map((line: string, j: number) => (
               <span key={j}>
                 {j > 0 && <br />}
                 {line}
@@ -98,15 +106,15 @@ function EditorialBlock({ block }: { block: (typeof BLOCKS)[number] }) {
           <p
             className={`mt-5 max-w-reading font-serif text-body-large leading-relaxed ${bodyColor}`}
           >
-            {block.body}
+            {body}
           </p>
 
-          {block.cta && (
+          {block.ctaChapter && ctaLabel && (
             <div className="mt-6">
               <button
                 onClick={() => {
                   const el = document.querySelector(
-                    `[data-chapter="${block.cta!.chapter}"]`,
+                    `[data-chapter="${block.ctaChapter}"]`,
                   );
                   if (el) el.scrollIntoView({ behavior: "smooth" });
                 }}
@@ -116,7 +124,7 @@ function EditorialBlock({ block }: { block: (typeof BLOCKS)[number] }) {
                     : "border-encre bg-encre text-parchment hover:bg-transparent hover:text-encre"
                 }`}
               >
-                {block.cta.label}
+                {ctaLabel}
               </button>
             </div>
           )}
@@ -127,10 +135,12 @@ function EditorialBlock({ block }: { block: (typeof BLOCKS)[number] }) {
 }
 
 export function ChapterHouse() {
+  const t = useTranslations("House");
+
   return (
     <section data-chapter="house">
-      {BLOCKS.map((block, i) => (
-        <EditorialBlock key={i} block={block} />
+      {BLOCK_STATIC.map((block, i) => (
+        <EditorialBlock key={i} block={block} t={t} />
       ))}
     </section>
   );

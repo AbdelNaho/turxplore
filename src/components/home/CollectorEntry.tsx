@@ -115,7 +115,7 @@ export function CollectorEntry() {
               transition={{ duration: 0.9, delay: 1.9, ease }}
               className="max-w-md font-serif text-body-large leading-relaxed text-parchment/60"
             >
-              Un carnet de route avant le voyage&nbsp;— pour regarder, et pour
+              Un carnet de route avant le voyage. Pour regarder, et pour
               savoir.
             </motion.p>
           </div>

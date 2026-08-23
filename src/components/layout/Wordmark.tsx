@@ -9,7 +9,7 @@ export function Wordmark({ className }: WordmarkProps) {
   return (
     <Link
       href="/"
-      aria-label="Turxplore — home"
+      aria-label="Turxplore · home"
       className={
         className
           ? `flex items-center gap-2 font-serif text-lg tracking-[0.06em] text-inherit ${className}`

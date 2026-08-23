@@ -47,7 +47,7 @@ export async function submitQuickInquiry(_prevState: SubmitResult | null, formDa
       body: JSON.stringify({
         from: "Turxplore <journeys@turxplore.com>",
         to: notifyTo,
-        subject: "New inquiry — quick funnel",
+        subject: "New inquiry · quick funnel",
         text: `A new visitor began a conversation.\n\n${details}`,
       }),
     });

@@ -8,6 +8,7 @@ import {
   useReducedMotion,
   AnimatePresence,
 } from "framer-motion";
+import { useTranslations } from "next-intl";
 
 type Channel = null | "whatsapp" | "email";
 
@@ -139,6 +140,7 @@ export function ChapterCompose() {
   const [message, setMessage] = useState("");
   const [channel, setChannel] = useState<Channel>(null);
   const reduceMotion = useReducedMotion();
+  const t = useTranslations("Compose");
 
   useEffect(() => {
     const handler = (e: Event) => {
@@ -166,7 +168,7 @@ export function ChapterCompose() {
   );
 
   const whatsappUrl = `https://wa.me/212697047692?text=${encodeURIComponent(
-    message || "Bonjour, j'aimerais composer un voyage au Maroc.",
+    message || t("defaultWhatsapp"),
   )}`;
 
   return (
@@ -178,7 +180,6 @@ export function ChapterCompose() {
       >
         <TadelaktBackground />
 
-        {/* Zellige background — spans entire section */}
         <div className="pointer-events-none absolute inset-0 overflow-hidden">
           <img
             src="/images/lesprit turxplore.jpg"
@@ -189,7 +190,6 @@ export function ChapterCompose() {
         </div>
 
         <div className="relative mx-auto max-w-content px-5 desktop:px-7">
-          {/* --- Esprit — emotional intro --- */}
           <div className="pt-10 desktop:pt-10">
             <motion.div
               initial={{ opacity: 0, y: 20 }}
@@ -199,19 +199,15 @@ export function ChapterCompose() {
               className="mx-auto max-w-reading text-center"
             >
               <h2 className="font-serif text-display-hero text-parchment">
-                L&apos;esprit <em className="italic">turxplore</em>
+                {t("heading")}{" "}
+                <em className="italic">{t("headingEmphasis")}</em>
               </h2>
               <p className="mt-4 font-serif text-body-large leading-relaxed text-parchment/50">
-                Vous arrivez avec une envie, un rêve, parfois juste une
-                couleur ou un parfum en tête. Nous connaissons le Maroc dans
-                ses moindres recoins, ses silences, ses lumières, ses portes
-                que personne n&apos;ouvre. Ensemble, on compose votre voyage.
-                Rien que le vôtre.
+                {t("manifesto")}
               </p>
             </motion.div>
           </div>
 
-          {/* --- Composer form --- */}
           <div className="flex min-h-[50vh] flex-col items-center justify-center pb-10 text-center">
             <motion.div
               initial={{ opacity: 0, y: 20 }}
@@ -227,13 +223,13 @@ export function ChapterCompose() {
               <div className="relative">
                 {message && (
                   <span className="mb-1 block text-left font-serif text-caption italic text-parchment/30">
-                    Parlez-nous du voyage que vous avez en tête...
+                    {t("placeholder")}
                   </span>
                 )}
                 <textarea
                   value={message}
                   onChange={(e) => setMessage(e.target.value)}
-                  placeholder="Parlez-nous du voyage que vous avez en tête..."
+                  placeholder={t("placeholder")}
                   rows={4}
                   className="w-full resize-none border-b border-parchment/20 bg-transparent pb-3 pt-2 font-serif text-body-standard text-parchment placeholder:text-parchment/30 outline-none transition-colors duration-200 focus:border-aubergine/40"
                 />
@@ -292,9 +288,13 @@ export function ChapterCompose() {
                     className="space-y-4"
                     onSubmit={(e) => e.preventDefault()}
                   >
-                    <FloatingInput label="Votre nom" name="name" type="text" />
                     <FloatingInput
-                      label="Votre email"
+                      label={t("yourName")}
+                      name="name"
+                      type="text"
+                    />
+                    <FloatingInput
+                      label={t("yourEmail")}
                       name="email"
                       type="email"
                     />
@@ -305,7 +305,7 @@ export function ChapterCompose() {
                         onClick={() => setChannel(null)}
                         className="font-sans text-interface-body text-parchment/40 transition-colors duration-200 hover:text-parchment/70"
                       >
-                        Retour
+                        {t("back")}
                       </button>
                       <motion.button
                         type="submit"
@@ -313,7 +313,7 @@ export function ChapterCompose() {
                         whileTap={{ scale: 0.98 }}
                         className="rounded-full bg-aubergine px-5 py-2 font-sans text-interface-label uppercase tracking-[0.14em] text-parchment transition-colors duration-200 hover:bg-aubergine2"
                       >
-                        Envoyer
+                        {t("send")}
                       </motion.button>
                     </div>
                   </form>

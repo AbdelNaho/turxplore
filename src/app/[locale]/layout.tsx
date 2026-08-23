@@ -29,7 +29,7 @@ export async function generateMetadata({
   return {
     metadataBase: new URL("https://turxplore.com"),
     title: {
-      default: "Turxplore — Morocco, edited.",
+      default: "Turxplore · Morocco, edited.",
       template: "%s · Turxplore",
     },
     description: t("manifesto"),
@@ -38,7 +38,7 @@ export async function generateMetadata({
       languages: localePaths,
     },
     openGraph: {
-      title: "Turxplore — Morocco, edited.",
+      title: "Turxplore · Morocco, edited.",
       description: t("manifesto"),
       siteName: "Turxplore",
       locale,
@@ -46,7 +46,7 @@ export async function generateMetadata({
     },
     twitter: {
       card: "summary_large_image",
-      title: "Turxplore — Morocco, edited.",
+      title: "Turxplore · Morocco, edited.",
       description: t("manifesto"),
     },
   };

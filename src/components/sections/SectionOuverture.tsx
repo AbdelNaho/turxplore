@@ -110,7 +110,7 @@ export function SectionOuverture() {
             style={{ opacity: dateOpacity, y: dateY }}
             className="font-sans text-caps-label uppercase tracking-[0.14em] text-pierre will-change-[opacity,transform]"
           >
-            XIIe siècle — aujourd&apos;hui
+            XIIe siècle · aujourd&apos;hui
           </motion.span>
 
           <motion.h2

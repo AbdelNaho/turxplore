@@ -4,91 +4,34 @@ import { useRef } from "react";
 import { motion, useInView, useReducedMotion } from "framer-motion";
 import Image from "next/image";
 import { Mark } from "@/components/brand/Mark";
+import { useTranslations } from "next-intl";
 
-const EXPERIENCES = [
-  {
-    number: "I",
-    title: "Médinas Vivantes",
-    subtitle: "Ruelles, artisans, murmures.",
-    image: "/images/Photo F.jpg",
-    composeMessage: "Bonjour, je rêve de me perdre dans les médinas du Maroc, entre ruelles, artisans et murmures. Pouvons-nous en parler ?",
-  },
-  {
-    number: "II",
-    title: "Pierres & Lumières",
-    subtitle: "Géométrie, silence, lumière.",
-    image: "/images/route-villes-imperiales 2.jpg",
-    composeMessage: "Bonjour, je souhaite découvrir le patrimoine architectural du Maroc — géométrie, silence et lumière. Composons ensemble.",
-  },
-  {
-    number: "III",
-    title: "Routes du Sud",
-    subtitle: "Dunes, caravanes, étoiles.",
-    image: "/images/route-desert-prive.jpg",
-    composeMessage: "Bonjour, je rêve d'une aventure dans le sud marocain, entre dunes, caravanes et nuits étoilées.",
-  },
-  {
-    number: "IV",
-    title: "Le Maroc à Savourer",
-    subtitle: "Bien-être, saveurs, art de vivre.",
-    image: "/images/le Maroc a savourer chateaux roslane.png",
-    composeMessage: "Bonjour, je souhaite vivre une expérience gastronomique et bien-être au Maroc. Parlons-en.",
-  },
-  {
-    number: "V",
-    title: "Le Maroc Entre Nous",
-    subtitle: "Intimité, douceur, à deux.",
-    image: "/images/women imperial.jpg",
-    composeMessage: "Bonjour, nous aimerions un voyage en amoureux au Maroc — intimité, douceur et moments à deux.",
-  },
-  {
-    number: "VI",
-    title: "Le Maroc à Plusieurs",
-    subtitle: "Amis, famille, partage.",
-    image: "/images/Le Maroc a Plusieurs.jpg",
-    composeMessage: "Bonjour, nous souhaitons organiser un voyage en groupe au Maroc — amis, famille et partage.",
-  },
-  {
-    number: "VII",
-    title: "Greens & Horizons",
-    subtitle: "Golf, parcours, évasion.",
-    image: "/images/green and horizon.jpg.png",
-    composeMessage: "Bonjour, je suis intéressé par un séjour golf au Maroc — parcours d'exception et horizons.",
-  },
-  {
-    number: "VIII",
-    title: "L'Atlantique Sauvage",
-    subtitle: "Embruns, forteresses, liberté.",
-    image: "/images/voyage-atlantique-sauvage.jpg",
-    composeMessage: "Bonjour, j'aimerais explorer la côte atlantique marocaine — embruns, forteresses et liberté.",
-  },
-  {
-    number: "IX",
-    title: "Terres de Montagne",
-    subtitle: "Kasbahs, pisé, silence.",
-    image: "/images/Photo B.jpg",
-    composeMessage: "Bonjour, je rêve d'explorer les montagnes du Maroc, ses kasbahs et ses villages de pisé.",
-  },
-  {
-    number: "X",
-    title: "L'Art de Vivre",
-    subtitle: "Tables, terrasses, crépuscule.",
-    image: "/images/route-family-rooftop 2.jpg",
-    composeMessage: "Bonjour, je souhaite vivre l'art de vivre marocain — tables, terrasses et crépuscules.",
-  },
-  {
-    number: "XI",
-    title: "Jardins Secrets",
-    subtitle: "Patios, parfums, fontaines.",
-    image: "/images/Jardins secret 2.jpg",
-    composeMessage: "Bonjour, j'aimerais découvrir les jardins secrets du Maroc — patios, parfums et fontaines.",
-  },
+const EXP_IMAGES = [
+  { number: "I", image: "/images/Photo F.jpg" },
+  { number: "II", image: "/images/route-villes-imperiales 2.jpg" },
+  { number: "III", image: "/images/route-desert-prive.jpg" },
+  { number: "IV", image: "/images/le Maroc a savourer chateaux roslane.png" },
+  { number: "V", image: "/images/women imperial.jpg" },
+  { number: "VI", image: "/images/Le Maroc a Plusieurs.jpg" },
+  { number: "VII", image: "/images/green and horizon.jpg.png" },
+  { number: "VIII", image: "/images/voyage-atlantique-sauvage.jpg" },
+  { number: "IX", image: "/images/Photo B.jpg" },
+  { number: "X", image: "/images/route-family-rooftop 2.jpg" },
+  { number: "XI", image: "/images/Jardins secret 2.jpg" },
 ];
 
 export function ChapterExperiences() {
   const sectionRef = useRef<HTMLElement>(null);
   const inView = useInView(sectionRef, { once: true, margin: "-10%" });
   const reduceMotion = useReducedMotion();
+  const t = useTranslations("Experiences");
+
+  const experiences = EXP_IMAGES.map((item, i) => ({
+    ...item,
+    title: t(`exp${i + 1}_title`),
+    subtitle: t(`exp${i + 1}_subtitle`),
+    composeMessage: t(`exp${i + 1}_compose`),
+  }));
 
   return (
     <section
@@ -104,10 +47,10 @@ export function ChapterExperiences() {
       {/* Mobile title */}
       <div className="mb-6 px-5 desktop:hidden">
         <span className="font-sans text-caps-label uppercase tracking-[0.14em] text-pierre2/60">
-          Les expériences
+          {t("label")}
         </span>
         <h2 className="mt-2 font-serif text-display-section text-parchment">
-          Compositions
+          {t("heading")}
         </h2>
       </div>
 
@@ -124,13 +67,13 @@ export function ChapterExperiences() {
             </motion.div>
 
             <span className="relative font-sans text-caps-label uppercase tracking-[0.14em] text-pierre2/60">
-              Les expériences
+              {t("label")}
             </span>
             <h2 className="relative mt-3 font-serif text-display-feature text-parchment">
-              Compositions
+              {t("heading")}
             </h2>
             <p className="relative mt-3 max-w-[26ch] font-serif text-body-standard italic text-parchment/40">
-              Chaque voyage est une composition sur mesure.
+              {t("description")}
             </p>
           </div>
         </div>
@@ -140,7 +83,7 @@ export function ChapterExperiences() {
           className="scrollbar-hide flex gap-4 overflow-x-auto px-5 desktop:gap-5 desktop:pl-5 desktop:pr-7"
           style={{ scrollSnapType: "x mandatory" }}
         >
-          {EXPERIENCES.map((exp, i) => (
+          {experiences.map((exp, i) => (
             <motion.article
               key={exp.number}
               initial={reduceMotion ? { opacity: 1 } : { opacity: 0, y: 40 }}
@@ -199,7 +142,7 @@ export function ChapterExperiences() {
                       {exp.subtitle}
                     </span>
                     <span className="mt-1 inline-flex items-center gap-1.5 font-sans text-caps-label uppercase tracking-[0.14em] text-parchment/70">
-                      Explorer
+                      {t("cta")}
                       <svg viewBox="0 0 16 16" fill="none" stroke="currentColor" strokeWidth={1.5} className="h-3 w-3" aria-hidden="true">
                         <path strokeLinecap="round" strokeLinejoin="round" d="M3 8h10m0 0L9 4m4 4L9 12" />
                       </svg>
@@ -215,7 +158,7 @@ export function ChapterExperiences() {
                     </span>
                     <div className="flex items-center gap-2">
                       <span className="font-sans text-caps-label uppercase tracking-[0.14em] text-parchment/90">
-                        Explorer
+                        {t("cta")}
                       </span>
                       <svg
                         viewBox="0 0 16 16"

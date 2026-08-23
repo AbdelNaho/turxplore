@@ -15,7 +15,7 @@ const SPREADS = [
   {
     epoch: "I",
     title: "Les Berbères & la terre",
-    text: "Avant les dynasties, avant les routes, il y avait la terre. Les Berbères l'ont habitée comme on habite un silence — avec patience, avec les mains.",
+    text: "Avant les dynasties, avant les routes, il y avait la terre. Les Berbères l'ont habitée comme on habite un silence. Avec patience, avec les mains.",
     mainImage: { src: "/images/Photo A.jpg", alt: "Femmes berbères préparant l'huile d'argan" },
     detailImage: { src: "/images/Photo B.jpg", alt: "Kasbah de pisé dans la vallée de l'Atlas" },
   },

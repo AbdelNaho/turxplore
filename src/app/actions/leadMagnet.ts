@@ -25,7 +25,7 @@ const FILE_LOCALE: Record<string, "fr" | "en" | "es" | "pt-BR"> = {
 const EMAIL_COPY = {
   fr: {
     label: { carnet: "Le Carnet du Maroc", cartes: "Cartes & Médinas" },
-    subject: (label: string) => `${label} — votre document Turxplore`,
+    subject: (label: string) => `${label} · votre document Turxplore`,
     body: (label: string, url: string) =>
       `Voici votre document : ${url}\n\nTurxplore compose des voyages à travers le Maroc avec ceux qui le connaissent de l'intérieur.`,
     html: (label: string, url: string) =>
@@ -33,7 +33,7 @@ const EMAIL_COPY = {
   },
   en: {
     label: { carnet: "The Morocco Notebook", cartes: "Maps & Medinas" },
-    subject: (label: string) => `${label} — your Turxplore document`,
+    subject: (label: string) => `${label} · your Turxplore document`,
     body: (label: string, url: string) =>
       `Here is your document: ${url}\n\nTurxplore composes journeys through Morocco with those who know it from within.`,
     html: (label: string, url: string) =>
@@ -41,7 +41,7 @@ const EMAIL_COPY = {
   },
   es: {
     label: { carnet: "El Cuaderno de Marruecos", cartes: "Mapas y Medinas" },
-    subject: (label: string) => `${label} — su documento Turxplore`,
+    subject: (label: string) => `${label} · su documento Turxplore`,
     body: (label: string, url: string) =>
       `Aquí tiene su documento: ${url}\n\nTurxplore compone viajes por Marruecos junto a quienes lo conocen desde dentro.`,
     html: (label: string, url: string) =>
@@ -49,7 +49,7 @@ const EMAIL_COPY = {
   },
   "pt-BR": {
     label: { carnet: "O Caderno do Marrocos", cartes: "Mapas e Medinas" },
-    subject: (label: string) => `${label} — seu documento Turxplore`,
+    subject: (label: string) => `${label} · seu documento Turxplore`,
     body: (label: string, url: string) =>
       `Aqui está o seu documento: ${url}\n\nA Turxplore compõe viagens por Marrocos com quem o conhece por dentro.`,
     html: (label: string, url: string) =>
@@ -122,7 +122,7 @@ export async function sendLeadMagnet(_prevState: SubmitResult | null, formData: 
         body: JSON.stringify({
           from: "Turxplore <journeys@turxplore.com>",
           to: notifyTo,
-          subject: "New lead — lead magnet download",
+          subject: "New lead · lead magnet download",
           text: `A visitor requested "${label}" (${fileLocale}).\n\nEmail: ${email}`,
         }),
       });
