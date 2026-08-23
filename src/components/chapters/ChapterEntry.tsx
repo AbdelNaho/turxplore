@@ -1,6 +1,6 @@
 "use client";
 
-import { useRef } from "react";
+import { useRef, useEffect, useState } from "react";
 import {
   motion,
   useScroll,
@@ -12,6 +12,14 @@ import Image from "next/image";
 export function ChapterEntry() {
   const containerRef = useRef<HTMLDivElement>(null);
   const reduceMotion = useReducedMotion();
+  const [isMobile, setIsMobile] = useState(false);
+
+  useEffect(() => {
+    const check = () => setIsMobile(window.innerWidth < 1024);
+    check();
+    window.addEventListener("resize", check);
+    return () => window.removeEventListener("resize", check);
+  }, []);
 
   const { scrollYProgress } = useScroll({
     target: containerRef,
@@ -21,12 +29,12 @@ export function ChapterEntry() {
   const imageScale = useTransform(
     scrollYProgress,
     [0, 1],
-    reduceMotion ? [1, 1] : [1, 1.12],
+    reduceMotion ? [1, 1] : [1, isMobile ? 1.04 : 1.12],
   );
   const textY = useTransform(
     scrollYProgress,
     [0, 1],
-    reduceMotion ? [0, 0] : [0, -150],
+    reduceMotion ? [0, 0] : [0, isMobile ? -80 : -150],
   );
   const overlayOpacity = useTransform(
     scrollYProgress,
@@ -61,9 +69,17 @@ export function ChapterEntry() {
                 alt="Dunes dorées du Sahara marocain"
                 fill
                 sizes="100vw"
-                className="object-cover"
+                className="hidden object-cover desktop:block"
                 priority
                 quality={90}
+              />
+              <Image
+                src="/images/hero version mobile 2.jpg"
+                alt="Dunes dorées du Sahara marocain"
+                fill
+                sizes="100vw"
+                className="object-cover desktop:hidden"
+                priority
               />
             </motion.div>
           </motion.div>

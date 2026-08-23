@@ -6,6 +6,7 @@ const withNextIntl = createNextIntlPlugin("./src/i18n/request.ts");
 const nextConfig: NextConfig = {
   images: {
     formats: ["image/avif", "image/webp"],
+    qualities: [75, 90],
   },
   outputFileTracingRoot: __dirname,
   // The Sanity Studio bundle (rich-text editor, previews, styled-components)

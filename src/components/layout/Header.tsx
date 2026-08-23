@@ -94,7 +94,7 @@ export function Header() {
           {/* Mobile menu toggle */}
           <button
             onClick={() => setMenuOpen(!menuOpen)}
-            className={`font-sans text-interface-label uppercase tracking-[0.14em] transition-colors duration-300 nav:hidden ${
+            className={`font-serif text-interface-label uppercase tracking-[0.14em] transition-colors duration-300 nav:hidden ${
               light ? "text-parchment" : "text-encre"
             }`}
             aria-label={menuOpen ? "Fermer le menu" : "Ouvrir le menu"}

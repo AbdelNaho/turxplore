@@ -192,9 +192,24 @@ export function ChapterExperiences() {
                   </h3>
                 </div>
 
-                {/* Bottom reveal strip — glassmorphic CTA bar */}
-                <div className="absolute inset-x-0 bottom-0 translate-y-full transition-transform duration-500 ease-[cubic-bezier(0.16,1,0.3,1)] group-hover:translate-y-0">
-                  <div className="border-t border-parchment/10 bg-encre/40 px-5 py-3 backdrop-blur-md desktop:px-6 desktop:py-4">
+                {/* Mobile — permanent compact CTA at bottom */}
+                <div className="absolute inset-x-0 bottom-0 desktop:hidden">
+                  <div className="bg-gradient-to-t from-encre/80 to-transparent px-5 pb-4 pt-8">
+                    <span className="block font-sans text-caption leading-snug text-parchment/50">
+                      {exp.subtitle}
+                    </span>
+                    <span className="mt-1 inline-flex items-center gap-1.5 font-sans text-caps-label uppercase tracking-[0.14em] text-parchment/70">
+                      Explorer
+                      <svg viewBox="0 0 16 16" fill="none" stroke="currentColor" strokeWidth={1.5} className="h-3 w-3" aria-hidden="true">
+                        <path strokeLinecap="round" strokeLinejoin="round" d="M3 8h10m0 0L9 4m4 4L9 12" />
+                      </svg>
+                    </span>
+                  </div>
+                </div>
+
+                {/* Desktop — hover reveal strip */}
+                <div className="absolute inset-x-0 bottom-0 hidden translate-y-full transition-transform duration-500 ease-[cubic-bezier(0.16,1,0.3,1)] group-hover:translate-y-0 desktop:block">
+                  <div className="border-t border-parchment/10 bg-encre/40 px-6 py-4 backdrop-blur-md">
                     <span className="mb-1 block font-sans text-caption leading-snug text-parchment/60">
                       {exp.subtitle}
                     </span>
