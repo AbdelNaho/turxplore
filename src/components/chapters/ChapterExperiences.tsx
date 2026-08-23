@@ -3,7 +3,6 @@
 import { useRef } from "react";
 import { motion, useInView, useReducedMotion } from "framer-motion";
 import Image from "next/image";
-import { Mark } from "@/components/brand/Mark";
 import { useTranslations } from "next-intl";
 
 const EXP_IMAGES = [
@@ -44,39 +43,14 @@ export function ChapterExperiences() {
         <div className="h-px w-8 bg-pierre/20" />
       </div>
 
-      {/* Mobile title */}
-      <div className="mb-6 px-5 desktop:hidden">
-        <span className="font-sans text-caps-label uppercase tracking-[0.14em] text-pierre2/60">
+      {/* Section title */}
+      <div className="mb-6 px-5 desktop:mb-8 desktop:px-7">
+        <h2 className="font-serif text-display-feature text-parchment">
           {t("label")}
-        </span>
-        <h2 className="mt-2 font-serif text-display-section text-parchment">
-          {t("heading")}
         </h2>
       </div>
 
       <div className="flex items-stretch">
-        {/* Title column — desktop only */}
-        <div className="hidden desktop:flex desktop:w-[420px] desktop:flex-shrink-0 desktop:flex-col desktop:justify-center desktop:pl-7 xl:w-[480px]">
-          <div className="relative">
-            <motion.div
-              animate={reduceMotion ? {} : { rotate: 360 }}
-              transition={{ duration: 90, repeat: Infinity, ease: "linear" }}
-              className="absolute -left-3 -top-6 opacity-[0.03]"
-            >
-              <Mark className="h-[180px] w-[180px] text-parchment" />
-            </motion.div>
-
-            <span className="relative font-sans text-caps-label uppercase tracking-[0.14em] text-pierre2/60">
-              {t("label")}
-            </span>
-            <h2 className="relative mt-3 font-serif text-display-feature text-parchment">
-              {t("heading")}
-            </h2>
-            <p className="relative mt-3 max-w-[26ch] font-serif text-body-standard italic text-parchment/40">
-              {t("description")}
-            </p>
-          </div>
-        </div>
 
         {/* Horizontal scrollable cards */}
         <div
@@ -95,7 +69,7 @@ export function ChapterExperiences() {
               }}
               className="group relative flex-shrink-0 cursor-pointer"
               style={{
-                width: "clamp(240px, 25vw, 340px)",
+                width: "clamp(260px, 28vw, 380px)",
                 scrollSnapAlign: "start",
               }}
               onClick={() => {
