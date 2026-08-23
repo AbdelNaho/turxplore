@@ -98,7 +98,7 @@ export function ChapterEntry() {
             initial={{ opacity: 0 }}
             animate={{ opacity: 1 }}
             transition={{ delay: 1, duration: 0.8 }}
-            className="mt-3 font-sans text-caps-label uppercase tracking-[0.14em] text-parchment/80"
+            className="mt-3 font-sans text-interface-label uppercase tracking-[0.18em] text-parchment/80"
           >
             Morocco, edited.
           </motion.p>

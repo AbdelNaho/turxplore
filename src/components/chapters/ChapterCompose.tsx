@@ -140,6 +140,15 @@ export function ChapterCompose() {
   const [channel, setChannel] = useState<Channel>(null);
   const reduceMotion = useReducedMotion();
 
+  useEffect(() => {
+    const handler = (e: Event) => {
+      const detail = (e as CustomEvent<string>).detail;
+      if (detail) setMessage(detail);
+    };
+    window.addEventListener("compose-message", handler);
+    return () => window.removeEventListener("compose-message", handler);
+  }, []);
+
   const { scrollYProgress } = useScroll({
     target: sectionRef,
     offset: ["start end", "start center"],
@@ -193,9 +202,11 @@ export function ChapterCompose() {
                 L&apos;esprit <em className="italic">turxplore</em>
               </h2>
               <p className="mt-4 font-serif text-body-large leading-relaxed text-parchment/50">
-                Un voyage ne se réserve pas. Il se ressent, se murmure,
-                se compose — comme une partition dont vous êtes le seul
-                interprète.
+                Vous arrivez avec une envie, un rêve, parfois juste une
+                couleur ou un parfum en tête. Nous connaissons le Maroc dans
+                ses moindres recoins, ses silences, ses lumières, ses portes
+                que personne n&apos;ouvre. Ensemble, on compose votre voyage.
+                Rien que le vôtre.
               </p>
             </motion.div>
           </div>
@@ -214,6 +225,11 @@ export function ChapterCompose() {
               className="mt-5 w-full max-w-reading"
             >
               <div className="relative">
+                {message && (
+                  <span className="mb-1 block text-left font-serif text-caption italic text-parchment/30">
+                    Parlez-nous du voyage que vous avez en tête...
+                  </span>
+                )}
                 <textarea
                   value={message}
                   onChange={(e) => setMessage(e.target.value)}

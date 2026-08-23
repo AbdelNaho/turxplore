@@ -8,13 +8,13 @@ const RESOURCES = [
   {
     title: "Carte du Maroc",
     description: "Carte éditoriale illustrée à l'aquarelle.",
-    image: "/images/cover-cartes-medinas-fr.jpg",
+    image: "/images/carte du maroc.jpg",
     file: "/downloads/carte-maroc.pdf",
   },
   {
-    title: "Le Carnet des Secrets",
-    description: "Darija, prix, coutumes, contacts — ce que les guides ne disent pas.",
-    image: "/images/cover-carnet-maroc-fr.jpg",
+    title: "Les Notes de Marge",
+    description: "Darija, coutumes, contacts.",
+    image: "/images/le carnet secret.jpg",
     file: "/downloads/carnet-secrets.pdf",
   },
 ];
@@ -31,7 +31,7 @@ export function SectionRessources() {
     >
       <div className="mx-auto max-w-content px-5 desktop:px-7">
         <span className="mb-4 block font-sans text-caps-label uppercase tracking-[0.14em] text-pierre2">
-          Pour les initiés
+          Hors-Texte
         </span>
 
         <div className="grid grid-cols-2 gap-4 desktop:gap-5">
@@ -162,6 +162,22 @@ function ResourceCard({
       <p className="mt-0.5 font-sans text-interface-body text-encre2/60">
         {resource.description}
       </p>
+      <button
+        onClick={() => setShowForm(true)}
+        className="mt-2 inline-flex items-center gap-1.5 border-b border-encre/20 pb-0.5 font-sans text-caption uppercase tracking-[0.1em] text-encre/70 transition-colors duration-200 hover:border-encre/50 hover:text-encre"
+      >
+        <svg
+          viewBox="0 0 16 16"
+          fill="none"
+          stroke="currentColor"
+          strokeWidth={1.5}
+          className="h-3 w-3"
+          aria-hidden="true"
+        >
+          <path strokeLinecap="round" strokeLinejoin="round" d="M8 2v9m0 0L4.5 7.5M8 11l3.5-3.5M3 14h10" />
+        </svg>
+        Télécharger
+      </button>
     </motion.article>
   );
 }

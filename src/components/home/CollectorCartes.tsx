@@ -19,13 +19,13 @@ const ease = [0.22, 1, 0.36, 1] as const;
 
 const cards = [
   {
-    image: "/images/cover-cartes-medinas-fr.jpg",
+    image: "/images/carte du maroc.jpg",
     alt: "Carte du Royaume — carte stylisée du Maroc dessinée à la main",
     label: "La Carte du Royaume",
     desc: "Une carte dessinée à la main, de Tanger à Merzouga. Chaque route, chaque étape, chaque ville impériale.",
   },
   {
-    image: "/images/cover-carnet-maroc-fr.jpg",
+    image: "/images/le carnet secret.jpg",
     alt: "Le Maroc, composé pour vous — couverture du carnet de route Turxplore",
     label: "Le Carnet de route",
     desc: "Votre itinéraire, composé sur mesure. Pour regarder avant de partir, et pour savoir où vous allez.",

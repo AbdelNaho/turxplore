@@ -13,9 +13,10 @@ const localeLabels: Record<string, string> = {
 
 type LanguageSwitcherProps = {
   className?: string;
+  dark?: boolean;
 };
 
-export function LanguageSwitcher({ className }: LanguageSwitcherProps) {
+export function LanguageSwitcher({ className, dark }: LanguageSwitcherProps) {
   const t = useTranslations("Nav");
   const activeLocale = useLocale();
   const pathname = usePathname();
@@ -32,8 +33,8 @@ export function LanguageSwitcher({ className }: LanguageSwitcherProps) {
               className={
                 "font-sans text-caps-label uppercase transition-colors duration-interface ease-out " +
                 (locale === activeLocale
-                  ? "text-encre"
-                  : "text-pierre2 hover:text-encre")
+                  ? dark ? "text-parchment" : "text-encre"
+                  : dark ? "text-parchment/40 hover:text-parchment" : "text-pierre2 hover:text-encre")
               }
             >
               {localeLabels[locale] ?? locale}

@@ -1,12 +1,6 @@
 "use client";
 
-import { useRef } from "react";
-import {
-  motion,
-  useScroll,
-  useTransform,
-  useReducedMotion,
-} from "framer-motion";
+import { motion } from "framer-motion";
 import Image from "next/image";
 
 const BLOCKS = [
@@ -16,7 +10,7 @@ const BLOCKS = [
     body: "Turxplore n’est pas une agence de voyage. C’est un regard. Une manière de lire le Maroc à travers ses silences autant que ses éclats.",
     image: "/images/Photo H 2.jpg",
     imageAlt: "Architecture traditionnelle marocaine",
-    dark: true,
+    dark: false,
     imageRight: true,
   },
   {
@@ -133,49 +127,8 @@ function EditorialBlock({ block }: { block: (typeof BLOCKS)[number] }) {
 }
 
 export function ChapterHouse() {
-  const heroRef = useRef<HTMLDivElement>(null);
-  const reduceMotion = useReducedMotion();
-
-  const { scrollYProgress: heroProgress } = useScroll({
-    target: heroRef,
-    offset: ["start end", "end start"],
-  });
-
-  const heroScale = useTransform(
-    heroProgress,
-    [0, 0.5],
-    reduceMotion ? [1, 1] : [1.3, 1],
-  );
-
   return (
     <section data-chapter="house">
-      <div ref={heroRef} className="relative min-h-[100dvh] overflow-hidden">
-        <motion.div
-          style={{ scale: heroScale }}
-          className="absolute inset-0 will-change-transform"
-        >
-          <Image
-            src="/images/Photo D.jpg"
-            alt="Architecture traditionnelle marocaine"
-            fill
-            sizes="100vw"
-            className="object-cover"
-          />
-        </motion.div>
-        <div className="absolute inset-0 bg-encre/30" />
-        <div className="absolute inset-0 flex items-center justify-center">
-          <motion.h2
-            initial={{ opacity: 0, y: 30 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true }}
-            transition={{ duration: 0.8, ease: [0.22, 1, 0.36, 1] }}
-            className="font-serif text-display-hero text-parchment"
-          >
-            La Casa
-          </motion.h2>
-        </div>
-      </div>
-
       {BLOCKS.map((block, i) => (
         <EditorialBlock key={i} block={block} />
       ))}
