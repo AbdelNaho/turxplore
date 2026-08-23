@@ -9,7 +9,10 @@
     "skipToContent": "Skip to content",
     "language": "Language",
     "menu": "Menu",
-    "close": "Close"
+    "close": "Close",
+    "navExperiences": "Experiences",
+    "navHouse": "The House",
+    "navCompose": "Compose"
   },
   "Footer": {
     "manifesto": "Turxplore composes journeys through Morocco with those who know it from within. Every composition begins with a conversation, and ends in the country it came from.",

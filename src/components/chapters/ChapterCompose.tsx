@@ -198,7 +198,7 @@ export function ChapterCompose() {
               transition={{ duration: 0.8, ease: [0.22, 1, 0.36, 1] }}
               className="mx-auto max-w-reading text-center"
             >
-              <h2 className="font-serif text-display-hero text-parchment">
+              <h2 className="font-serif text-parchment" style={{ fontSize: "clamp(2.25rem, 5.5vw + 0.8rem, 4.5rem)", lineHeight: 1.1, letterSpacing: "-0.025em", fontWeight: 300 }}>
                 {t("heading")}{" "}
                 <em className="italic">{t("headingEmphasis")}</em>
               </h2>

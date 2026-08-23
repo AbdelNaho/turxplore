@@ -2,16 +2,18 @@
 
 import { useEffect, useState, useCallback } from "react";
 import { motion, AnimatePresence } from "framer-motion";
+import { useTranslations } from "next-intl";
 import { Wordmark } from "./Wordmark";
 import { Mark } from "@/components/brand/Mark";
 
-const NAV_ITEMS = [
-  { id: "experiences", label: "Les Expériences" },
-  { id: "house", label: "La Casa" },
-  { id: "compose", label: "Composer" },
-];
+const NAV_KEYS = [
+  { id: "experiences", key: "navExperiences" },
+  { id: "house", key: "navHouse" },
+  { id: "compose", key: "navCompose" },
+] as const;
 
 export function Header() {
+  const t = useTranslations("Nav");
   const [onDark, setOnDark] = useState(false);
   const [scrolled, setScrolled] = useState(false);
   const [menuOpen, setMenuOpen] = useState(false);
@@ -76,7 +78,7 @@ export function Header() {
 
           {/* Desktop nav — 3 items */}
           <nav className="hidden items-center gap-6 nav:flex">
-            {NAV_ITEMS.map((item) => (
+            {NAV_KEYS.map((item) => (
               <button
                 key={item.id}
                 onClick={() => navigateToChapter(item.id)}
@@ -86,7 +88,7 @@ export function Header() {
                     : "text-encre/70 hover:text-encre"
                 }`}
               >
-                {item.label}
+                {t(item.key)}
               </button>
             ))}
           </nav>
@@ -97,9 +99,9 @@ export function Header() {
             className={`font-serif text-interface-label uppercase tracking-[0.14em] transition-colors duration-300 nav:hidden ${
               light ? "text-parchment" : "text-encre"
             }`}
-            aria-label={menuOpen ? "Fermer le menu" : "Ouvrir le menu"}
+            aria-label={menuOpen ? t("close") : t("menu")}
           >
-            {menuOpen ? "Fermer" : "Menu"}
+            {menuOpen ? t("close") : t("menu")}
           </button>
         </div>
       </header>
@@ -115,7 +117,7 @@ export function Header() {
           >
             <div className="mx-auto w-full max-w-content px-5 py-9 desktop:px-7">
               <nav className="flex flex-col gap-5">
-                {NAV_ITEMS.map((item, i) => (
+                {NAV_KEYS.map((item, i) => (
                   <motion.button
                     key={item.id}
                     initial={{ opacity: 0, x: -30 }}
@@ -129,7 +131,7 @@ export function Header() {
                     className="group text-left"
                   >
                     <span className="font-serif text-display-feature text-parchment transition-colors duration-200 group-hover:text-parchment/70">
-                      {item.label}
+                      {t(item.key)}
                     </span>
                   </motion.button>
                 ))}

@@ -8,6 +8,7 @@ import {
   useReducedMotion,
 } from "framer-motion";
 import Image from "next/image";
+import { LanguageSwitcher } from "@/components/layout/LanguageSwitcher";
 
 export function ChapterEntry() {
   const containerRef = useRef<HTMLDivElement>(null);
@@ -118,6 +119,14 @@ export function ChapterEntry() {
           >
             Morocco, edited.
           </motion.p>
+          <motion.div
+            initial={{ opacity: 0 }}
+            animate={{ opacity: 1 }}
+            transition={{ delay: 1.4, duration: 0.8 }}
+            className="mt-5"
+          >
+            <LanguageSwitcher dark />
+          </motion.div>
         </motion.div>
 
         <motion.div
